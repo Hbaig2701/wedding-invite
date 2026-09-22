@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────── Fonts ─────────────────────────────
+   Two Latin faces only: Bodoni Moda (display, real optical sizing) and
+   EB Garamond (book). Amiri is used exclusively for Arabic script.        */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../assets/fonts/bodoni-moda-latin-opsz-normal.woff2') format('woff2-variations'),
+       url('../assets/fonts/bodoni-moda-latin-opsz-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../assets/fonts/bodoni-moda-latin-opsz-italic.woff2') format('woff2-variations'),
+       url('../assets/fonts/bodoni-moda-latin-opsz-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/eb-garamond-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/eb-garamond-latin-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/eb-garamond-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Amiri';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/amiri-arabic-400-normal.woff2') format('woff2');
+}
+
+:root {
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', 'Times New Roman', serif;
+  --font-body: 'EB Garamond', 'Garamond', 'Georgia', serif;
+  --font-arabic: 'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', serif;
+
+  /* Procedural textures — no PNGs shipped. Each is an SVG data-URI tile. */
+  --tex-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --tex-fibre: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08 0.5' numOctaves='2' stitchTiles='stitch' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.4  0 0 0 0 0.3  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --tex-mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='3' stitchTiles='stitch' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  --tex-cloth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.08 0.8' numOctaves='2' stitchTiles='stitch' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+
+  /* Gold foil. A real foil goes dark-brown → near-white → amber across a few
+     degrees of angle; this is the same thing as a gradient. --gold-angle is
+     driven by pointer/tilt so the highlight actually moves.                  */
+  --gold-angle: 108deg;
+  --gold-foil: linear-gradient(
+    var(--gold-angle),
+    var(--gold-deep) 0%,
+    var(--gold-dark) 14%,
+    var(--gold) 26%,
+    var(--gold-light) 40%,
+    var(--gold-hot) 47%,
+    var(--gold-rose) 54%,
+    var(--gold) 66%,
+    var(--gold-dark) 82%,
+    var(--gold-deep) 100%
+  );
+
+  /* Foil for type: the same metal, but never darker than --gold-dark so a
+     letter can't disappear into the ground at the dark end of the sweep. */
+  --gold-foil-text: linear-gradient(
+    var(--gold-angle),
+    var(--gold-dark) 0%,
+    var(--gold) 16%,
+    var(--gold-light) 34%,
+    var(--gold-hot) 46%,
+    var(--gold-rose) 56%,
+    var(--gold-light) 68%,
+    var(--gold) 84%,
+    var(--gold-dark) 100%
+  );
+
+  /* Light direction (upper-left) used by everything that has a lit side. */
+  --lx: 30%;
+  --ly: 20%;
+
+  /* 1% of the layout column. On phones that is the viewport; on anything wider
+     the page is a fixed 430px phone column, so every vw-based size follows it. */
+  --vw: 1vw;
+  --col: 430px;
+
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--ground-shadow);
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--ground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern', 'liga', 'onum';
+  overflow-x: hidden;
+}
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+input, textarea, select { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+p { margin: 0; }
+h1, h2, h3, h4 { margin: 0; font-weight: 400; }
+
+.font-display { font-family: var(--font-display); font-optical-sizing: auto; }
+.font-body { font-family: var(--font-body); }
+.font-arabic { font-family: var(--font-arabic); }
+
+/* ─────────────────────── Full-height gate (iOS URL bar) ────────────────── */
+.dvh-100 { height: 100vh; height: 100dvh; }
+.min-dvh-100 { min-height: 100vh; min-height: 100dvh; }
+
+/* ───────────────────────────── Materials ────────────────────────────────
+   Rule: no large surface is a flat fill. Base colour + directional gradient
+   + grain, and a vignette on anything full-bleed.                          */
+
+/* Grain overlay — put on any positioned element */
+.grain { position: relative; }
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--tex-grain);
+  background-size: 220px 220px;
+  opacity: 0.16;
+  mix-blend-mode: soft-light;
+  z-index: 1;
+}
+.grain-strong::after { opacity: 0.26; }
+
+/* Dark ground: cool near-black in shadow, warmer yellowed green in the light */
+.ground {
+  position: relative;
+  background-color: var(--ground);
+  background-image:
+    radial-gradient(120% 90% at var(--lx) var(--ly), var(--ground-warm) 0%, var(--ground-lit) 22%, var(--ground) 55%, var(--ground-shadow) 100%),
+    var(--tex-mottle);
+  background-size: 100% 100%, 600px 600px;
+  background-blend-mode: normal, soft-light;
+}
+.ground::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 70% at 50% 40%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%);
+  z-index: 0;
+}
+
+/* Paper: warm off-white with visible fibre and a very slight warp */
+.paper {
+  position: relative;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(168deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 40%, rgba(90,60,20,0.06) 100%),
+    radial-gradient(110% 80% at 50% 0%, var(--paper-lit) 0%, rgba(255,255,255,0) 60%),
+    var(--tex-mottle);
+  background-size: 100% 100%, 100% 100%, 600px 600px;
+  background-blend-mode: normal, normal, multiply;
+}
+.paper::before {
+  /* fibre & mottling density */
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: var(--tex-fibre);
+  background-size: 300px 300px;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+.paper::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: var(--tex-grain);
+  background-size: 220px 220px;
+  opacity: 0.13;
+  mix-blend-mode: multiply;
+}
+.paper > * { position: relative; z-index: 2; }
+
+/* Deckled/soft edge between sections: a shadow line that reads as a stacked sheet */
+.paper-edge-top { box-shadow: 0 -1px 0 rgba(255,255,255,0.6) inset, 0 -14px 30px -18px rgba(0,0,0,0.55); }
+.paper-edge-bottom { box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 14px 30px -18px rgba(0,0,0,0.55); }
+
+/* Letterpress: type sits *in* the paper. Light above, dark below. */
+/* Letterpress is for display sizes only; on body text the shadows read as blur. */
+.letterpress {
+  color: var(--ink);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+.letterpress-deep {
+  color: var(--ink);
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.7),
+    0 -1px 0 rgba(40,20,0,0.14);
+}
+.letterpress-gold {
+  color: var(--gold-deep);
+  text-shadow: 0 1px 0 rgba(255,250,230,0.8);
+}
+
+/* Gold foil text */
+/* Gold type is a STATIC foil gradient. Animating a gradient under
+   background-clip:text flickers in Chrome and WebViews, and the dark end of
+   the sweep made letters vanish; the moving specular lives on the SVG
+   ornaments instead. */
+.gold-text {
+  position: relative;
+  display: inline-block;
+  color: var(--gold-light); /* fallback */
+  background-image: linear-gradient(
+    100deg,
+    var(--gold) 0%,
+    var(--gold-light) 28%,
+    var(--gold-hot) 46%,
+    var(--gold-rose) 58%,
+    var(--gold-light) 74%,
+    var(--gold) 100%
+  );
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.gold-text-glow { position: relative; display: inline-block; }
+
+/* Gold foil surfaces (rules, borders, buttons) */
+.gold-fill {
+  background-image: var(--gold-foil);
+  background-size: 260% 100%;
+  background-position: var(--gold-pos, 50%) 0;
+}
+.gold-rule {
+  position: relative;
+  height: 1px;
+  background-image: var(--gold-foil);
+  background-size: 260% 100%;
+  background-position: var(--gold-pos, 50%) 0;
+  opacity: 0.9;
+}
+.gold-rule::after {
+  content: '';
+  position: absolute; left: 0; right: 0; top: -3px; height: 7px;
+  background-image: var(--gold-foil);
+  background-size: 260% 100%;
+  background-position: var(--gold-pos, 50%) 0;
+  filter: blur(4px);
+  opacity: 0.45;
+}
+
+/* Slow specular drift for foil SURFACES (rules, dots). Never applied to text
+   or to anything a guest has to read. The sweep stays within the bright half
+   of the gradient so a surface never goes fully dark. */
+@keyframes foil-sheen {
+  0%   { background-position: 35% 0; }
+  50%  { background-position: 65% 0; }
+  100% { background-position: 35% 0; }
+}
+.foil-live { animation: foil-sheen 9s ease-in-out infinite; }
+.foil-live-slow { animation: foil-sheen 16s ease-in-out infinite; }
+
+/* Small caps label style used for eyebrow lines */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Utility: hairline in ink for paper sections */
+.ink-hairline { height: 1px; background: linear-gradient(90deg, rgba(0,0,0,0) 0%, var(--ink-faint) 20%, var(--ink-faint) 80%, rgba(0,0,0,0) 100%); opacity: 0.55; }
+
+/* Focus ring that fits */
+:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
+/* Reduced motion: kill decorative loops */
+@media (prefers-reduced-motion: reduce) {
+  .foil-live, .foil-live-slow { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Hide scrollbar noise during the gate */
+.no-scroll { overflow: hidden !important; height: 100vh; height: 100dvh; }
+
+/* Selection colour */
+::selection { background: var(--gold-light); color: var(--ink); }
+
+/* ═══════════════ Mobile-only: wider screens get a centred phone column ═══════ */
+@media (min-width: 520px) {
+  :root { --vw: calc(var(--col) / 100); }
+  body { background: var(--ground-shadow); }
+  .page {
+    max-width: var(--col);
+    margin: 0 auto;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.12), 0 40px 90px -20px rgba(0,0,0,0.55);
+  }
+  .sound-toggle { right: calc(50% - var(--col) / 2 + 16px); }
+}

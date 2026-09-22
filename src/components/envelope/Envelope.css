@@ -1,0 +1,309 @@
+/* ────────────────────────────── The gate ────────────────────────────── */
+.gate.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.gate-inner {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* envelope dimensions — everything else is derived from these */
+.scene {
+  --ew: min(calc(88 * var(--vw)), 460px);
+  --eh: calc(var(--ew) * 0.72);
+  --flap-h: calc(var(--eh) * 0.6);
+  --seal: calc(var(--ew) * 0.27);
+  position: relative;
+  width: var(--ew);
+  height: var(--eh);
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+
+.env-button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 24px;
+  border-radius: 6px;
+}
+.env-button:focus-visible { outline: 2px solid var(--gold-light); }
+
+/* The soft contact shadow on the surface beneath the envelope */
+.env-ground-shadow {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 112%;
+  height: 34%;
+  transform: translate(-50%, -55%);
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(48% 42% at 50% 46%, rgba(30,18,6,0.62) 0%, rgba(30,18,6,0.3) 40%, rgba(30,18,6,0) 74%);
+}
+.env-ground-shadow-tight {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: -2%;
+  height: 12%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+  filter: blur(4px);
+}
+
+/* 3D body */
+.env {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.env > * { position: absolute; }
+
+/* back panel: the inside of the envelope, the liner */
+.env-back {
+  inset: 0;
+  border-radius: 4px;
+  overflow: hidden;              /* leaf — flattening is fine here */
+  transform: translateZ(0px);
+  background: var(--env-shadow);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset;
+}
+.env-back svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.env-back::after {
+  /* the pocket casts a shadow up onto the liner */
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 62%);
+  pointer-events: none;
+}
+
+/* the card, between the back and the pocket */
+.env > .env-card {
+  left: 5%;
+  position: absolute;
+  right: 5%;
+  top: 6%;
+  height: 92%;
+  transform: translateZ(2px);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.7) inset,
+    0 -1px 0 rgba(0,0,0,0.06) inset,
+    0 10px 24px -10px rgba(0,0,0,0.6),
+    0 2px 4px rgba(0,0,0,0.25);
+  will-change: transform;
+}
+.env-card-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.env-card-frame {
+  position: absolute;
+  inset: 4.5%;
+  border: 1px solid transparent;
+  border-image: var(--gold-foil) 1;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.env-card-frame::after {
+  content: '';
+  position: absolute; inset: 4px;
+  border: 1px solid var(--gold-dark);
+  opacity: 0.45;
+}
+.env-card-eyebrow {
+  font-family: var(--font-body);
+  font-size: calc(var(--ew) * 0.026);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: calc(var(--ew) * 0.02);
+}
+.env-card-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: calc(var(--ew) * 0.1);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+}
+.env-card-names {
+  font-family: var(--font-display);
+  font-size: calc(var(--ew) * 0.048);
+  letter-spacing: 0.06em;
+  margin-top: calc(var(--ew) * 0.03);
+  text-transform: uppercase;
+}
+.env-card-date {
+  font-family: var(--font-body);
+  font-size: calc(var(--ew) * 0.03);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: calc(var(--ew) * 0.02);
+  color: var(--ink-soft);
+}
+
+/* the front pocket (SVG leaf) */
+.env-pocket {
+  inset: 0;
+  transform: translateZ(4px);
+  width: 100%; height: 100%;
+  overflow: visible;
+  will-change: transform;
+}
+.env-back, .flap-face, .flap-back, .seal-half { will-change: transform; }
+
+/* the flap's shadow, cast on the pocket; scaled by the flap's angle */
+.env-flap-shadow {
+  left: 0; right: 0; top: 0;
+  height: var(--flap-h);
+  transform-origin: 50% 0;
+  transform: translateZ(5px);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.35) 100%);
+  filter: blur(5px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* the flap: a 3D container. NO clip/filter/overflow on this element. */
+.env-flap {
+  left: 0; right: 0; top: 0;
+  height: var(--flap-h);
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  transform: translateZ(6px);
+  will-change: transform;
+}
+.env-flap > svg, .env-flap > .flap-light, .env-flap > .flap-back-shade {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flap-face { transform: translateZ(0.8px); overflow: visible; }
+.flap-back { transform: rotateX(180deg) translateZ(0.8px); }
+.flap-light {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(165deg, rgba(255,250,235,0.55) 0%, rgba(255,250,235,0.2) 45%, rgba(255,250,235,0) 80%);
+  transform: translateZ(1px);
+  pointer-events: none;
+}
+.flap-back-shade {
+  clip-path: polygon(0 100%, 100% 100%, 50% 0);
+  background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.1) 100%);
+  transform: rotateX(180deg) translateZ(1px);
+  pointer-events: none;
+}
+
+/* wax seal halves */
+.seal-wrap {
+  position: absolute;
+  left: 50%;
+  top: var(--flap-h);
+  width: var(--seal);
+  height: var(--seal);
+  margin-left: calc(var(--seal) * -0.5);
+  margin-top: calc(var(--seal) * -0.52);
+  pointer-events: none;
+}
+.seal-on-flap { transform: translateZ(3px); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.seal-on-pocket { transform: translateZ(9px); }
+.seal-half {
+  position: absolute; inset: 0;
+  will-change: transform;
+}
+.seal-half svg { width: 100%; height: 100%; }
+.seal-half-top    { clip-path: polygon(0 0, 100% 0, 100% 47%, 82% 51%, 66% 45%, 50% 54%, 33% 46%, 16% 53%, 0 48%); }
+.seal-half-bottom { clip-path: polygon(0 48%, 16% 53%, 33% 46%, 50% 54%, 66% 45%, 82% 51%, 100% 47%, 100% 100%, 0 100%); }
+.seal-shadow {
+  position: absolute;
+  left: 50%; top: var(--flap-h);
+  width: calc(var(--seal) * 1.15);
+  height: calc(var(--seal) * 0.95);
+  margin-left: calc(var(--seal) * -0.55);
+  margin-top: calc(var(--seal) * -0.42);
+  transform: translateZ(4.5px);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 72%);
+  pointer-events: none;
+}
+.seal-chip {
+  position: absolute;
+  left: 50%; top: var(--flap-h);
+  width: 5px; height: 4px;
+  border-radius: 40% 60% 50% 50%;
+  background: var(--wax);
+  box-shadow: 0 0 0 0.5px var(--wax-dark) inset;
+  transform: translateZ(10px);
+  pointer-events: none;
+}
+
+/* cue */
+.gate-cue {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: max(28px, env(safe-area-inset-bottom, 28px));
+  text-align: center;
+  color: var(--on-dark);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.gate-cue-line {
+  width: 1px;
+  height: 26px;
+  margin: 0 auto 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--gold-light) 100%);
+  opacity: 0.6;
+}
+.gate-title {
+  position: absolute;
+  left: 0; right: 0;
+  top: max(26px, env(safe-area-inset-top, 26px));
+  text-align: center;
+  pointer-events: none;
+  color: var(--on-dark-soft);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+/* on the ivory Walima ground, the cue text needs ink not paper */
+[data-theme='walima'] .gate-cue { color: var(--ink); }
+[data-theme='walima'] .gate-title { color: var(--ink-soft); }
+[data-theme='walima'] .env-ground-shadow { opacity: 0.55; }
+
+/* Wider screens: the gate is a plain backdrop and the envelope stage is the phone column */
+@media (min-width: 520px) {
+  .gate.gate { background: var(--ground-shadow); }
+  .gate-inner { width: var(--col); box-shadow: 0 0 0 1px rgba(0,0,0,0.12), 0 40px 90px -20px rgba(0,0,0,0.55); }
+}
