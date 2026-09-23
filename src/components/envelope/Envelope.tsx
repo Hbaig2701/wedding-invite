@@ -144,7 +144,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
 
     // 6. only once the card settles does content fade in — the card is held
     //    for a few seconds so the guest can read it
-    setTimeout(() => { setPhase('leaving'); onOpened() }, 5400)
+    setTimeout(() => { setPhase('leaving'); onOpened() }, 3400)
   }
 
   const names = `${content.couple.first} ${content.couple.joiner} ${content.couple.second}`

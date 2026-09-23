@@ -45,6 +45,20 @@
   src: url('../assets/fonts/eb-garamond-latin-500-normal.woff2') format('woff2');
 }
 @font-face {
+  font-family: 'Pochaevsk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/pochaevsk-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Tangerine';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/tangerine-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
   font-family: 'Amiri';
   font-style: normal;
   font-weight: 400;
@@ -56,6 +70,8 @@
   --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', 'Times New Roman', serif;
   --font-body: 'EB Garamond', 'Garamond', 'Georgia', serif;
   --font-arabic: 'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', serif;
+  --font-date: 'Pochaevsk', 'Times New Roman', serif;
+  --font-script: 'Tangerine', 'Snell Roundhand', 'Apple Chancery', cursive;
 
   /* Procedural textures — no PNGs shipped. Each is an SVG data-URI tile. */
   --tex-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");

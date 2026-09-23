@@ -24,10 +24,18 @@ export const shaadi: InviteContent = {
     sealInitials: 'IH',
     firstArabic: 'إيمان',
     secondArabic: 'حمزة',
+    firstFull: 'Iman Shahid',
+    secondFull: 'Hamza Baig',
+  },
+
+  hero: {
+    hosts: 'Sania and Shahid Mahmood',
+    line: 'cordially invite you to the Shaadi\nof their daughter',
+    afterNames: 'Son of Rabia and Mirza Ali Baig',
   },
 
   invitationLine:
-    'Sania & Shahid «SURNAME?»\nrequest the honour of your presence\nat the marriage of their daughter\n**Iman**\nto\n**Hamza**\nson of «GROOM’S PARENTS»',
+    'Sania and Shahid Mahmood\nrequest the honour of your presence\nat the Shaadi of their daughter\n**Iman**\nwith\n**Hamza**\nson of Rabia and Mirza Ali Baig',
   invitationClosing: 'and afterwards at the reception',
 
   date: {
@@ -35,27 +43,30 @@ export const shaadi: InviteContent = {
     short: '21 December 2026',
     numeric: '21 · 12 · 2026',
     weekday: 'Monday',
-    startISO: '2026-12-21T18:30:00+05:00',   // from the Save the Date
+    startISO: '2026-12-21T18:00:00+05:00',
     endISO: '2026-12-21T23:30:00+05:00',
-    timeLabel: '6:30 pm',
-    timeNote: 'Guests are kindly requested to be seated by seven',
+    timeLabel: '6:00 PM',
+    timeNote: '',
     timezone: 'Asia/Karachi',
   },
 
   city: 'Lahore, Pakistan',
 
   venue: {
-    name: '«VENUE NAME»',
-    address: '«Venue address line»\nLahore, Pakistan',
-    mapsQuery: '«VENUE NAME», Lahore, Pakistan',
+    name: 'Defence Raya Golf & Country Club',
+    address: 'Sector M, DHA Phase 6\nLahore, Pakistan',
+    mapsQuery: 'Defence Raya Golf Resort, Sector M, DHA Phase 6, Lahore, Pakistan',
+    mapsLink: 'https://maps.app.goo.gl/RNXb5K6LJJUVND9X7',
+    lat: 31.4689591,
+    lng: 74.4716129,
   },
 
   timeline: [
-    { time: '6:30 pm', title: 'Arrival of guests', note: 'Welcome & refreshments' },
-    { time: '7:30 pm', title: 'Baraat arrives', note: '«placeholder»' },
-    { time: '8:15 pm', title: 'Nikkah', note: '«placeholder»' },
-    { time: '9:30 pm', title: 'Dinner is served' },
-    { time: '11:00 pm', title: 'Rukhsati' },
+    { time: '6:00 PM', title: 'Guests arrive', note: 'welcome & refreshments' },
+    { time: '7:00 PM', title: 'Baraat arrives', note: 'the groom\u2019s procession is welcomed' },
+    { time: '7:30 PM', title: 'Bridal entrance', note: 'Iman makes her entrance' },
+    { time: '8:00 PM', title: 'Dinner', note: 'a feast with family & friends' },
+    { time: '9:45 PM', title: 'Rukhsati', note: 'the farewell & send-off' },
   ],
 
   dressCode: {
@@ -72,7 +83,7 @@ export const shaadi: InviteContent = {
   },
 
   rsvp: {
-    deadlineLabel: 'Kindly respond by the first of December',
+    deadlineLabel: 'Kindly respond by November 1st',
     endpoint: '',   // «PASTE GOOGLE APPS SCRIPT WEB APP URL» — see reference/rsvp-google-sheet-setup.gs
     thankYouAccept: {
       title: 'We can’t wait to see you',
@@ -87,7 +98,7 @@ export const shaadi: InviteContent = {
   },
 
   contacts: [
-    { name: 'Shahid', role: 'Father of the bride', whatsapp: '923000000000' }, // «SHAHID'S NUMBER»
+    { name: 'Shahid Mahmood', role: 'Father of the bride', whatsapp: '966500466597' },
   ],
 
   musicUrl: '',   // «INSTRUMENTAL VIOLIN TRACK URL» — leave empty to hide the sound toggle

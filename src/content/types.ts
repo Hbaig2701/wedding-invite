@@ -51,6 +51,16 @@ export interface InviteContent {
     /** Optional Arabic/Urdu spellings, shown beneath the Latin names. */
     firstArabic?: string
     secondArabic?: string
+    /** Full names as set on the first page, e.g. "Iman Shahid". */
+    firstFull?: string
+    secondFull?: string
+  }
+
+  /** The first page (hero) copy. Lines break on \n. */
+  hero: {
+    hosts: string          // "Mr and Mrs Shahid"
+    line: string           // "cordially invite you to the Shaadi\nof their beloved daughter"
+    afterNames?: string    // "Son of Mirza Ali Baig & Rabia Baig"
   }
 
   /**
@@ -82,6 +92,11 @@ export interface InviteContent {
     address: string
     /** Free-text query for Google Maps, e.g. the venue name + city */
     mapsQuery: string
+    /** Share link from Google Maps (what the buttons open). */
+    mapsLink?: string
+    /** Pin for the embedded map. */
+    lat?: number
+    lng?: number
   }
 
   timeline: TimelineEntry[]

@@ -24,10 +24,18 @@ export const walima: InviteContent = {
     sealInitials: 'HI',
     firstArabic: 'حمزة',
     secondArabic: 'إيمان',
+    firstFull: 'Hamza Baig',
+    secondFull: 'Iman Shahid',
+  },
+
+  hero: {
+    hosts: 'Rabia and Mirza Ali Baig',
+    line: 'request the pleasure of your company\nat the Walima of their beloved son',
+    afterNames: 'Daughter of Sania and Shahid Mahmood',
   },
 
   invitationLine:
-    '«GROOM’S PARENTS»\nrequest the pleasure of your company\nat the Walima reception of their son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania & Shahid',
+    'Rabia and Mirza Ali Baig\nrequest the pleasure of your company\nat the Walima reception of their son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania and Shahid Mahmood',
   invitationClosing: 'Dinner will follow',
 
   date: {
@@ -71,7 +79,7 @@ export const walima: InviteContent = {
   },
 
   rsvp: {
-    deadlineLabel: 'Kindly respond by the first of December',
+    deadlineLabel: 'Kindly respond by November 1st',
     endpoint: '',   // «PASTE GOOGLE APPS SCRIPT WEB APP URL» — see reference/rsvp-google-sheet-setup.gs
     thankYouAccept: {
       title: 'We look forward to hosting you',
@@ -86,7 +94,7 @@ export const walima: InviteContent = {
   },
 
   contacts: [
-    { name: '«GROOM’S FATHER»', role: 'Father of the groom', whatsapp: '923000000000' }, // «NUMBER»
+    { name: 'Mirza Ali Baig', role: 'Father of the groom', whatsapp: '923000000000' }, // «NUMBER»
   ],
 
   musicUrl: '',

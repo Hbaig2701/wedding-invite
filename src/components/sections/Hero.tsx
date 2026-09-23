@@ -2,9 +2,7 @@ import { motion } from 'motion/react'
 import type { InviteContent } from '../../content/types'
 import type { Theme } from '../../theme/types'
 import { CuspedArch, Divider } from '../Ornaments'
-import { DateBlock, ReferenceFrame } from '../Illumination'
-
-const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+import { ReferenceFrame } from '../Illumination'
 
 export function Hero({ content, theme, opened }: { content: InviteContent; theme: Theme; opened: boolean }) {
   const c = content
@@ -13,32 +11,29 @@ export function Hero({ content, theme, opened }: { content: InviteContent; theme
     animate: opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 },
     transition: { duration: 1.1, delay: 0.25 + i * 0.16, ease: [0.22, 0.61, 0.36, 1] as const },
   })
-  const start = new Date(c.date.startISO)
   const gold = theme.darkGround
 
   if (theme.hero === 'folio') {
     return (
       <section className="hero hero-folio paper" aria-label="Invitation">
-        <ReferenceFrame className="folio-frame" />
-        <div className="hero-inner col">
-          <motion.p {...item(0)} className="hero-bismillah gold-text gold-text-paper" lang="ar">{c.bismillah.arabic}</motion.p>
-          <motion.p {...item(1)} className="hero-bismillah-en">{c.bismillah.english}</motion.p>
+        <ReferenceFrame className="folio-frame" bandRatio={0.125} />
+        <div className="hero-inner col hero-inner-folio">
+          <div className="hero-opener">
+            <motion.div {...item(0)} className="hero-calligraphy" role="img" aria-label={c.bismillah.arabic} />
+            <motion.p {...item(1)} className="hero-bismillah-en">{c.bismillah.english}</motion.p>
+          </div>
 
-          <motion.p {...item(2)} className="hero-event eyebrow">{c.eventLabel}{c.eventLabelUrdu ? <span className="font-arabic" style={{ letterSpacing: 0, marginLeft: '0.9em', fontSize: '1.25em' }} lang="ur">{c.eventLabelUrdu}</span> : null}</motion.p>
+          <div className="hero-centre">
+            <motion.p {...item(2)} className="hero-parents">{c.hero.hosts}</motion.p>
+            <motion.p {...item(3)} className="hero-intro">{c.hero.line.split('\n').map((l, i) => <span key={i}>{l}<br /></span>)}</motion.p>
 
-          <motion.h1 {...item(3)} className="hero-names hero-names-caps">
-            <span>{c.couple.first}</span>
-            <span className="joiner">{c.couple.joiner}</span>
-            <span>{c.couple.second}</span>
-          </motion.h1>
-          {(c.couple.firstArabic && c.couple.secondArabic) && (
-            <motion.p {...item(4)} className="hero-names-arabic" lang="ar">{c.couple.firstArabic} <span className="amp">&amp;</span> {c.couple.secondArabic}</motion.p>
-          )}
-
-          <motion.div {...item(5)}>
-            <DateBlock className="hero-dateblock" month={MONTHS[start.getMonth()]} weekday={c.date.weekday} day={String(start.getDate())} time={c.date.timeLabel.toUpperCase()} year={String(start.getFullYear())} />
-          </motion.div>
-          <motion.p {...item(6)} className="hero-city hero-city-caps">{c.city}</motion.p>
+            <motion.h1 {...item(4)} className="hero-names hero-names-title">
+              <span className="hero-name hero-name-cut hero-name-iman" role="img" aria-label={c.couple.first} />
+              <span className="hero-joiner"><i /><em>{c.couple.joiner === '&' ? 'with' : c.couple.joiner}</em><i /></span>
+              <span className="hero-name hero-name-cut hero-name-hamza" role="img" aria-label={c.couple.second} />
+            </motion.h1>
+            {c.hero.afterNames && <motion.p {...item(5)} className="hero-parents hero-after">{c.hero.afterNames}</motion.p>}
+          </div>
         </div>
       </section>
     )

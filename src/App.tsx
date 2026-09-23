@@ -35,12 +35,13 @@ export function App({ content, theme }: { content: InviteContent; theme: Theme }
       <GoldDefs />
       <main className="page" aria-hidden={gate ? true : undefined}>
         <Hero content={content} theme={theme} opened={opened} />
-        <Countdown content={content} theme={theme} />
-        <Invitation content={content} theme={theme} />
+        {theme.hero !== 'folio' && <Countdown content={content} theme={theme} />}
+        {theme.hero !== 'folio' && <Invitation content={content} theme={theme} />}
         {content.event === 'walima' && <Photo content={content} />}
         <Details content={content} theme={theme} />
-        <Timeline content={content} />
-        <DressCode content={content} />
+        <Timeline content={content} theme={theme} />
+        {theme.hero === 'folio' && <Countdown content={content} theme={theme} />}
+        {theme.hero !== 'folio' && <DressCode content={content} />}
         <Rsvp content={content} />
         <Contact content={content} />
         <Footer content={content} theme={theme} />

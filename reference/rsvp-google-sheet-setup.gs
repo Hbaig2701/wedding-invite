@@ -11,12 +11,13 @@
  * 4. Any time you edit this script, create a NEW deployment version (Deploy → Manage).
  *
  * Payload (JSON, POST body):
- *   { event, name, phone, attending, adults, children, message, submittedAt }
+ *   { event, name, phone, attending, adults, children, guests, message, submittedAt }
+ *   (adults = number of guests attending including the respondent; guests = their names)
  */
 
 const RESPONSES = 'Responses'
 const LATEST = 'Latest'
-const HEADERS = ['submittedAt', 'event', 'name', 'phone', 'attending', 'adults', 'children', 'message', 'userAgent']
+const HEADERS = ['submittedAt', 'event', 'name', 'phone', 'attending', 'adults', 'children', 'guests', 'message', 'userAgent']
 
 function setup() {
   const ss = SpreadsheetApp.getActiveSpreadsheet()
@@ -39,6 +40,7 @@ function doPost(e) {
       body.attending === 'yes' ? 'yes' : 'no',
       Math.max(0, parseInt(body.adults, 10) || 0),
       Math.max(0, parseInt(body.children, 10) || 0),
+      clean(Array.isArray(body.guests) ? body.guests.join(', ') : body.guests, 1000),
       clean(body.message, 1000),
       clean((e.parameter && e.parameter.ua) || '', 200),
     ]

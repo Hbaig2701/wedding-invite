@@ -1,3 +1,4 @@
+const B = import.meta.env.BASE_URL
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { cuspedPath } from './Ornaments'
 
@@ -296,19 +297,19 @@ export function ReferenceFrame({ className, bandRatio = 0.155 }: { className?: s
   return (
     <svg ref={ref} className={className} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs>
-        <pattern id={`bt${id}`} patternUnits="userSpaceOnUse" x={band} y={0} width={tw} height={band}><image href="/border/e-top.jpg" width={tw} height={band} preserveAspectRatio="none" /></pattern>
-        <pattern id={`bb${id}`} patternUnits="userSpaceOnUse" x={band} y={H - band} width={tw} height={band}><image href="/border/e-bottom.jpg" width={tw} height={band} preserveAspectRatio="none" /></pattern>
-        <pattern id={`bl${id}`} patternUnits="userSpaceOnUse" x={0} y={band} width={band} height={th}><image href="/border/e-left.jpg" width={band} height={th} preserveAspectRatio="none" /></pattern>
-        <pattern id={`br${id}`} patternUnits="userSpaceOnUse" x={W - band} y={band} width={band} height={th}><image href="/border/e-right.jpg" width={band} height={th} preserveAspectRatio="none" /></pattern>
+        <pattern id={`bt${id}`} patternUnits="userSpaceOnUse" x={band} y={0} width={tw} height={band}><image href={`${B}border/e-top.jpg`} width={tw} height={band} preserveAspectRatio="none" /></pattern>
+        <pattern id={`bb${id}`} patternUnits="userSpaceOnUse" x={band} y={H - band} width={tw} height={band}><image href={`${B}border/e-bottom.jpg`} width={tw} height={band} preserveAspectRatio="none" /></pattern>
+        <pattern id={`bl${id}`} patternUnits="userSpaceOnUse" x={0} y={band} width={band} height={th}><image href={`${B}border/e-left.jpg`} width={band} height={th} preserveAspectRatio="none" /></pattern>
+        <pattern id={`br${id}`} patternUnits="userSpaceOnUse" x={W - band} y={band} width={band} height={th}><image href={`${B}border/e-right.jpg`} width={band} height={th} preserveAspectRatio="none" /></pattern>
       </defs>
       <rect x={band} y={0} width={W - band * 2} height={band} fill={`url(#bt${id})`} />
       <rect x={band} y={H - band} width={W - band * 2} height={band} fill={`url(#bb${id})`} />
       <rect x={0} y={band} width={band} height={H - band * 2} fill={`url(#bl${id})`} />
       <rect x={W - band} y={band} width={band} height={H - band * 2} fill={`url(#br${id})`} />
-      <image href="/border/c-tl.jpg" x={0} y={0} width={band} height={band} preserveAspectRatio="none" />
-      <image href="/border/c-tr.jpg" x={W - band} y={0} width={band} height={band} preserveAspectRatio="none" />
-      <image href="/border/c-bl.jpg" x={0} y={H - band} width={band} height={band} preserveAspectRatio="none" />
-      <image href="/border/c-br.jpg" x={W - band} y={H - band} width={band} height={band} preserveAspectRatio="none" />
+      <image href={`${B}border/c-tl.jpg`} x={0} y={0} width={band} height={band} preserveAspectRatio="none" />
+      <image href={`${B}border/c-tr.jpg`} x={W - band} y={0} width={band} height={band} preserveAspectRatio="none" />
+      <image href={`${B}border/c-bl.jpg`} x={0} y={H - band} width={band} height={band} preserveAspectRatio="none" />
+      <image href={`${B}border/c-br.jpg`} x={W - band} y={H - band} width={band} height={band} preserveAspectRatio="none" />
     </svg>
   )
 }

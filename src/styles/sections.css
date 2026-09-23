@@ -430,13 +430,13 @@
 /* ═══════════════════════ Illuminated folio hero (Shaadi) ═══════════════════ */
 .hero-folio {
   color: var(--ink);
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* sized to its words with a little air, not to the screen */
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  --band: calc(15.5 * var(--vw));
-  padding: calc(var(--band) + 34px) calc(var(--band) + 6px) calc(var(--band) + 30px);
+  --band: calc(12.5 * var(--vw));
+  padding: calc(var(--band) + 26px) calc(var(--band) + 8px) calc(var(--band) + 26px);
   overflow: hidden;
   /* flat ivory, sampled from the artwork, so the border tiles blend seamlessly */
   background-color: #faf1d2;
@@ -446,8 +446,45 @@
 .hero-folio .col { padding-left: 12px; padding-right: 12px; }
 .folio-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 .hero-folio .hero-inner { z-index: 3; }
-.hero-folio .hero-bismillah { font-size: clamp(1.7rem, calc(6.6 * var(--vw)), 2.3rem); }
-.hero-folio .hero-bismillah-en { color: var(--ink-soft); }
+/* The Bismillah calligraphy: an alpha mask filled with our gold foil */
+.hero-calligraphy {
+  width: min(78%, 300px);
+  aspect-ratio: 654 / 292;
+  margin: 0 auto;
+  background-image: linear-gradient(105deg, var(--gold-deep) 0%, var(--gold-dark) 22%, var(--gold) 42%, var(--gold-light) 52%, var(--gold) 62%, var(--gold-dark) 80%, var(--gold-deep) 100%);
+  -webkit-mask-image: url('../assets/masks/bismillah-mask.png');
+  mask-image: url('../assets/masks/bismillah-mask.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+.hero-folio .hero-bismillah-en { color: var(--ink-soft); margin-top: 0.7rem; font-size: 0.88rem; }
+.hero-hosts {
+  margin-top: 1.9rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.hero-intro {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-top: 0.15rem;
+}
+.hero-after {
+  margin: 0.7rem -14px 0;   /* a touch wider than the column so the line doesn't orphan */
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+}
 .hero-folio .hero-event { color: var(--ink-soft); margin-top: 1.4rem; }
 
 /* Gold type on paper: darker foil, no white-hot band */
@@ -457,25 +494,27 @@
 
 /* SAVE the DATE lock-up: widely tracked caps with an italic joiner */
 .hero-names-caps {
-  margin-top: 0.9rem;
+  margin-top: 1.5rem;
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2rem, calc(9.2 * var(--vw)), 4rem);
-  line-height: 1.05;
-  letter-spacing: 0.2em;
+  font-weight: 400;
+  font-size: clamp(1.2rem, calc(5.7 * var(--vw)), 2.1rem);
+  line-height: 1.2;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
   text-transform: uppercase;
   color: var(--ink);
   padding-left: 0.22em; /* balance the trailing tracking */
 }
 .hero-names-caps .joiner {
   display: block;
+  font-family: var(--font-body);
   font-style: italic;
   font-weight: 400;
-  font-size: 0.5em;
+  font-size: 0.62em;
   letter-spacing: 0;
   text-transform: none;
-  margin: 0.15em 0;
-  color: var(--ink);
+  margin: 0.45em 0;
+  color: var(--ink-soft);
 }
 .hero-names-arabic {
   font-family: var(--font-arabic);
@@ -496,7 +535,7 @@
   color: var(--ink);
   margin-top: 1.6rem;
 }
-.hero-dateblock { margin-top: 1.8rem; }
+.hero-dateblock { margin-top: 2rem; }
 
 /* The date lock-up */
 .dateblock { text-align: center; color: var(--ink); }
@@ -556,3 +595,232 @@
 [data-theme='shaadi'] .footer-verse { color: var(--ink-soft); }
 [data-theme='shaadi'] .btn-wa { box-shadow: 0 1px 0 rgba(255,255,255,0.35) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 8px 18px -8px rgba(0,0,0,0.35); }
 
+
+
+/* ═══════════════ Solid folio page (Shaadi): no gradients, no mottling ═══════ */
+[data-theme='shaadi'] .paper,
+[data-theme='shaadi'] .countdown,
+[data-theme='shaadi'] .footer {
+  background: #faf1d2;
+  background-image: none;
+  color: var(--ink);
+}
+[data-theme='shaadi'] .paper::before, [data-theme='shaadi'] .paper::after,
+[data-theme='shaadi'] .countdown::before, [data-theme='shaadi'] .countdown::after,
+[data-theme='shaadi'] .footer::before, [data-theme='shaadi'] .footer::after { display: none; }
+[data-theme='shaadi'] .paper-edge-top, [data-theme='shaadi'] .paper-edge-bottom { box-shadow: none; }
+[data-theme='shaadi'] .countdown { border-top: 0; padding-top: 30px; }
+[data-theme='shaadi'] .letterpress, [data-theme='shaadi'] .letterpress-deep { text-shadow: none; }
+[data-theme='shaadi'] .swatch-chip { box-shadow: 0 0 0 1px rgba(0,0,0,0.12), 0 0 0 4px #faf1d2, 0 0 0 5px rgba(107,23,39,0.25); }
+[data-theme='shaadi'] .btn-ink { background: transparent; box-shadow: none; }
+[data-theme='shaadi'] .choice, [data-theme='shaadi'] .counter-btn { background: transparent; box-shadow: none; }
+[data-theme='shaadi'] .field-input { box-shadow: none; }
+
+/* the artwork */
+/* Swags show the central two-thirds of the artwork at a size where the
+   flowers read; the faded ends sit outside the column and are clipped. */
+.swag { width: auto; display: flex; justify-content: center; overflow: hidden; pointer-events: none; }
+.swag img { width: 135%; max-width: none; flex: none; height: auto; display: block; }
+.cluster { display: flex; justify-content: center; pointer-events: none; }
+.cluster img { width: 210px; height: auto; display: block; }
+.invitation-swag-top { margin: 0 -32px 0.8rem; }
+.invitation-swag-bottom { margin: 1.6rem -32px 0; }
+.footer-swag { margin-left: -24px; margin-right: -24px; }
+.footer-swag img { width: 118%; }
+.footer-swag { margin-top: 2.4rem; }
+[data-theme='shaadi'] .footer { padding-bottom: 0; }
+[data-theme='shaadi'] .footer-swag img { width: 100%; }
+[data-theme='shaadi'] .invitation-card { padding: 0 8px; }
+[data-theme='shaadi'] .invitation { padding-top: 40px; }
+
+/* timeline, as in the example: left-aligned, time above title, gold diamonds on a hairline */
+.section-head-left { text-align: left; }
+[data-theme='shaadi'] .timeline-item { grid-template-columns: 28px 1fr; padding-bottom: 2.4rem; }
+[data-theme='shaadi'] .timeline-axis { justify-content: flex-start; }
+[data-theme='shaadi'] .timeline-axis::before { left: 5px; top: 18px; bottom: -2.4rem; background: var(--gold); opacity: 0.55; }
+[data-theme='shaadi'] .timeline-dot { margin-top: 6px; width: 12px; height: 12px; background: var(--gold); background-image: none; box-shadow: none; }
+[data-theme='shaadi'] .timeline-body { padding-left: 14px; }
+[data-theme='shaadi'] .timeline-time { text-align: left; padding: 0; font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-dark); }
+[data-theme='shaadi'] .timeline-title { padding-left: 0; font-size: 1.6rem; margin-top: 0.3rem; }
+[data-theme='shaadi'] .timeline-note { padding-left: 0; }
+[data-theme='shaadi'] .timeline .section-title { font-size: clamp(2.2rem, calc(9 * var(--vw)), 3rem); }
+
+
+/* ═══════════════ First page: opener small, names the centre ═══════════════ */
+.hero-folio .hero-calligraphy { width: min(52%, 200px); }
+.hero-folio .hero-bismillah-en { font-size: 0.8rem; margin-top: 0.5rem; }
+.hero-parents {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+}
+.hero-folio .hero-parents:not(.hero-after) { margin-top: 2.2rem; }
+.hero-folio .hero-intro { font-size: 1.08rem; color: var(--ink); }
+.hero-folio .hero-after { margin: 0.9rem 0 0; font-size: 1.08rem; color: var(--ink); }
+.hero-names-big {
+  margin-top: 1.6rem;
+  font-size: clamp(2.6rem, calc(13 * var(--vw)), 4.4rem);
+  letter-spacing: 0.2em;
+  line-height: 1.05;
+}
+.hero-names-big .joiner { font-size: 0.42em; margin: 0.35em 0; }
+
+/* ═══════════════ Date page ═══════════════ */
+.details-folio { text-align: center; padding: 64px 0 72px; }
+.details-eyebrow { color: var(--gold-dark); font-size: 0.92rem; letter-spacing: 0.36em; }
+.rule-diamond { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 14px auto 0; }
+.rule-diamond span { width: 64px; height: 1px; background: var(--gold); opacity: 0.8; }
+.rule-diamond i { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+.details-time { margin-top: 2.2rem; font-family: var(--font-display); font-size: clamp(2.6rem, calc(12 * var(--vw)), 3.7rem); line-height: 1; letter-spacing: -0.01em; color: var(--ink); }
+.details-date { margin-top: 0.9rem; font-family: var(--font-body); font-weight: 500; font-size: 1rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink); }
+.details-city { margin-top: 0.45rem; font-family: var(--font-body); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-soft); }
+.venue-box {
+  margin: 2.2rem auto 0;
+  padding: 26px 18px 24px;
+  border: 1px solid var(--gold);
+  outline: 1px solid var(--gold);
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+.venue-name { font-family: var(--font-script); font-weight: 700; font-size: clamp(2.6rem, calc(12.5 * var(--vw)), 3.8rem); line-height: 1.05; color: var(--ink); }
+.venue-address { margin-top: 0.7rem; font-family: var(--font-body); font-size: 1.05rem; line-height: 1.5; color: var(--ink-soft); white-space: pre-line; }
+
+.map-card {
+  position: relative;
+  display: block;
+  margin: 1.8rem 0 0;
+  height: 250px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(107,23,39,0.18);
+  box-shadow: 0 10px 26px -14px rgba(60,30,10,0.45);
+  background: #e9e5dc;
+}
+.map-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+.map-pill {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 96px);
+  transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: #2b2b2b;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+.map-pill::after { content: ''; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; background: #fff; transform: translateX(-50%) rotate(45deg); }
+.map-pill svg { width: 16px; height: 16px; color: var(--burgundy); }
+.btn-pill {
+  color: var(--paper-lit);
+  background: var(--burgundy);
+  border-radius: 999px;
+  min-height: 54px;
+  padding: 0 28px;
+  box-shadow: 0 10px 22px -12px rgba(107,23,39,0.7);
+}
+.btn-pill:hover { background: var(--burgundy-deep); }
+.details-folio .detail-actions { margin-top: 1.8rem; }
+
+/* ═══════════════ Schedule ═══════════════ */
+.schedule-head { text-align: center; margin-bottom: 2.4rem; }
+.schedule-title { font-family: var(--font-display); font-size: clamp(2.6rem, calc(11 * var(--vw)), 3.4rem); line-height: 1.1; color: var(--ink); }
+.schedule-date { margin-top: 1.4rem; font-family: var(--font-body); font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); }
+.schedule-rule { height: 1px; background: var(--ink); opacity: 0.6; margin: 1.6rem 0 0; }
+[data-theme='shaadi'] .timeline { padding-top: 56px; }
+
+
+/* ═══════════════ First page: centred with open space ═══════════════ */
+.hero-inner-folio { display: flex; flex-direction: column; }
+.hero-opener { flex: none; }
+.hero-centre { margin: 0; padding: 2.2rem 0 0.6rem; }
+.hero-folio .hero-calligraphy { width: min(46%, 180px); }
+.hero-folio .hero-parents:not(.hero-after) { margin-top: 0; }
+.hero-folio .hero-names-big { margin-top: 2rem; }
+.hero-folio .hero-after { margin-top: 1.6rem; }
+
+
+/* ═══════════════ First page: caps for the parents, title-case names ═══════ */
+.hero-folio .hero-parents {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  color: var(--ink);
+  white-space: nowrap;
+  margin-left: -14px;
+  margin-right: -14px;
+}
+.hero-folio .hero-intro { margin-top: 0.35rem; font-size: 1.08rem; }
+.hero-names-title {
+  margin-top: 1.2rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, calc(9.6 * var(--vw)), 3rem);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-transform: none;
+}
+.hero-name { display: block; }
+.hero-joiner { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0.3em 0; }
+.hero-joiner i { width: 36px; height: 1px; background: var(--ink); opacity: 0.55; }
+.hero-joiner em { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 0.5em; letter-spacing: 0.02em; color: var(--ink); }
+.hero-folio .hero-after { margin-top: 1.6rem; }
+
+/* date first, time second */
+.details-weekday { margin-top: 2.2rem; font-family: var(--font-body); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); }
+.details-date-big { margin-top: 0.6rem; font-family: var(--font-date); font-size: clamp(1.7rem, calc(8.4 * var(--vw)), 2.6rem); line-height: 1.1; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.details-time-small { margin-top: 0.9rem; font-family: var(--font-body); font-weight: 500; font-size: 1rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); }
+
+/* schedule in the date face */
+[data-theme='shaadi'] .schedule-title { font-family: var(--font-date); text-transform: uppercase; letter-spacing: 0.06em; font-size: clamp(2.2rem, calc(9.5 * var(--vw)), 3rem); }
+[data-theme='shaadi'] .schedule-date { font-family: var(--font-date); letter-spacing: 0.12em; font-size: 1.05rem; }
+[data-theme='shaadi'] .timeline-title { font-family: var(--font-date); font-size: 1.45rem; letter-spacing: 0.02em; }
+[data-theme='shaadi'] .timeline-time { font-family: var(--font-date); font-size: 0.82rem; letter-spacing: 0.22em; }
+[data-theme='shaadi'] .timeline-item { padding-bottom: 1.9rem; }
+
+/* Urdu names on the first page */
+.hero-name-arabic { font-family: var(--font-arabic); font-size: 1.15em; line-height: 1.35; direction: rtl; }
+/* superscript ordinal */
+.details-date-big sup { font-size: 0.5em; vertical-align: super; line-height: 0; margin-left: 0.04em; }
+/* contact */
+.contact-sub { margin-top: 0.4rem; font-family: var(--font-body); font-style: italic; font-size: 1rem; color: var(--ink-soft); }
+.contact-link { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 8px; padding: 12px 26px 11px; border-radius: 10px; background: rgba(107,23,39,0.07); border: 1px solid rgba(107,23,39,0.18); font-family: var(--font-body); font-weight: 500; font-size: 1rem; letter-spacing: 0.04em; color: var(--ink); }
+.contact-link:active { background: rgba(107,23,39,0.12); }
+.contact-link svg { width: 18px; height: 18px; color: var(--ink); }
+.contact-link-main { display: inline-flex; align-items: center; gap: 10px; }
+.contact-number { font-family: var(--font-body); font-size: 0.98rem; letter-spacing: 0.08em; color: var(--ink-soft); }
+
+/* the names as cut from the Save the Date, filled in ink */
+.hero-name-cut { display: block; margin: 0 auto; background: var(--ink); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; }
+.hero-name-iman { width: 104px; aspect-ratio: 184 / 96; -webkit-mask-image: url('../assets/masks/name-iman-mask.png'); mask-image: url('../assets/masks/name-iman-mask.png'); }
+.hero-name-hamza { width: 118px; aspect-ratio: 208 / 96; -webkit-mask-image: url('../assets/masks/name-hamza-mask.png'); mask-image: url('../assets/masks/name-hamza-mask.png'); }
+/* footer wildflowers */
+.wildflowers { display: block; width: min(100%, 380px); height: auto; margin: 0 auto; }
+.wildflowers-top { margin-bottom: 0.6rem; }
+.wildflowers-bottom { margin-top: 2.4rem; padding-bottom: 8px; }
+[data-theme='shaadi'] .footer { padding-bottom: 28px; }
+
+/* guest list */
+.guests-count { display: inline-block; min-width: 1.6em; margin-left: 8px; padding: 1px 7px; border-radius: 999px; background: rgba(107,23,39,0.1); color: var(--ink); font-size: 0.72rem; letter-spacing: 0.06em; text-align: center; }
+.guest-row { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.guest-index { flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--ink-faint); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.85rem; color: var(--ink-soft); }
+.guest-self { font-family: var(--font-body); font-size: 1.1rem; color: var(--ink); padding: 0.55rem 0; }
+.guest-input { flex: 1; }
+.guest-remove { flex: none; width: 30px; height: 30px; border-radius: 50%; font-family: var(--font-display); font-size: 1.2rem; line-height: 1; color: var(--ink-soft); border: 1px solid transparent; }
+.guest-remove:hover { border-color: var(--ink-faint); }
+.guest-add { margin-top: 0.9rem; font-family: var(--font-body); font-weight: 500; font-size: 0.86rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); padding: 10px 16px; border: 1px solid var(--ink-faint); border-radius: 999px; }
+.guest-add:active { background: rgba(107,23,39,0.07); }
+
+.decline-note { margin: -0.4rem 0 1.6rem; text-align: center; font-family: var(--font-display); font-style: italic; font-size: 1.35rem; color: var(--ink); }

@@ -6,6 +6,7 @@ import { resolve } from 'node:path'
 // Each event has its own HTML entry so the Open Graph tags (what WhatsApp
 // shows in the link preview) are correct per link without any server logic.
 export default defineConfig({
+  base: process.env.BASE_PATH || '/',
   plugins: [react()],
   build: {
     rollupOptions: {

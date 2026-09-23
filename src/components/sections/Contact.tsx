@@ -9,14 +9,17 @@ export function Contact({ content }: { content: InviteContent }) {
   return (
     <section className="contact paper paper-edge-bottom section-paper" aria-label="Contact">
       <div className="col">
-        <Reveal><div className="section-head" style={{ marginBottom: '0.4rem' }}><p className="eyebrow">Questions</p><h2 className="section-title letterpress">We’re a message away</h2></div></Reveal>
+        <Reveal><div className="section-head" style={{ marginBottom: '0.6rem' }}><h2 className="section-title letterpress">Questions</h2><p className="contact-sub">We’re a message away</p></div></Reveal>
         <div className="contact-list">
           {c.contacts.map((p, i) => (
             <Reveal key={i} index={i + 1}>
               <div className="contact-card">
                 <div className="contact-name letterpress">{p.name}</div>
                 <div className="contact-role">{p.role}</div>
-                <a className="btn btn-wa" href={whatsappUrl(p.whatsapp, `Assalamu alaikum ${p.name}, I have a question about the ${c.eventLabel} on ${c.date.short}.`)} target="_blank" rel="noopener noreferrer"><WaIcon /> WhatsApp</a>
+                <a className="contact-link" href={whatsappUrl(p.whatsapp, `Assalamu alaikum ${p.name}, I have a question about the ${c.eventLabel} on ${c.date.short}.`)} target="_blank" rel="noopener noreferrer">
+                  <span className="contact-link-main"><WaIcon /> Message on WhatsApp</span>
+                  <span className="contact-number">+{p.whatsapp.replace(/^(\d{3})(\d+)$/, '$1 $2')}</span>
+                </a>
               </div>
             </Reveal>
           ))}

@@ -7,6 +7,8 @@ export interface RsvpPayload {
   attending: 'yes' | 'no'
   adults: number
   children: number
+  /** Names of everyone attending, the respondent first. */
+  guests: string[]
   message: string
   submittedAt: string
 }

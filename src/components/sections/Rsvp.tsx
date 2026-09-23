@@ -14,9 +14,8 @@ export function Rsvp({ content }: { content: InviteContent }) {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [attending, setAttending] = useState<'yes' | 'no' | ''>('')
-  const [adults, setAdults] = useState(1)
-  const [children, setChildren] = useState(0)
-  const [message, setMessage] = useState('')
+  const [guests, setGuests] = useState<string[]>([])   // additional guests, beyond the respondent
+  const [message] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [errors, setErrors] = useState<{ name?: string; phone?: string; attending?: string }>({})
   const [last, setLast] = useState<RsvpPayload | null>(null)
@@ -40,8 +39,9 @@ export function Rsvp({ content }: { content: InviteContent }) {
       name: name.trim(),
       phone: normalisePhone(phone),
       attending: attending as 'yes' | 'no',
-      adults: attending === 'yes' ? adults : 0,
-      children: attending === 'yes' ? children : 0,
+      adults: attending === 'yes' ? 1 + guests.filter((g) => g.trim()).length : 0,
+      children: 0,
+      guests: attending === 'yes' ? [name.trim(), ...guests.map((g) => g.trim()).filter(Boolean)] : [],
       message: message.trim(),
       submittedAt: new Date().toISOString(),
     }
@@ -53,13 +53,13 @@ export function Rsvp({ content }: { content: InviteContent }) {
 
   const host = c.contacts[0]
   const waText = last
-    ? `Assalamu alaikum, this is ${last.name}. For the ${c.eventLabel} on ${c.date.short}: ${last.attending === 'yes' ? `we joyfully accept — ${last.adults} adult(s) and ${last.children} child(ren).` : 'we regretfully cannot attend.'}${last.message ? ` ${last.message}` : ''}`
+    ? `Assalamu alaikum, this is ${last.name}. For the ${c.eventLabel} on ${c.date.short}: ${last.attending === 'yes' ? `we joyfully accept — ${last.adults} guest(s): ${last.guests.join(', ')}.` : 'we regretfully cannot attend.'}${last.message ? ` ${last.message}` : ''}`
     : `Assalamu alaikum, I would like to RSVP for the ${c.eventLabel} on ${c.date.short}.`
 
   return (
     <section className="rsvp paper paper-edge-top section-paper" id="rsvp" aria-label="RSVP">
       <div className="col">
-        <Reveal><div className="section-head"><p className="eyebrow">Répondez s’il vous plaît</p><h2 className="section-title letterpress">Will you join us?</h2></div></Reveal>
+        <Reveal><div className="section-head"><p className="eyebrow">RSVP</p><h2 className="section-title letterpress">Will you join us?</h2></div></Reveal>
         <Reveal index={1}><p className="rsvp-deadline">{c.rsvp.deadlineLabel}</p></Reveal>
 
         <AnimatePresence mode="wait" initial={false}>
@@ -71,7 +71,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
               <h3 className="rsvp-done-title letterpress">{last.attending === 'yes' ? c.rsvp.thankYouAccept.title : c.rsvp.thankYouDecline.title}</h3>
               <p className="rsvp-done-body">{last.attending === 'yes' ? c.rsvp.thankYouAccept.body : c.rsvp.thankYouDecline.body}</p>
               <p className="rsvp-done-summary">
-                {last.name} · {last.attending === 'yes' ? `${last.adults} adult${last.adults === 1 ? '' : 's'}${last.children ? ` · ${last.children} child${last.children === 1 ? '' : 'ren'}` : ''}` : 'Regretfully declined'}
+                {last.attending === 'yes' ? `${last.adults} guest${last.adults === 1 ? '' : 's'} · ${last.guests.join(', ')}` : `${last.name} · Regretfully declined`}
               </p>
               <button type="button" className="rsvp-done-again" onClick={() => setStatus('idle')}>Need to change your response? Submit again.</button>
             </motion.div>
@@ -80,13 +80,12 @@ export function Rsvp({ content }: { content: InviteContent }) {
               <Reveal index={2}>
                 <label className="field">
                   <span className="field-label">Your name</span>
-                  <input className="field-input" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name, as you would like it on the card" />
+                  <input className="field-input" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name" />
                   {errors.name && <p className="field-error">{errors.name}</p>}
                 </label>
                 <label className="field">
                   <span className="field-label">WhatsApp number</span>
                   <input className="field-input" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+92 300 0000000" />
-                  <p className="field-hint">We’ll only use this if we need to reach you about the day.</p>
                   {errors.phone && <p className="field-error">{errors.phone}</p>}
                 </label>
               </Reveal>
@@ -109,22 +108,37 @@ export function Rsvp({ content }: { content: InviteContent }) {
               </Reveal>
 
               <AnimatePresence initial={false}>
+                {attending === 'no' && (
+                  <motion.p key="missed" className="decline-note" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }} transition={{ duration: 0.4 }}>
+                    You will be missed!
+                  </motion.p>
+                )}
                 {attending === 'yes' && (
-                  <motion.div key="counts" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }} style={{ overflow: 'hidden' }}>
-                    <div className="counter-row" style={{ marginBottom: '1.6rem' }}>
-                      <Counter label="Adults" value={adults} min={1} onChange={setAdults} />
-                      <Counter label="Children" value={children} min={0} onChange={setChildren} />
+                  <motion.div key="guests" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }} style={{ overflow: 'hidden' }}>
+                    <div className="field guests">
+                      <span className="field-label">Guests attending <span className="guests-count">{1 + guests.filter((g) => g.trim()).length}</span></span>
+                      <div className="guest-row guest-row-self">
+                        <span className="guest-index">1</span>
+                        <span className="guest-self">{name.trim() || 'You'}</span>
+                      </div>
+                      {guests.map((g, i) => (
+                        <div className="guest-row" key={i}>
+                          <span className="guest-index">{i + 2}</span>
+                          <input
+                            className="field-input guest-input"
+                            value={g}
+                            onChange={(e) => setGuests(guests.map((x, j) => (j === i ? e.target.value : x)))}
+                            placeholder="Guest’s full name"
+                            aria-label={`Guest ${i + 2} name`}
+                          />
+                          <button type="button" className="guest-remove" onClick={() => setGuests(guests.filter((_, j) => j !== i))} aria-label={`Remove guest ${i + 2}`}>×</button>
+                        </div>
+                      ))}
+                      <button type="button" className="guest-add" onClick={() => setGuests([...guests, ''])}>+ Add another guest</button>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              <Reveal index={4}>
-                <label className="field">
-                  <span className="field-label">A message for the couple <span style={{ textTransform: 'none', letterSpacing: 0, fontStyle: 'italic' }}>(optional)</span></span>
-                  <textarea className="field-input textarea" name="message" rows={2} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Duas, blessings, or anything we should know" />
-                </label>
-              </Reveal>
 
               <Reveal index={5}>
                 <div className="rsvp-submit">
@@ -146,18 +160,5 @@ export function Rsvp({ content }: { content: InviteContent }) {
         </AnimatePresence>
       </div>
     </section>
-  )
-}
-
-function Counter({ label, value, min, onChange }: { label: string; value: number; min: number; onChange: (n: number) => void }) {
-  return (
-    <div>
-      <span className="field-label">{label}</span>
-      <div className="counter" role="group" aria-label={label}>
-        <button type="button" className="counter-btn" onClick={() => onChange(Math.max(min, value - 1))} disabled={value <= min} aria-label={`Fewer ${label.toLowerCase()}`}>−</button>
-        <span className="counter-val" aria-live="polite">{value}</span>
-        <button type="button" className="counter-btn" onClick={() => onChange(value + 1)} aria-label={`More ${label.toLowerCase()}`}>+</button>
-      </div>
-    </div>
   )
 }
