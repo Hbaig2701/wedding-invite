@@ -58,6 +58,14 @@
   font-display: swap;
   src: url('../assets/fonts/tangerine-latin-700-normal.woff2') format('woff2');
 }
+/* Noto Nastaliq Urdu, subset to the letters of the couple's names only */
+@font-face {
+  font-family: 'Nastaliq Names';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('../assets/fonts/nastaliq-names.woff2') format('woff2');
+}
 @font-face {
   font-family: 'Amiri';
   font-style: normal;

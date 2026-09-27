@@ -28,9 +28,9 @@ export function Hero({ content, theme, opened }: { content: InviteContent; theme
             <motion.p {...item(3)} className="hero-intro">{c.hero.line.split('\n').map((l, i) => <span key={i}>{l}<br /></span>)}</motion.p>
 
             <motion.h1 {...item(4)} className="hero-names hero-names-title">
-              <span className="hero-name hero-name-cut hero-name-iman" role="img" aria-label={c.couple.first} />
+              <span className="hero-name hero-name-nastaliq" lang="ur" dir="rtl">{c.couple.firstArabic || c.couple.first}</span>
               <span className="hero-joiner"><i /><em>{c.couple.joiner === '&' ? 'with' : c.couple.joiner}</em><i /></span>
-              <span className="hero-name hero-name-cut hero-name-hamza" role="img" aria-label={c.couple.second} />
+              <span className="hero-name hero-name-nastaliq" lang="ur" dir="rtl">{c.couple.secondArabic || c.couple.second}</span>
             </motion.h1>
             {c.hero.afterNames && <motion.p {...item(5)} className="hero-parents hero-after">{c.hero.afterNames}</motion.p>}
           </div>

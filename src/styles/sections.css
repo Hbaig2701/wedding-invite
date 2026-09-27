@@ -802,10 +802,6 @@
 .contact-link-main { display: inline-flex; align-items: center; gap: 10px; }
 .contact-number { font-family: var(--font-body); font-size: 0.98rem; letter-spacing: 0.08em; color: var(--ink-soft); }
 
-/* the names as cut from the Save the Date, filled in ink */
-.hero-name-cut { display: block; margin: 0 auto; background: var(--ink); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; }
-.hero-name-iman { width: 104px; aspect-ratio: 184 / 96; -webkit-mask-image: url('../assets/masks/name-iman-mask.png'); mask-image: url('../assets/masks/name-iman-mask.png'); }
-.hero-name-hamza { width: 118px; aspect-ratio: 208 / 96; -webkit-mask-image: url('../assets/masks/name-hamza-mask.png'); mask-image: url('../assets/masks/name-hamza-mask.png'); }
 /* footer wildflowers */
 .wildflowers { display: block; width: min(100%, 380px); height: auto; margin: 0 auto; }
 .wildflowers-top { margin-bottom: 0.6rem; }
@@ -824,3 +820,17 @@
 .guest-add:active { background: rgba(107,23,39,0.07); }
 
 .decline-note { margin: -0.4rem 0 1.6rem; text-align: center; font-family: var(--font-display); font-style: italic; font-size: 1.35rem; color: var(--ink); }
+
+/* the names in Nastaliq */
+.hero-name-nastaliq {
+  display: block;
+  font-family: 'Nastaliq Names', 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', var(--font-arabic);
+  font-weight: 400;
+  font-size: 1.05em;
+  line-height: 1.7;
+  direction: rtl;
+  color: var(--ink);
+  margin: 0;
+}
+.hero-names-title:has(.hero-name-nastaliq) .hero-joiner { margin: 0.45em 0 0.2em; }
+.hero-name-nastaliq + .hero-joiner { margin: 0.45em 0 0.2em; }
