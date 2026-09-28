@@ -917,3 +917,28 @@
 [data-theme='shaadi'] .countdown-label,
 [data-theme='shaadi'] .countdown-sep { text-shadow: none; }
 [data-theme='shaadi'] .countdown-grid { margin-top: 1rem; }
+
+/* ═══ Closing verse: pattern fills the section, the words sit in a lined box ═══
+   Swap src/assets/footer-pattern.jpg for the licensed artwork. */
+[data-theme='shaadi'] .footer.footer-folio {
+  outline: none;
+  background-color: #faf1d2;
+  background-image:
+    linear-gradient(rgba(250, 241, 210, 0.25), rgba(250, 241, 210, 0.25)),
+    url('../assets/footer-pattern.jpg');
+  background-size: 100% 100%, 480px auto;
+  background-repeat: no-repeat, repeat;
+  background-position: center, center;
+  background-blend-mode: normal;
+  padding: 40px 26px calc(40px + env(safe-area-inset-bottom, 0px));
+}
+[data-theme='shaadi'] .footer-box {
+  background: #faf1d2;
+  border: 1px solid rgba(107, 23, 39, 0.6);
+  outline: 1px solid rgba(107, 23, 39, 0.3);
+  outline-offset: -6px;
+  padding: 30px 20px 26px;
+  box-shadow: 0 8px 22px -14px rgba(60, 30, 10, 0.45);
+}
+[data-theme='shaadi'] .footer-box .footer-verse { margin-top: 0; }
+[data-theme='shaadi'] .footer-box .footer-arabic { margin-top: 1.6rem; }
