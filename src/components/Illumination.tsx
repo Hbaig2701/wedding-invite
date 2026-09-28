@@ -277,7 +277,8 @@ export function DateBlock({ month, weekday, day, time, year, className }: { mont
  * resolution (205px band, 317px horizontal repeat, 298px vertical repeat)
  * and are tiled here at a band width proportional to the column.
  */
-const REF = { C: 205, PH: 317, PV: 298 }
+// top/bottom bands are 168 tall, left/right bands 182 wide (source px)
+const REF = { BH: 168, BW: 182, PH: 317, PV: 298 }
 
 export function ReferenceFrame({ className, bandRatio = 0.155 }: { className?: string; bandRatio?: number }) {
   const ref = useRef<SVGSVGElement>(null)
@@ -291,25 +292,26 @@ export function ReferenceFrame({ className, bandRatio = 0.155 }: { className?: s
   }, [])
   const [W, H] = size
   const id = useId().replace(/:/g, '')
-  const band = Math.round(W * bandRatio)
-  const s = band / REF.C
+  const bh = Math.round(W * bandRatio)          // top & bottom thickness
+  const s = bh / REF.BH
+  const bw = Math.round(REF.BW * s)              // left & right thickness
   const tw = REF.PH * s, th = REF.PV * s
   return (
     <svg ref={ref} className={className} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs>
-        <pattern id={`bt${id}`} patternUnits="userSpaceOnUse" x={band} y={0} width={tw} height={band}><image href={`${B}border/e-top.jpg`} width={tw} height={band} preserveAspectRatio="none" /></pattern>
-        <pattern id={`bb${id}`} patternUnits="userSpaceOnUse" x={band} y={H - band} width={tw} height={band}><image href={`${B}border/e-bottom.jpg`} width={tw} height={band} preserveAspectRatio="none" /></pattern>
-        <pattern id={`bl${id}`} patternUnits="userSpaceOnUse" x={0} y={band} width={band} height={th}><image href={`${B}border/e-left.jpg`} width={band} height={th} preserveAspectRatio="none" /></pattern>
-        <pattern id={`br${id}`} patternUnits="userSpaceOnUse" x={W - band} y={band} width={band} height={th}><image href={`${B}border/e-right.jpg`} width={band} height={th} preserveAspectRatio="none" /></pattern>
+        <pattern id={`bt${id}`} patternUnits="userSpaceOnUse" x={bw} y={0} width={tw} height={bh}><image href={`${B}border/e-top.jpg`} width={tw} height={bh} preserveAspectRatio="none" /></pattern>
+        <pattern id={`bb${id}`} patternUnits="userSpaceOnUse" x={bw} y={H - bh} width={tw} height={bh}><image href={`${B}border/e-bottom.jpg`} width={tw} height={bh} preserveAspectRatio="none" /></pattern>
+        <pattern id={`bl${id}`} patternUnits="userSpaceOnUse" x={0} y={bh} width={bw} height={th}><image href={`${B}border/e-left.jpg`} width={bw} height={th} preserveAspectRatio="none" /></pattern>
+        <pattern id={`br${id}`} patternUnits="userSpaceOnUse" x={W - bw} y={bh} width={bw} height={th}><image href={`${B}border/e-right.jpg`} width={bw} height={th} preserveAspectRatio="none" /></pattern>
       </defs>
-      <rect x={band} y={0} width={W - band * 2} height={band} fill={`url(#bt${id})`} />
-      <rect x={band} y={H - band} width={W - band * 2} height={band} fill={`url(#bb${id})`} />
-      <rect x={0} y={band} width={band} height={H - band * 2} fill={`url(#bl${id})`} />
-      <rect x={W - band} y={band} width={band} height={H - band * 2} fill={`url(#br${id})`} />
-      <image href={`${B}border/c-tl.jpg`} x={0} y={0} width={band} height={band} preserveAspectRatio="none" />
-      <image href={`${B}border/c-tr.jpg`} x={W - band} y={0} width={band} height={band} preserveAspectRatio="none" />
-      <image href={`${B}border/c-bl.jpg`} x={0} y={H - band} width={band} height={band} preserveAspectRatio="none" />
-      <image href={`${B}border/c-br.jpg`} x={W - band} y={H - band} width={band} height={band} preserveAspectRatio="none" />
+      <rect x={bw} y={0} width={W - bw * 2} height={bh} fill={`url(#bt${id})`} />
+      <rect x={bw} y={H - bh} width={W - bw * 2} height={bh} fill={`url(#bb${id})`} />
+      <rect x={0} y={bh} width={bw} height={H - bh * 2} fill={`url(#bl${id})`} />
+      <rect x={W - bw} y={bh} width={bw} height={H - bh * 2} fill={`url(#br${id})`} />
+      <image href={`${B}border/c-tl.jpg`} x={0} y={0} width={bw} height={bh} preserveAspectRatio="none" />
+      <image href={`${B}border/c-tr.jpg`} x={W - bw} y={0} width={bw} height={bh} preserveAspectRatio="none" />
+      <image href={`${B}border/c-bl.jpg`} x={0} y={H - bh} width={bw} height={bh} preserveAspectRatio="none" />
+      <image href={`${B}border/c-br.jpg`} x={W - bw} y={H - bh} width={bw} height={bh} preserveAspectRatio="none" />
     </svg>
   )
 }
