@@ -21,7 +21,13 @@ function ordinalSuffix(n: number) {
 
 export function longDate(c: InviteContent) {
   const d = new Date(c.date.startISO)
-  return `${c.date.weekday}, ${MONTHS_LONG[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
+  return `${c.date.weekday}, ${MONTHS_LONG[d.getMonth()]} ${d.getDate()}${ordinalSuffix(d.getDate())}, ${d.getFullYear()}`
+}
+
+/** "Monday, December 21st, 2026" with the ordinal set as a superscript. */
+export function LongDate({ c }: { c: InviteContent }) {
+  const d = new Date(c.date.startISO)
+  return <>{c.date.weekday}, {MONTHS_LONG[d.getMonth()]} {d.getDate()}<sup>{ordinalSuffix(d.getDate())}</sup>, {d.getFullYear()}</>
 }
 
 export function Details({ content, theme }: { content: InviteContent; theme: Theme }) {

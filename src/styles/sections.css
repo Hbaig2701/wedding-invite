@@ -834,3 +834,34 @@
 }
 .hero-names-title:has(.hero-name-nastaliq) .hero-joiner { margin: 0.45em 0 0.2em; }
 .hero-name-nastaliq + .hero-joiner { margin: 0.45em 0 0.2em; }
+
+/* ═══════════════ Thin maroon border on every section after the first page ═══════ */
+[data-theme='shaadi'] .details,
+[data-theme='shaadi'] .timeline,
+[data-theme='shaadi'] .countdown,
+[data-theme='shaadi'] .rsvp,
+[data-theme='shaadi'] .contact,
+[data-theme='shaadi'] .footer {
+  outline: 1px solid rgba(107, 23, 39, 0.55);
+  outline-offset: -14px;
+}
+[data-theme='shaadi'] .schedule-date sup { font-size: 0.6em; vertical-align: super; line-height: 0; margin-left: 0.03em; }
+
+/* the countdown, over the floral pattern — faint enough to read through */
+[data-theme='shaadi'] .countdown {
+  background-color: #faf1d2;
+  background-image:
+    linear-gradient(rgba(250, 241, 210, 0.74), rgba(250, 241, 210, 0.74)),
+    url('../assets/countdown-pattern.jpg');
+  background-size: 100% 100%, 480px auto;
+  background-repeat: no-repeat, repeat;
+  background-position: center, center;
+  padding: 58px 20px 64px;
+}
+
+/* keep the countdown inside its border */
+[data-theme='shaadi'] .countdown { padding-left: 28px; padding-right: 28px; }
+[data-theme='shaadi'] .countdown-grid { gap: 6px; }
+[data-theme='shaadi'] .countdown-cell { min-width: 0; flex: 1; }
+[data-theme='shaadi'] .countdown-label { letter-spacing: 0.16em; font-size: 0.62rem; }
+[data-theme='shaadi'] .countdown-num { font-size: clamp(2rem, calc(9 * var(--vw)), 2.8rem); }

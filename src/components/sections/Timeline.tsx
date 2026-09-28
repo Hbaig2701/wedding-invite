@@ -1,7 +1,7 @@
 import type { InviteContent } from '../../content/types'
 import type { Theme } from '../../theme/types'
 import { Reveal } from '../Reveal'
-import { longDate } from './Details'
+import { LongDate } from './Details'
 
 export function Timeline({ content, theme }: { content: InviteContent; theme: Theme }) {
   return (
@@ -11,7 +11,7 @@ export function Timeline({ content, theme }: { content: InviteContent; theme: Th
           <Reveal>
             <div className="schedule-head">
               <h2 className="schedule-title">Schedule</h2>
-              <p className="schedule-date">{longDate(content)}</p>
+              <p className="schedule-date"><LongDate c={content} /></p>
               <div className="schedule-rule" aria-hidden="true" />
             </div>
           </Reveal>
