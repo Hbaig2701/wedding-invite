@@ -8,7 +8,7 @@ export function Contact({ content }: { content: InviteContent }) {
   const c = content
   return (
     <section className="contact paper paper-edge-bottom section-paper" aria-label="Contact">
-      <span className="stitch-frame" aria-hidden="true" />
+      <span className="flower-frame" aria-hidden="true" />
       <div className="col">
         <Reveal><div className="section-head" style={{ marginBottom: '0.6rem' }}><h2 className="section-title letterpress">For any questions,<br />please reach out</h2></div></Reveal>
         <span className="contact-rule" aria-hidden="true" />
@@ -28,7 +28,7 @@ export function Contact({ content }: { content: InviteContent }) {
         </div>
         <span className="contact-rule" aria-hidden="true" />
         <Reveal index={c.contacts.length + 1}>
-          <p className="contact-closing">We look forward to celebrating with you</p>
+          <p className="contact-closing">We look forward to celebrating with you!</p>
           <div className="contact-inshallah" role="img" aria-label="إن شاء الله" />
         </Reveal>
       </div>
