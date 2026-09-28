@@ -56,10 +56,10 @@ export const shaadi: InviteContent = {
     name: 'Defence Raya Golf & Country Club',
     hall: 'The Venue',
     address: 'Sector M, DHA Phase 6\nLahore, Pakistan',
-    mapsQuery: 'Defence Raya Golf Resort, Sector M, DHA Phase 6, Lahore, Pakistan',
-    mapsLink: 'https://maps.app.goo.gl/RNXb5K6LJJUVND9X7',
-    lat: 31.4689591,
-    lng: 74.4716129,
+    mapsQuery: 'The Venue - Defence Raya Golf and Country Club, Lahore, Pakistan',
+    mapsLink: 'https://maps.app.goo.gl/t9fGKXWUd9qE2Xk47',
+    lat: 31.4703929,
+    lng: 74.4691344,
   },
 
   timeline: [
