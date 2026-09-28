@@ -34,3 +34,20 @@ export function Footer({ content, theme }: { content: InviteContent; theme: Them
     </footer>
   )
 }
+
+/**
+ * The verse as the cover page: the patterned ground with the verse in its
+ * lined box. Also rendered, in miniature, as the card in the envelope, so it
+ * uses no scroll reveals.
+ */
+export function Cover({ content }: { content: InviteContent }) {
+  const c = content
+  return (
+    <section className="footer footer-folio cover section-dark" aria-label="Verse">
+      <div className="footer-box">
+        <p className="footer-verse">“{c.footer.verse}”</p>
+        {c.footer.verseAttribution && <p className="footer-attr">{c.footer.verseAttribution}</p>}
+      </div>
+    </section>
+  )
+}

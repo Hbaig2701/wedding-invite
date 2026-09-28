@@ -15,7 +15,7 @@ import { DressCode } from './components/sections/DressCode'
 import { Rsvp } from './components/sections/Rsvp'
 import { Contact } from './components/sections/Contact'
 import { Photo } from './components/sections/Photo'
-import { Footer } from './components/sections/Footer'
+import { Cover, Footer } from './components/sections/Footer'
 import { SoundToggle } from './components/SoundToggle'
 import { initMusic } from './lib/music'
 
@@ -36,6 +36,7 @@ export function App({ content, theme }: { content: InviteContent; theme: Theme }
     <>
       <GoldDefs />
       <main className="page" aria-hidden={gate ? true : undefined}>
+        {theme.hero === 'folio' && <Cover content={content} />}
         <Hero content={content} theme={theme} opened={opened || theme.hero === 'folio'} instant={theme.hero === 'folio'} />
         {theme.hero !== 'folio' && <Countdown content={content} theme={theme} />}
         {theme.hero !== 'folio' && <Invitation content={content} theme={theme} />}
@@ -46,7 +47,7 @@ export function App({ content, theme }: { content: InviteContent; theme: Theme }
         {theme.hero !== 'folio' && <DressCode content={content} />}
         <Rsvp content={content} />
         <Contact content={content} />
-        <Footer content={content} theme={theme} />
+        {theme.hero !== 'folio' && <Footer content={content} theme={theme} />}
       </main>
       {content.musicUrl && !gate && <SoundToggle />}
       <AnimatePresence>

@@ -1122,3 +1122,11 @@
   font-size: clamp(2.8rem, calc(12.5 * var(--vw)), 3.6rem);
   line-height: 1.05;
 }
+
+/* the verse as the cover page */
+[data-theme='shaadi'] .footer.footer-folio.cover {
+  border-top: 0;
+  padding: 64px 26px 64px;
+}
+[data-theme='shaadi'] .cover .footer-box { padding: 38px 22px 34px; }
+[data-theme='shaadi'] .cover .footer-verse { font-size: 1.18rem; line-height: 1.8; color: var(--ink); }

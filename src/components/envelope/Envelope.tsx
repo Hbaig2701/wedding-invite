@@ -6,7 +6,7 @@ import { WaxSeal } from './WaxSeal'
 import { BackPanel, FlapBack, FlapFace, Pocket } from './EnvelopePaper'
 import { useTilt } from '../../lib/useTilt'
 import { prefersReducedMotion } from '../../lib/motionPrefs'
-import { Hero } from '../sections/Hero'
+import { Cover } from '../sections/Footer'
 import { playMusic } from '../../lib/music'
 import './Envelope.css'
 
@@ -280,7 +280,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
                     }}
                   >
                     <div className="card-mini" ref={miniRef} aria-hidden="true" style={{ transform: `scale(${cardBox?.s ?? 1})` }}>
-                      <Hero content={content} theme={theme} opened instant />
+                      <Cover content={content} />
                     </div>
                   </motion.div>
                 </div>
