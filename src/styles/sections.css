@@ -1144,3 +1144,8 @@
 /* two contacts, name then their WhatsApp box */
 [data-theme='shaadi'] .contact-list { gap: 26px; }
 [data-theme='shaadi'] .contact-card { gap: 6px; }
+
+/* RSVP questions: darker and a touch larger so they read easily */
+[data-theme='shaadi'] .rsvp .field-label { color: var(--ink); font-weight: 500; font-size: 0.78rem; }
+[data-theme='shaadi'] .rsvp .field-input::placeholder { color: var(--ink-soft); opacity: 0.8; }
+[data-theme='shaadi'] .rsvp .count-hint { color: var(--ink); }
