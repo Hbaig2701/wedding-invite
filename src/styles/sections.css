@@ -993,3 +993,13 @@
 [data-theme='shaadi'] .contact .col { display: flex; flex-direction: column; align-items: center; text-align: center; }
 [data-theme='shaadi'] .contact-list, [data-theme='shaadi'] .contact-card { align-items: center; text-align: center; width: 100%; }
 [data-theme='shaadi'] .contact-link { align-self: center; }
+
+/* RSVP label a touch larger */
+[data-theme='shaadi'] .rsvp .section-head .eyebrow { font-size: 0.9rem; letter-spacing: 0.34em; }
+/* schedule: deep maroon diamonds, slightly heavier times */
+[data-theme='shaadi'] .timeline-dot { background: var(--burgundy); }
+[data-theme='shaadi'] .timeline-time { color: var(--ink); -webkit-text-stroke: 0.35px currentColor; }
+/* closing line and In sha Allah under the contact */
+.contact-closing { margin-top: 2rem; font-family: var(--font-body); font-style: italic; font-size: 1.1rem; color: var(--ink); }
+.contact-inshallah { display: block; margin-top: 0.9rem; font-family: var(--font-arabic); font-size: 1.6rem; direction: rtl; }
+[data-theme='shaadi'] .footer-box { padding-bottom: 30px; }

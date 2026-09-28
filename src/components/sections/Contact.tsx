@@ -24,6 +24,10 @@ export function Contact({ content }: { content: InviteContent }) {
             </Reveal>
           ))}
         </div>
+        <Reveal index={c.contacts.length + 1}>
+          <p className="contact-closing">We look forward to celebrating with you</p>
+          <p className="contact-inshallah gold-text gold-text-paper" lang="ar">إن شاء الله</p>
+        </Reveal>
       </div>
     </section>
   )

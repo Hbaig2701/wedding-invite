@@ -104,7 +104,7 @@ export const shaadi: InviteContent = {
   musicUrl: '',   // «INSTRUMENTAL VIOLIN TRACK URL» — leave empty to hide the sound toggle
 
   footer: {
-    verse: 'And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquillity with them, and He has put love and mercy between your hearts.',
+    verse: 'And among His signs is that He created for you spouses from among yourselves so that you may find tranquility in them, and He placed between you affection and mercy.',
     verseAttribution: 'Ar-Rūm · 30:21',
     closing: 'With love, Iman & Hamza',
   },

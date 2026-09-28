@@ -8,9 +8,11 @@ export function Footer({ content, theme }: { content: InviteContent; theme: Them
   const verse = (
     <>
       <Reveal index={1}><p className="footer-verse">“{c.footer.verse}”</p>{c.footer.verseAttribution && <p className="footer-attr">{c.footer.verseAttribution}</p>}</Reveal>
-      <Reveal index={2}>
-        <p className={`footer-arabic ${theme.darkGround ? '' : 'gold-text gold-text-paper'}`} lang="ar">إن شاء الله</p>
-      </Reveal>
+      {theme.hero !== 'folio' && (
+        <Reveal index={2}>
+          <p className={`footer-arabic ${theme.darkGround ? '' : 'gold-text gold-text-paper'}`} lang="ar">إن شاء الله</p>
+        </Reveal>
+      )}
     </>
   )
 
