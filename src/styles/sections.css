@@ -877,3 +877,17 @@
   outline-offset: -14px;
   padding: 44px 14px 50px;
 }
+
+/* countdown text heavier, with a soft ivory halo so it reads over the pattern */
+[data-theme='shaadi'] .countdown .eyebrow,
+[data-theme='shaadi'] .countdown-num,
+[data-theme='shaadi'] .countdown-label,
+[data-theme='shaadi'] .countdown-sep {
+  color: var(--ink);
+  text-shadow: 0 0 6px #faf1d2, 0 0 12px #faf1d2, 0 0 2px #faf1d2;
+}
+[data-theme='shaadi'] .countdown-num { font-weight: 700; }
+[data-theme='shaadi'] .countdown .eyebrow { font-weight: 500; font-size: 0.8rem; letter-spacing: 0.26em; }
+[data-theme='shaadi'] .countdown-label { font-weight: 500; font-size: 0.68rem; }
+[data-theme='shaadi'] .countdown-sep { font-weight: 700; }
+[data-theme='shaadi'] .countdown .eyebrow { color: var(--ink) !important; }
