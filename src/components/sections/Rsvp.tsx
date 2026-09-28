@@ -4,6 +4,7 @@ import type { InviteContent } from '../../content/types'
 import { normalisePhone, submitRsvp, whatsappUrl, type RsvpPayload } from '../../lib/rsvp'
 import { WaxSeal } from '../envelope/WaxSeal'
 import { Reveal } from '../Reveal'
+import { Locket } from '../Locket'
 
 type Status = 'idle' | 'sending' | 'done' | 'failed'
 
@@ -158,6 +159,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
             </motion.form>
           )}
         </AnimatePresence>
+        <Locket className="rsvp-locket" left={c.couple.second[0]} right={c.couple.first[0]} />
       </div>
     </section>
   )

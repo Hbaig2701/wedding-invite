@@ -1054,3 +1054,7 @@
 .contact-line-br { right: 18px; bottom: 18px; top: 178px; left: 52px; border-right-width: 1px; border-bottom-width: 1px; }
 .contact-spray-tr { right: 0; top: 0; width: 64px; transform: scaleX(-1); }
 .contact-spray-bl { left: 0; bottom: 0; width: 42px; transform: scaleX(-1); }
+
+/* the locket at the foot of the RSVP */
+.rsvp-locket { display: block; width: 150px; height: auto; margin: 1.8rem auto -1rem; color: var(--ink); }
+.locket-letter { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 30px; fill: currentColor; stroke: none; }
