@@ -449,7 +449,7 @@
 /* The Bismillah calligraphy: an alpha mask filled with our gold foil */
 .hero-calligraphy {
   width: min(78%, 300px);
-  aspect-ratio: 654 / 292;
+  aspect-ratio: 643 / 391;
   margin: 0 auto;
   background-image: linear-gradient(105deg, var(--gold-deep) 0%, var(--gold-dark) 22%, var(--gold) 42%, var(--gold-light) 52%, var(--gold) 62%, var(--gold-dark) 80%, var(--gold-deep) 100%);
   -webkit-mask-image: url('../assets/masks/bismillah-mask.png');
@@ -973,7 +973,7 @@
 }
 
 /* less air under the last schedule entry */
-[data-theme='shaadi'] .timeline { padding-bottom: 44px; }
+[data-theme='shaadi'] .timeline { padding-bottom: 64px; }
 [data-theme='shaadi'] .timeline-item:last-child { padding-bottom: 0; }
 
 /* Questions: one clear centred heading, the contact beneath it smaller */
@@ -988,3 +988,8 @@
 [data-theme='shaadi'] .contact-list { margin-top: 1.2rem; }
 [data-theme='shaadi'] .contact-name { font-family: var(--font-body); font-size: 1.12rem; letter-spacing: 0.02em; text-shadow: none; }
 [data-theme='shaadi'] .contact-role { font-size: 0.95rem; margin-top: -8px; }
+
+/* Any Questions?: everything on one centre line */
+[data-theme='shaadi'] .contact .col { display: flex; flex-direction: column; align-items: center; text-align: center; }
+[data-theme='shaadi'] .contact-list, [data-theme='shaadi'] .contact-card { align-items: center; text-align: center; width: 100%; }
+[data-theme='shaadi'] .contact-link { align-self: center; }
