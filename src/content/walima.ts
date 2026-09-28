@@ -14,7 +14,7 @@ export const walima: InviteContent = {
 
   bismillah: {
     arabic: 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
-    english: 'In the name of God, the Most Gracious, the Most Merciful',
+    english: 'In the name of Allah, the Most Gracious, the Most Merciful',
   },
 
   couple: {

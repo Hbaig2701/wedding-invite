@@ -14,7 +14,7 @@ export const shaadi: InviteContent = {
 
   bismillah: {
     arabic: 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
-    english: 'In the name of God, the Most Gracious, the Most Merciful',
+    english: 'In the name of Allah, the Most Gracious, the Most Merciful',
   },
 
   couple: {
@@ -64,7 +64,7 @@ export const shaadi: InviteContent = {
   timeline: [
     { time: '6:00 PM', title: 'Guests arrive', note: 'welcome & refreshments' },
     { time: '7:00 PM', title: 'Baraat arrives', note: 'the groom\u2019s procession is welcomed' },
-    { time: '7:30 PM', title: 'Bridal entrance', note: 'Iman makes her entrance' },
+    { time: '7:30 PM', title: 'Bride enters', note: 'Iman makes her entrance' },
     { time: '8:00 PM', title: 'Dinner', note: 'a feast with family & friends' },
     { time: '9:45 PM', title: 'Rukhsati', note: 'the farewell & send-off' },
   ],
