@@ -1016,3 +1016,14 @@
 
 /* the longer contact heading: smaller, balanced over three short lines */
 [data-theme='shaadi'] .contact .section-title { font-size: clamp(1.15rem, calc(5.2 * var(--vw)), 1.6rem); line-height: 1.35; letter-spacing: 0.04em; max-width: none; white-space: nowrap; margin-left: auto; margin-right: auto; }
+
+/* ═══ Schedule: a botanical frame — two L-shaped lines, sprays in the open corners ═══ */
+[data-theme='shaadi'] .timeline { outline: none; position: relative; }
+.timeline > .sched-deco { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.sched-line { position: absolute; border-color: rgba(107, 23, 39, 0.55); border-style: solid; border-width: 0; }
+.sched-line-tr { top: 18px; right: 18px; left: 58px; bottom: 196px; border-top-width: 1px; border-right-width: 1px; }
+.sched-line-bl { left: 18px; bottom: 18px; top: 178px; right: 52px; border-left-width: 1px; border-bottom-width: 1px; }
+.sched-spray { position: absolute; height: auto; display: block; }
+.sched-spray-tl { left: 0; top: 0; width: 64px; }
+.sched-spray-br { right: 0; bottom: 0; width: 42px; }
+[data-theme='shaadi'] .timeline .col { padding-left: 40px; padding-right: 34px; }

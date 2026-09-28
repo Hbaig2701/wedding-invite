@@ -3,9 +3,19 @@ import type { Theme } from '../../theme/types'
 import { Reveal } from '../Reveal'
 import { LongDate } from './Details'
 
+const B = import.meta.env.BASE_URL
+
 export function Timeline({ content, theme }: { content: InviteContent; theme: Theme }) {
   return (
     <section className="timeline paper section-paper" aria-label="Order of the day">
+      {theme.hero === 'folio' && (
+        <div className="sched-deco" aria-hidden="true">
+          <span className="sched-line sched-line-tr" />
+          <span className="sched-line sched-line-bl" />
+          <img className="sched-spray sched-spray-tl" src={`${B}flora/spray-tl.png`} alt="" loading="lazy" decoding="async" />
+          <img className="sched-spray sched-spray-br" src={`${B}flora/spray-br.png`} alt="" loading="lazy" decoding="async" />
+        </div>
+      )}
       <div className="col">
         {theme.hero === 'folio' ? (
           <Reveal>
