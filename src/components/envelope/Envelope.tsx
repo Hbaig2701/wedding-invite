@@ -133,9 +133,9 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
       mini.style.width = `${heroW}px`
       const heroH = mini.offsetHeight
       if (!heroH) return
-      let s = (ew * 0.9) / heroW
-      if (heroH * s > eh * 0.92) s = (eh * 0.92) / heroH
-      const w = heroW * s, h = heroH * s
+      // full width of the envelope; only as much of the page as fits is shown
+      const s = (ew * 0.9) / heroW
+      const w = heroW * s, h = Math.min(heroH * s, eh * 0.9)
       setCardBox({ w, h, left: (ew - w) / 2, top: eh * 0.05, s, heroW })
     }
     measure()
@@ -213,7 +213,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     setTimeout(async () => {
       if (folio) await zoomToPage()
       setPhase('leaving'); onOpened()
-    }, folio ? 4300 : 3400)
+    }, folio ? 3800 : 3400)
   }
 
   const names = `${content.couple.first} ${content.couple.joiner} ${content.couple.second}`
