@@ -1041,3 +1041,19 @@
 /* a fine vertical line from the heading down to the name */
 .contact-rule { display: block; width: 1px; height: 44px; margin: 0.4rem auto 0.2rem; background: linear-gradient(180deg, rgba(107, 23, 39, 0) 0%, rgba(107, 23, 39, 0.6) 30%, rgba(107, 23, 39, 0.6) 70%, rgba(107, 23, 39, 0) 100%); }
 [data-theme='shaadi'] .contact .contact-rule + .contact-list { margin-top: 0.6rem; }
+
+/* the second divider, above the closing line */
+[data-theme='shaadi'] .contact .contact-rule + div .contact-closing,
+[data-theme='shaadi'] .contact .contact-rule + .contact-closing { margin-top: 0.6rem; }
+.contact-list + .contact-rule { margin-top: 1.4rem; }
+
+/* a stitched border inside the section line, like a hand-sewn edge */
+.contact { position: relative; }
+.contact > .stitch-frame {
+  position: absolute;
+  inset: 22px;
+  border: 2px dashed rgba(107, 23, 39, 0.42);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 1;
+}
