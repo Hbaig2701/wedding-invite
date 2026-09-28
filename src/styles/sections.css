@@ -953,3 +953,38 @@
   letter-spacing: 0.12em;
   margin-top: 0.25rem;
 }
+
+/* countdown back to the regular weights, kept in full burgundy */
+[data-theme='shaadi'] .countdown-num { font-weight: 400; }
+[data-theme='shaadi'] .countdown .eyebrow { font-weight: 500; font-size: 0.72rem; letter-spacing: 0.3em; }
+[data-theme='shaadi'] .countdown-label { font-weight: 400; font-size: 0.64rem; }
+[data-theme='shaadi'] .countdown-sep { font-weight: 400; }
+
+/* the envelope gate sits on the same floral, lightly */
+[data-theme='shaadi'] .gate-inner.ground {
+  background-color: #efe3c8;
+  background-image:
+    linear-gradient(rgba(242, 232, 208, 0.8), rgba(242, 232, 208, 0.8)),
+    url('../assets/countdown-pattern.jpg');
+  background-size: 100% 100%, 420px auto;
+  background-repeat: no-repeat, repeat;
+  background-position: center, center;
+  background-blend-mode: normal;
+}
+
+/* less air under the last schedule entry */
+[data-theme='shaadi'] .timeline { padding-bottom: 44px; }
+[data-theme='shaadi'] .timeline-item:last-child { padding-bottom: 0; }
+
+/* Questions: one clear centred heading, the contact beneath it smaller */
+[data-theme='shaadi'] .contact .section-head { text-align: center; }
+[data-theme='shaadi'] .contact .section-title {
+  font-family: var(--font-date);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: clamp(2.2rem, calc(9.5 * var(--vw)), 3rem);
+  text-shadow: none;
+}
+[data-theme='shaadi'] .contact-list { margin-top: 1.2rem; }
+[data-theme='shaadi'] .contact-name { font-family: var(--font-body); font-size: 1.12rem; letter-spacing: 0.02em; text-shadow: none; }
+[data-theme='shaadi'] .contact-role { font-size: 0.95rem; margin-top: -8px; }
