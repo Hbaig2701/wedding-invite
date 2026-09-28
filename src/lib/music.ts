@@ -13,7 +13,24 @@ export function initMusic(url: string) {
   el.loop = true
   el.preload = 'auto'
   el.volume = 0
+  watchVisibility()
   return el
+}
+
+/**
+ * Stop when the guest leaves the page (switches app, locks the phone, closes
+ * the tab) and pick up again if they come back to it.
+ */
+let resumeOnReturn = false
+function watchVisibility() {
+  const leave = () => {
+    if (el && !el.paused) { resumeOnReturn = true; el.pause() }
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) leave()
+    else if (resumeOnReturn && el) { resumeOnReturn = false; playMusic() }
+  })
+  window.addEventListener('pagehide', leave)
 }
 
 export function getMusic() { return el }
@@ -38,4 +55,4 @@ export function playMusic() {
   else fadeTo(TARGET, 2500)
 }
 
-export function pauseMusic() { el?.pause() }
+export function pauseMusic() { resumeOnReturn = false; el?.pause() }
