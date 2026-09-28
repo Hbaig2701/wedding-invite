@@ -942,3 +942,14 @@
 }
 [data-theme='shaadi'] .footer-box .footer-verse { margin-top: 0; }
 [data-theme='shaadi'] .footer-box .footer-arabic { margin-top: 1.6rem; }
+
+/* schedule entries: the invitation's italic book face, in capitals, smaller */
+[data-theme='shaadi'] .timeline-title {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.02rem;
+  letter-spacing: 0.12em;
+  margin-top: 0.25rem;
+}
