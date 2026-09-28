@@ -851,7 +851,7 @@
 [data-theme='shaadi'] .countdown {
   background-color: #faf1d2;
   background-image:
-    linear-gradient(rgba(250, 241, 210, 0.74), rgba(250, 241, 210, 0.74)),
+    linear-gradient(rgba(250, 241, 210, 0.5), rgba(250, 241, 210, 0.5)),
     url('../assets/countdown-pattern.jpg');
   background-size: 100% 100%, 480px auto;
   background-repeat: no-repeat, repeat;
