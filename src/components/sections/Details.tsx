@@ -63,7 +63,7 @@ export function Details({ content, theme }: { content: InviteContent; theme: The
           <Reveal index={3}>
             <a className="map-card" href={link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${c.venue.name} in Google Maps`}>
               <iframe className="map-frame" src={embed} title={`Map of ${c.venue.name}`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" tabIndex={-1} aria-hidden="true" />
-              <span className="map-pill"><HeartIcon /> {c.venue.name}</span>
+              <span className="map-pill"><HeartIcon /> {c.venue.mapLabel || c.venue.name}</span>
             </a>
           </Reveal>
           <Reveal index={4}>

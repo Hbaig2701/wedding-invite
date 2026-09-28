@@ -94,6 +94,8 @@ export interface InviteContent {
     mapsQuery: string
     /** The specific hall or area within the venue, e.g. "The Venue". */
     hall?: string
+    /** Short label for the pin on the map, if different from the name. */
+    mapLabel?: string
     /** Share link from Google Maps (what the buttons open). */
     mapsLink?: string
     /** Pin for the embedded map. */

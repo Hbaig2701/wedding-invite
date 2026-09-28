@@ -55,6 +55,7 @@ export const shaadi: InviteContent = {
   venue: {
     name: 'Defence Raya Golf & Country Club',
     hall: 'The Venue',
+    mapLabel: 'The Venue · Defence Raya',
     address: 'Sector M, DHA Phase 6\nLahore, Pakistan',
     mapsQuery: 'The Venue - Defence Raya Golf and Country Club, Lahore, Pakistan',
     mapsLink: 'https://maps.app.goo.gl/t9fGKXWUd9qE2Xk47',
