@@ -1037,3 +1037,7 @@
   font-variant-numeric: tabular-nums lining-nums;
 }
 [data-theme='shaadi'] .countdown-sep { font-family: var(--font-date); }
+
+/* a fine vertical line from the heading down to the name */
+.contact-rule { display: block; width: 1px; height: 44px; margin: 0.4rem auto 0.2rem; background: linear-gradient(180deg, rgba(107, 23, 39, 0) 0%, rgba(107, 23, 39, 0.6) 30%, rgba(107, 23, 39, 0.6) 70%, rgba(107, 23, 39, 0) 100%); }
+[data-theme='shaadi'] .contact .contact-rule + .contact-list { margin-top: 0.6rem; }
