@@ -26,7 +26,7 @@ export function Contact({ content }: { content: InviteContent }) {
         </div>
         <Reveal index={c.contacts.length + 1}>
           <p className="contact-closing">We look forward to celebrating with you</p>
-          <p className="contact-inshallah gold-text gold-text-paper" lang="ar">إن شاء الله</p>
+          <div className="contact-inshallah" role="img" aria-label="إن شاء الله" />
         </Reveal>
       </div>
     </section>

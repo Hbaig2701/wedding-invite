@@ -32,7 +32,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   const cardRef = useRef<HTMLDivElement>(null)
   const miniRef = useRef<HTMLDivElement>(null)
   const plan = useRef({ sink: 0, lift: 0 })
-  const [cardBox, setCardBox] = useState<{ w: number; h: number; left: number; top: number; s: number; heroW: number } | null>(null)
+  const [cardBox, setCardBox] = useState<{ w: number; h: number; left: number; top: number; s: number; heroW: number; ew: number; eh: number } | null>(null)
   const sceneX = useMotionValue(0)
   const sceneY = useMotionValue(0)
   const sceneS = useMotionValue(1)
@@ -133,10 +133,11 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
       mini.style.width = `${heroW}px`
       const heroH = mini.offsetHeight
       if (!heroH) return
-      // full width of the envelope; only as much of the page as fits is shown
+      // the whole page, at the envelope's width; whatever is below the
+      // envelope's bottom edge stays hidden, as if still inside
       const s = (ew * 0.9) / heroW
-      const w = heroW * s, h = Math.min(heroH * s, eh * 0.9)
-      setCardBox({ w, h, left: (ew - w) / 2, top: eh * 0.05, s, heroW })
+      const w = heroW * s, h = heroH * s
+      setCardBox({ w, h, left: (ew - w) / 2, top: eh * 0.05, s, heroW, ew, eh })
     }
     measure()
     const t = setTimeout(measure, 600)   // again once fonts and the border have settled
@@ -150,10 +151,11 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     if (!scene || !cardBox) return
     const r = scene.getBoundingClientRect()
     const eh = scene.offsetHeight, V = window.innerHeight
-    const tuck = eh * 0.1                       // how much of the card stays inside
-    const shown = cardBox.h + eh * 0.28           // card plus the top of the envelope
-    const cardTopFinal = Math.max(18, (V - shown) / 2)
-    const envTopFinal = cardTopFinal + cardBox.h - tuck
+    // the page rises until its lower part is still tucked well into the pocket
+    const above = Math.max(cardBox.h * 0.45, cardBox.h - eh * 0.72)   // shown above the envelope
+    const total = above + eh
+    const cardTopFinal = Math.max(18, (V - total) / 2)
+    const envTopFinal = cardTopFinal + above
     const sink = envTopFinal - r.top
     const lift = (r.top + cardBox.top + sink) - cardTopFinal
     plan.current = { sink, lift }
@@ -213,7 +215,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     setTimeout(async () => {
       if (folio) await zoomToPage()
       setPhase('leaving'); onOpened()
-    }, folio ? 3800 : 3400)
+    }, folio ? 4050 : 3400)
   }
 
   const names = `${content.couple.first} ${content.couple.joiner} ${content.couple.second}`
@@ -251,24 +253,35 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
               <div className="env-back"><BackPanel liner={theme.liner} /></div>
 
               {folio ? (
-                <motion.div
-                  ref={cardRef}
-                  className="env-card env-card-page"
+                // A clip that ends at the envelope's bottom edge: the page can rise
+                // freely, but the part still "inside" is never drawn below it.
+                <div
+                  className="env-card-clip"
                   style={{
-                    transform: cardTransform,
-                    boxShadow: cardShadow,
-                    left: cardBox?.left ?? 0,
-                    right: 'auto',
-                    top: cardBox?.top ?? 0,
-                    width: cardBox?.w ?? 0,
-                    height: cardBox?.h ?? 0,
-                    visibility: cardBox ? 'visible' : 'hidden',
+                    left: -(cardBox?.ew ?? 0) * 0.6,
+                    top: -(cardBox?.eh ?? 0) * 5,
+                    width: (cardBox?.ew ?? 0) * 2.2,
+                    height: (cardBox?.eh ?? 0) * 6,
                   }}
                 >
-                  <div className="card-mini" ref={miniRef} aria-hidden="true" style={{ transform: `scale(${cardBox?.s ?? 1})` }}>
-                    <Hero content={content} theme={theme} opened />
-                  </div>
-                </motion.div>
+                  <motion.div
+                    ref={cardRef}
+                    className="env-card env-card-page"
+                    style={{
+                      transform: cardTransform,
+                      boxShadow: cardShadow,
+                      left: (cardBox?.left ?? 0) + (cardBox?.ew ?? 0) * 0.6,
+                      top: (cardBox?.top ?? 0) + (cardBox?.eh ?? 0) * 5,
+                      width: cardBox?.w ?? 0,
+                      height: cardBox?.h ?? 0,
+                      visibility: cardBox ? 'visible' : 'hidden',
+                    }}
+                  >
+                    <div className="card-mini" ref={miniRef} aria-hidden="true" style={{ transform: `scale(${cardBox?.s ?? 1})` }}>
+                      <Hero content={content} theme={theme} opened />
+                    </div>
+                  </motion.div>
+                </div>
               ) : (
                 <motion.div className="env-card paper" style={{ transform: cardTransform, boxShadow: cardShadow }}>
                   <div className="env-card-inner">
