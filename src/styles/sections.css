@@ -1027,3 +1027,13 @@
 .sched-spray-tl { left: 0; top: 0; width: 64px; }
 .sched-spray-br { right: 0; bottom: 0; width: 42px; }
 [data-theme='shaadi'] .timeline .col { padding-left: 40px; padding-right: 34px; }
+
+/* countdown numerals in the vintage date face (Pochaevsk), clear at size */
+[data-theme='shaadi'] .countdown-num {
+  font-family: var(--font-date);
+  font-weight: 400;
+  font-size: clamp(2.1rem, calc(9.6 * var(--vw)), 2.9rem);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+[data-theme='shaadi'] .countdown-sep { font-family: var(--font-date); }
