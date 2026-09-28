@@ -24,7 +24,7 @@ export function Contact({ content }: { content: InviteContent }) {
             <Reveal key={i} index={i + 1}>
               <div className="contact-card">
                 <div className="contact-name letterpress">{p.name}</div>
-                <div className="contact-role">{p.role}</div>
+                {p.role && <div className="contact-role">{p.role}</div>}
                 <a className="contact-link" href={whatsappUrl(p.whatsapp, `Assalamu alaikum ${p.name}, I have a question about the ${c.eventLabel} on ${c.date.short}.`)} target="_blank" rel="noopener noreferrer">
                   <span className="contact-link-main"><WaIcon /> Message on WhatsApp</span>
                   <span className="contact-number">+{p.whatsapp.replace(/^(\d{3})(\d+)$/, '$1 $2')}</span>

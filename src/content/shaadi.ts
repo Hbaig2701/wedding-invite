@@ -97,7 +97,8 @@ export const shaadi: InviteContent = {
   },
 
   contacts: [
-    { name: 'Shahid Mahmood', role: 'Father of the bride', whatsapp: '966500466597' },
+    { name: 'Shahid Mahmood', role: '', whatsapp: '966500466597' },
+    { name: 'Sania Shahid', role: '', whatsapp: '966532702343' },
   ],
 
   musicUrl: 'music/tu-jaane-na.m4a',   // Tu Jaane Na, orchestral version
