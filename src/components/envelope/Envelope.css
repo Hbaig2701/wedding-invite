@@ -307,3 +307,9 @@
   .gate.gate { background: var(--ground-shadow); }
   .gate-inner { width: var(--col); box-shadow: 0 0 0 1px rgba(0,0,0,0.12), 0 40px 90px -20px rgba(0,0,0,0.55); }
 }
+
+/* ═══ Folio: a portrait envelope, and a card that is the first page itself ═══ */
+[data-theme='shaadi'] .scene { --eh: calc(var(--ew) * 1.5); }
+.env > .env-card.env-card-page { overflow: hidden; border-radius: 2px; background: #faf1d2; }
+.card-mini { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; }
+.card-mini .hero { margin: 0; }

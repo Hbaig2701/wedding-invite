@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { animate, motion, useMotionTemplate, useMotionValue, useTransform } from 'motion/react'
 import type { InviteContent } from '../../content/types'
 import type { Theme } from '../../theme/types'
@@ -6,6 +6,7 @@ import { WaxSeal } from './WaxSeal'
 import { BackPanel, FlapBack, FlapFace, Pocket } from './EnvelopePaper'
 import { useTilt } from '../../lib/useTilt'
 import { prefersReducedMotion } from '../../lib/motionPrefs'
+import { Hero } from '../sections/Hero'
 import './Envelope.css'
 
 type Phase = 'closed' | 'opening' | 'leaving'
@@ -24,6 +25,17 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   const [pressed, setPressed] = useState(false)
   const [cue, setCue] = useState(false)
   const reduced = useRef(prefersReducedMotion())
+  // Folio: the card is a live miniature of the first page. Its size and the
+  // lift/sink distances are measured in pixels once the envelope is laid out.
+  const folio = theme.hero === 'folio'
+  const sceneRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+  const miniRef = useRef<HTMLDivElement>(null)
+  const plan = useRef({ sink: 0, lift: 0 })
+  const [cardBox, setCardBox] = useState<{ w: number; h: number; left: number; top: number; s: number; heroW: number } | null>(null)
+  const sceneX = useMotionValue(0)
+  const sceneY = useMotionValue(0)
+  const sceneS = useMotionValue(1)
 
   // ── sequence progress ──────────────────────────────────────────────────
   const flap = useMotionValue(0)   // 0 closed → 1 open (spring may overshoot)
@@ -50,10 +62,10 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   const goldAngleDeg = useMotionTemplate`${goldAngle}deg`
   const goldPos = useTransform(tilt.x, (v) => 50 + v * 45)
   const goldPosPct = useMotionTemplate`${goldPos}%`
-  const groundY = useTransform(card, (p) => Math.max(0, Math.min(p, 1)) * 155)
+  const groundY = useTransform(card, (p) => { const t = Math.max(0, Math.min(p, 1)); return folio ? `${t * plan.current.sink}px` : `${t * 155}%` })
   const shadowShift = useTransform(tilt.x, (v) => -v * 12)
   const shadowShiftY = useTransform(tilt.y, (v) => -v * 6)
-  const groundShadow = useMotionTemplate`translate(calc(-50% + ${shadowShift}px), calc(-55% + ${shadowShiftY}px + ${groundY}%))`
+  const groundShadow = useMotionTemplate`translate(calc(-50% + ${shadowShift}px), calc(-55% + ${shadowShiftY}px + ${groundY}))`
 
   // ── the open sequence ──────────────────────────────────────────────────
 
@@ -64,8 +76,8 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   // As the card is drawn out the envelope sinks, so the card ends up in the
   // middle of the screen (its centre lands ~0.2 envelope-heights above the
   // envelope's top; the scene is centred, so we drop it by that much + half).
-  const settleY = useTransform(card, (p) => Math.max(0, Math.min(p, 1)) * 62)
-  const envTransform = useMotionTemplate`translateY(${settleY}%) rotateX(calc(${rotX}deg + ${rockX}deg)) rotateY(${rotY}deg)`
+  const settleY = useTransform(card, (p) => { const t = Math.max(0, Math.min(p, 1)); return folio ? `${t * plan.current.sink}px` : `${t * 62}%` })
+  const envTransform = useMotionTemplate`translateY(${settleY}) rotateX(calc(${rotX}deg + ${rockX}deg)) rotateY(${rotY}deg)`
 
   // Rotate to exactly 180° so the flap lies flat; any spring overshoot tilts
   // it further back (away from the viewer), never forward into the card.
@@ -91,8 +103,8 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   const faceLight = useTransform(theta, (t) => (t < Math.PI / 2 ? Math.pow(Math.sin(t), 1.4) * 0.9 : 0))
   const backShade = useTransform(theta, (t) => (t > Math.PI / 2 ? Math.max(0, 1 - (t - Math.PI / 2) / (Math.PI / 2)) * 0.9 : 1))
 
-  const cardY = useTransform(card, (p) => `${-p * 76}%`)
-  const cardScale = useTransform(card, (p) => 1 + p * 0.03)
+  const cardY = useTransform(card, (p) => folio ? `${-p * plan.current.lift}px` : `${-p * 76}%`)
+  const cardScale = useTransform(card, (p) => folio ? 1 : 1 + p * 0.03)
   const cardTransform = useMotionTemplate`translateZ(2px) translateY(${cardY}) scale(${cardScale})`
   const cardShadow = useTransform(card, (p) => `0 1px 0 rgba(255,255,255,0.7) inset, 0 -1px 0 rgba(0,0,0,0.06) inset, 0 ${10 + p * 26}px ${24 + p * 30}px -${10 - p * 4}px rgba(0,0,0,${0.6 + p * 0.15}), 0 2px 4px rgba(0,0,0,0.25)`)
 
@@ -109,6 +121,58 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   }, [])
 
   const chipsRef = useRef<HTMLDivElement[]>([])
+
+  useLayoutEffect(() => {
+    if (!folio) return
+    const measure = () => {
+      const scene = sceneRef.current, mini = miniRef.current
+      if (!scene || !mini) return
+      const ew = scene.offsetWidth, eh = scene.offsetHeight
+      const col = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--col')) || 430
+      const heroW = Math.min(window.innerWidth, col)
+      mini.style.width = `${heroW}px`
+      const heroH = mini.offsetHeight
+      if (!heroH) return
+      let s = (ew * 0.9) / heroW
+      if (heroH * s > eh * 0.92) s = (eh * 0.92) / heroH
+      const w = heroW * s, h = heroH * s
+      setCardBox({ w, h, left: (ew - w) / 2, top: eh * 0.05, s, heroW })
+    }
+    measure()
+    const t = setTimeout(measure, 600)   // again once fonts and the border have settled
+    window.addEventListener('resize', measure)
+    return () => { clearTimeout(t); window.removeEventListener('resize', measure) }
+  }, [folio])
+
+  /** Plan the slide so the whole card clears the envelope and both fit on screen. */
+  function planSlide() {
+    const scene = sceneRef.current
+    if (!scene || !cardBox) return
+    const r = scene.getBoundingClientRect()
+    const eh = scene.offsetHeight, V = window.innerHeight
+    const tuck = eh * 0.1                       // how much of the card stays inside
+    const shown = cardBox.h + eh * 0.28           // card plus the top of the envelope
+    const cardTopFinal = Math.max(18, (V - shown) / 2)
+    const envTopFinal = cardTopFinal + cardBox.h - tuck
+    const sink = envTopFinal - r.top
+    const lift = (r.top + cardBox.top + sink) - cardTopFinal
+    plan.current = { sink, lift }
+  }
+
+  /** Grow the card until it sits exactly where the first page is, then hand over. */
+  function zoomToPage(): Promise<void> {
+    const scene = sceneRef.current, cardEl = cardRef.current
+    if (!scene || !cardEl || !cardBox) return Promise.resolve()
+    const sr = scene.getBoundingClientRect(), cr = cardEl.getBoundingClientRect()
+    const heroLeft = (window.innerWidth - cardBox.heroW) / 2
+    const s = cardBox.heroW / cr.width
+    const tx = heroLeft - sr.left - s * (cr.left - sr.left)
+    const ty = 0 - sr.top - s * (cr.top - sr.top)
+    const ease = [0.65, 0, 0.25, 1] as const
+    animate(sceneX, tx, { duration: 0.95, ease })
+    animate(sceneY, ty, { duration: 0.95, ease })
+    return animate(sceneS, s, { duration: 0.95, ease }).then(() => undefined)
+  }
 
   function open() {
     if (phase !== 'closed') return
@@ -139,12 +203,17 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
 
     // 5. the card slides up behind the front panel
     setTimeout(() => {
-      animate(card, 1, { type: 'spring', stiffness: 58, damping: 13.5, mass: 1.1, restDelta: 0.001 })
+      if (folio) planSlide()
+      animate(card, 1, folio
+        ? { type: 'spring', stiffness: 42, damping: 13, mass: 1.2, restDelta: 0.001 }
+        : { type: 'spring', stiffness: 58, damping: 13.5, mass: 1.1, restDelta: 0.001 })
     }, 1050)
 
-    // 6. only once the card settles does content fade in — the card is held
-    //    for a few seconds so the guest can read it
-    setTimeout(() => { setPhase('leaving'); onOpened() }, 3400)
+    // 6. the card is held for a moment, then (folio) grows into the page
+    setTimeout(async () => {
+      if (folio) await zoomToPage()
+      setPhase('leaving'); onOpened()
+    }, folio ? 4300 : 3400)
   }
 
   const names = `${content.couple.first} ${content.couple.joiner} ${content.couple.second}`
@@ -162,8 +231,10 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
 
       <div className="gate-inner ground grain">
         <motion.div
+          ref={sceneRef}
           className="scene"
-          animate={phase === 'leaving' ? { scale: 1.08, y: -40 } : { scale: 1, y: 0 }}
+          style={folio ? { x: sceneX, y: sceneY, scale: sceneS, transformOrigin: '0 0' } : undefined}
+          animate={folio ? undefined : phase === 'leaving' ? { scale: 1.08, y: -40 } : { scale: 1, y: 0 }}
           transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }}
         >
           <motion.div className="env-ground-shadow" style={{ transform: groundShadow }} />
@@ -179,12 +250,33 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
             <motion.div className="env" style={{ transform: envTransform }}>
               <div className="env-back"><BackPanel liner={theme.liner} /></div>
 
-              <motion.div className="env-card paper" style={{ transform: cardTransform, boxShadow: cardShadow }}>
-                <div className="env-card-inner">
-                  <div className="env-card-frame" />
-                  <div className="env-card-title letterpress">You are invited</div>
-                </div>
-              </motion.div>
+              {folio ? (
+                <motion.div
+                  ref={cardRef}
+                  className="env-card env-card-page"
+                  style={{
+                    transform: cardTransform,
+                    boxShadow: cardShadow,
+                    left: cardBox?.left ?? 0,
+                    right: 'auto',
+                    top: cardBox?.top ?? 0,
+                    width: cardBox?.w ?? 0,
+                    height: cardBox?.h ?? 0,
+                    visibility: cardBox ? 'visible' : 'hidden',
+                  }}
+                >
+                  <div className="card-mini" ref={miniRef} aria-hidden="true" style={{ transform: `scale(${cardBox?.s ?? 1})` }}>
+                    <Hero content={content} theme={theme} opened />
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div className="env-card paper" style={{ transform: cardTransform, boxShadow: cardShadow }}>
+                  <div className="env-card-inner">
+                    <div className="env-card-frame" />
+                    <div className="env-card-title letterpress">You are invited</div>
+                  </div>
+                </motion.div>
+              )}
 
               <Pocket />
 
