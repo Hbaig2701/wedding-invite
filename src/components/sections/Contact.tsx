@@ -9,7 +9,7 @@ export function Contact({ content }: { content: InviteContent }) {
   return (
     <section className="contact paper paper-edge-bottom section-paper" aria-label="Contact">
       <div className="col">
-        <Reveal><div className="section-head" style={{ marginBottom: '0.6rem' }}><h2 className="section-title letterpress">Any Questions?</h2></div></Reveal>
+        <Reveal><div className="section-head" style={{ marginBottom: '0.6rem' }}><h2 className="section-title letterpress">For any questions,<br />please send a message</h2></div></Reveal>
         <div className="contact-list">
           {c.contacts.map((p, i) => (
             <Reveal key={i} index={i + 1}>
