@@ -92,6 +92,8 @@ export interface InviteContent {
     address: string
     /** Free-text query for Google Maps, e.g. the venue name + city */
     mapsQuery: string
+    /** The specific hall or area within the venue, e.g. "The Venue". */
+    hall?: string
     /** Share link from Google Maps (what the buttons open). */
     mapsLink?: string
     /** Pin for the embedded map. */

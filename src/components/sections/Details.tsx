@@ -56,6 +56,7 @@ export function Details({ content, theme }: { content: InviteContent; theme: The
           <Reveal index={2}>
             <div className="venue-box">
               <h2 className="venue-name">{c.venue.name}</h2>
+              {c.venue.hall && <p className="venue-hall">at <span>{c.venue.hall}</span></p>}
               <p className="venue-address">{c.venue.address}</p>
             </div>
           </Reveal>

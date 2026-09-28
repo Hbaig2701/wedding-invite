@@ -17,7 +17,7 @@ function escapeIcs(s: string) {
 
 export function buildIcs(c: InviteContent) {
   const title = `${c.eventLabel} · ${c.couple.first} ${c.couple.joiner} ${c.couple.second}`
-  const location = `${c.venue.name}, ${c.venue.address.replace(/\n/g, ', ')}`
+  const location = `${c.venue.hall ? c.venue.hall + ', ' : ''}${c.venue.name}, ${c.venue.address.replace(/\n/g, ', ')}`
   const description = `${c.date.timeLabel}${c.date.timeNote ? ' — ' + c.date.timeNote : ''}`
   const uid = `${c.event}-${toUtcStamp(c.date.startISO)}@invite`
   const lines = [
@@ -58,7 +58,7 @@ export function downloadIcs(c: InviteContent) {
 
 export function googleCalendarUrl(c: InviteContent) {
   const title = `${c.eventLabel} · ${c.couple.first} ${c.couple.joiner} ${c.couple.second}`
-  const location = `${c.venue.name}, ${c.venue.address.replace(/\n/g, ', ')}`
+  const location = `${c.venue.hall ? c.venue.hall + ', ' : ''}${c.venue.name}, ${c.venue.address.replace(/\n/g, ', ')}`
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: title,

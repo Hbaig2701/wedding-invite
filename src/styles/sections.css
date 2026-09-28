@@ -1149,3 +1149,7 @@
 [data-theme='shaadi'] .rsvp .field-label { color: var(--ink); font-weight: 500; font-size: 0.78rem; }
 [data-theme='shaadi'] .rsvp .field-input::placeholder { color: var(--ink-soft); opacity: 0.8; }
 [data-theme='shaadi'] .rsvp .count-hint { color: var(--ink); }
+
+/* the hall within the club */
+.venue-hall { margin-top: 0.7rem; font-family: var(--font-body); font-style: italic; font-size: 1.05rem; color: var(--ink-soft); }
+.venue-hall span { font-style: normal; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.9rem; color: var(--ink); margin-left: 0.25em; }
