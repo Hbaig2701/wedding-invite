@@ -17,8 +17,10 @@ import { Contact } from './components/sections/Contact'
 import { Photo } from './components/sections/Photo'
 import { Footer } from './components/sections/Footer'
 import { SoundToggle } from './components/SoundToggle'
+import { initMusic } from './lib/music'
 
 export function App({ content, theme }: { content: InviteContent; theme: Theme }) {
+  if (content.musicUrl) initMusic(content.musicUrl)
   const [opened, setOpened] = useState(false)   // content may start its entrance
   const [gate, setGate] = useState(true)        // gate still mounted
 
@@ -46,7 +48,7 @@ export function App({ content, theme }: { content: InviteContent; theme: Theme }
         <Contact content={content} />
         <Footer content={content} theme={theme} />
       </main>
-      {content.musicUrl && <SoundToggle url={content.musicUrl} start={opened} />}
+      {content.musicUrl && !gate && <SoundToggle />}
       <AnimatePresence>
         {gate && <EnvelopeGate key="gate" content={content} theme={theme} onOpened={onOpened} />}
       </AnimatePresence>

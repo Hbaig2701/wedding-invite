@@ -101,7 +101,7 @@ export const shaadi: InviteContent = {
     { name: 'Shahid Mahmood', role: 'Father of the bride', whatsapp: '966500466597' },
   ],
 
-  musicUrl: '',   // «INSTRUMENTAL VIOLIN TRACK URL» — leave empty to hide the sound toggle
+  musicUrl: 'music/tu-jaane-na.m4a',   // Tu Jaane Na, orchestral version
 
   footer: {
     verse: 'And among His signs is that He created for you spouses from among yourselves so that you may find tranquility in them, and He placed between you affection and mercy.',

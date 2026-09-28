@@ -7,6 +7,7 @@ import { BackPanel, FlapBack, FlapFace, Pocket } from './EnvelopePaper'
 import { useTilt } from '../../lib/useTilt'
 import { prefersReducedMotion } from '../../lib/motionPrefs'
 import { Hero } from '../sections/Hero'
+import { playMusic } from '../../lib/music'
 import './Envelope.css'
 
 type Phase = 'closed' | 'opening' | 'leaving'
@@ -178,6 +179,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
 
   function open() {
     if (phase !== 'closed') return
+    playMusic()   // inside the tap, so phones allow it
     setPhase('opening')
 
     if (reduced.current) {
