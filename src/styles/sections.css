@@ -1107,3 +1107,7 @@
   font-size: clamp(1.8rem, calc(8 * var(--vw)), 2.3rem);
   line-height: 1.2;
 }
+
+/* even the gaps around "with": Nastaliq ink sits low in ایمان and high in حمزہ */
+.hero-names-title .hero-name-nastaliq + .hero-joiner { margin: 0.8em 0 0.2em; }
+.hero-names-title .hero-joiner + .hero-name-nastaliq { margin-top: -0.37em; }
