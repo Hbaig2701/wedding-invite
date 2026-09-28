@@ -1111,3 +1111,14 @@
 /* even the gaps around "with": Nastaliq ink sits low in ایمان and high in حمزہ */
 .hero-names-title .hero-name-nastaliq + .hero-joiner { margin: 0.8em 0 0.2em; }
 .hero-names-title .hero-joiner + .hero-name-nastaliq { margin-top: -0.37em; }
+
+/* RSVP title in the venue's flowing script */
+[data-theme='shaadi'] .rsvp .section-title {
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: clamp(2.8rem, calc(12.5 * var(--vw)), 3.6rem);
+  line-height: 1.05;
+}
