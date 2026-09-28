@@ -891,3 +891,29 @@
 [data-theme='shaadi'] .countdown-label { font-weight: 500; font-size: 0.68rem; }
 [data-theme='shaadi'] .countdown-sep { font-weight: 700; }
 [data-theme='shaadi'] .countdown .eyebrow { color: var(--ink) !important; }
+
+/* ═══ Countdown: the flowers fill the section; the words sit in a lined ivory box ═══ */
+[data-theme='shaadi'] .countdown {
+  outline: none;
+  border: 0;
+  background-clip: border-box;
+  background-origin: border-box;
+  background-image:
+    linear-gradient(rgba(250, 241, 210, 0.25), rgba(250, 241, 210, 0.25)),
+    url('../assets/countdown-pattern.jpg');
+  padding: 40px 26px;
+}
+[data-theme='shaadi'] .countdown-box {
+  position: relative;
+  background: #faf1d2;
+  border: 1px solid rgba(107, 23, 39, 0.6);
+  outline: 1px solid rgba(107, 23, 39, 0.3);
+  outline-offset: -6px;
+  padding: 26px 12px 24px;
+  box-shadow: 0 8px 22px -14px rgba(60, 30, 10, 0.45);
+}
+[data-theme='shaadi'] .countdown .eyebrow,
+[data-theme='shaadi'] .countdown-num,
+[data-theme='shaadi'] .countdown-label,
+[data-theme='shaadi'] .countdown-sep { text-shadow: none; }
+[data-theme='shaadi'] .countdown-grid { margin-top: 1rem; }
