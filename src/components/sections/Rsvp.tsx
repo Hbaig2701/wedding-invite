@@ -15,7 +15,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [attending, setAttending] = useState<'yes' | 'no' | ''>('')
-  const [guests, setGuests] = useState<string[]>([])   // additional guests, beyond the respondent
+  const [count, setCount] = useState(1)   // number of guests, including the respondent
   const [message] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [errors, setErrors] = useState<{ name?: string; phone?: string; attending?: string }>({})
@@ -40,9 +40,9 @@ export function Rsvp({ content }: { content: InviteContent }) {
       name: name.trim(),
       phone: normalisePhone(phone),
       attending: attending as 'yes' | 'no',
-      adults: attending === 'yes' ? 1 + guests.filter((g) => g.trim()).length : 0,
+      adults: attending === 'yes' ? count : 0,
       children: 0,
-      guests: attending === 'yes' ? [name.trim(), ...guests.map((g) => g.trim()).filter(Boolean)] : [],
+      guests: [],
       message: message.trim(),
       submittedAt: new Date().toISOString(),
     }
@@ -54,7 +54,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
 
   const host = c.contacts[0]
   const waText = last
-    ? `Assalamu alaikum, this is ${last.name}. For the ${c.eventLabel} on ${c.date.short}: ${last.attending === 'yes' ? `we joyfully accept — ${last.adults} guest(s): ${last.guests.join(', ')}.` : 'we regretfully cannot attend.'}${last.message ? ` ${last.message}` : ''}`
+    ? `Assalamu alaikum, this is ${last.name}. For the ${c.eventLabel} on ${c.date.short}: ${last.attending === 'yes' ? `we joyfully accept — ${last.adults} guest(s).` : 'we regretfully cannot attend.'}${last.message ? ` ${last.message}` : ''}`
     : `Assalamu alaikum, I would like to RSVP for the ${c.eventLabel} on ${c.date.short}.`
 
   return (
@@ -72,7 +72,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
               <h3 className="rsvp-done-title letterpress">{last.attending === 'yes' ? c.rsvp.thankYouAccept.title : c.rsvp.thankYouDecline.title}</h3>
               <p className="rsvp-done-body">{last.attending === 'yes' ? c.rsvp.thankYouAccept.body : c.rsvp.thankYouDecline.body}</p>
               <p className="rsvp-done-summary">
-                {last.attending === 'yes' ? `${last.adults} guest${last.adults === 1 ? '' : 's'} · ${last.guests.join(', ')}` : `${last.name} · Regretfully declined`}
+                {last.attending === 'yes' ? `${last.name} · ${last.adults} guest${last.adults === 1 ? '' : 's'}` : `${last.name} · Regretfully declined`}
               </p>
               <button type="button" className="rsvp-done-again" onClick={() => setStatus('idle')}>Need to change your response? Submit again.</button>
             </motion.div>
@@ -117,25 +117,22 @@ export function Rsvp({ content }: { content: InviteContent }) {
                 {attending === 'yes' && (
                   <motion.div key="guests" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }} style={{ overflow: 'hidden' }}>
                     <div className="field guests">
-                      <span className="field-label">Guests attending <span className="guests-count">{1 + guests.filter((g) => g.trim()).length}</span></span>
-                      <div className="guest-row guest-row-self">
-                        <span className="guest-index">1</span>
-                        <span className="guest-self">{name.trim() || 'You'}</span>
+                      <label className="field-label" htmlFor="rsvp-count">Number of guests</label>
+                      <div className="count-stepper">
+                        <button type="button" className="count-btn" onClick={() => setCount((n) => Math.max(1, n - 1))} disabled={count <= 1} aria-label="Fewer guests">−</button>
+                        <input
+                          id="rsvp-count"
+                          className="count-input"
+                          type="number"
+                          inputMode="numeric"
+                          min={1}
+                          max={30}
+                          value={count}
+                          onChange={(e) => { const n = parseInt(e.target.value, 10); setCount(Number.isFinite(n) ? Math.min(30, Math.max(1, n)) : 1) }}
+                        />
+                        <button type="button" className="count-btn" onClick={() => setCount((n) => Math.min(30, n + 1))} aria-label="More guests">+</button>
                       </div>
-                      {guests.map((g, i) => (
-                        <div className="guest-row" key={i}>
-                          <span className="guest-index">{i + 2}</span>
-                          <input
-                            className="field-input guest-input"
-                            value={g}
-                            onChange={(e) => setGuests(guests.map((x, j) => (j === i ? e.target.value : x)))}
-                            placeholder="Guest’s full name"
-                            aria-label={`Guest ${i + 2} name`}
-                          />
-                          <button type="button" className="guest-remove" onClick={() => setGuests(guests.filter((_, j) => j !== i))} aria-label={`Remove guest ${i + 2}`}>×</button>
-                        </div>
-                      ))}
-                      <button type="button" className="guest-add" onClick={() => setGuests([...guests, ''])}>+ Add another guest</button>
+                      <p className="count-hint">Including yourself</p>
                     </div>
                   </motion.div>
                 )}
