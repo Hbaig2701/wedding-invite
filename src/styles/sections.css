@@ -1096,3 +1096,14 @@
   line-height: 1.15;
   text-shadow: none;
 }
+
+/* RSVP title: upright, normal case, in the classic book serif — calm and formal */
+[data-theme='shaadi'] .rsvp .section-title {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.8rem, calc(8 * var(--vw)), 2.3rem);
+  line-height: 1.2;
+}
