@@ -18,7 +18,7 @@ function Heart({ x, y, r, letter }: { x: number; y: number; r: number; letter: s
 export function Locket({ left, right, className = '' }: { left: string; right: string; className?: string }) {
   const cx = 120
   return (
-    <svg className={`locket ${className}`} viewBox="0 0 240 172" role="img" aria-label={`Locket with the initials ${left} and ${right}`}>
+    <svg className={`locket ${className}`} viewBox="0 0 240 142" role="img" aria-label={`Locket with the initials ${left} and ${right}`}>
       <g fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
         {/* bow */}
         <path d={`M${cx} 22 C ${cx - 18} 6, ${cx - 42} 4, ${cx - 46} 14 C ${cx - 50} 24, ${cx - 28} 28, ${cx} 22`} />

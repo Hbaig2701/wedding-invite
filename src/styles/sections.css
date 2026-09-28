@@ -1069,3 +1069,18 @@
 /* locket sits near the bottom edge of the RSVP section */
 [data-theme='shaadi'] .rsvp { padding-bottom: 34px; }
 [data-theme='shaadi'] .rsvp-locket { margin: 1.6rem auto 0; }
+
+/* locket closer to the bottom line */
+[data-theme='shaadi'] .rsvp { padding-bottom: 32px; }
+[data-theme='shaadi'] .rsvp-locket { margin: 2.2rem auto 0; }
+
+/* the questions heading: the gentle italic of "cordially invite you", not capitals */
+[data-theme='shaadi'] .contact .section-title {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.35rem, calc(6 * var(--vw)), 1.75rem);
+  line-height: 1.35;
+}
