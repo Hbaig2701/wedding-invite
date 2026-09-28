@@ -10,7 +10,7 @@ export const shaadiTheme: Theme = {
   name: 'shaadi',
   darkGround: false,
   hero: 'folio',
-  liner: 'floral',
+  liner: 'plain',
   vars: {
     // Ground — the desk the envelope sits on: warm parchment
     '--ground-shadow': '#c4ad8a',

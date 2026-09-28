@@ -11,7 +11,7 @@ export interface Theme {
    *  ivory page with burgundy type, a floral garland and a patterned border. */
   hero: 'band' | 'folio'
   /** Envelope liner: marbled endpaper or the illuminated floral tile. */
-  liner: 'marble' | 'floral'
+  liner: 'marble' | 'floral' | 'plain'
   vars: Record<`--${string}`, string>
 }
 

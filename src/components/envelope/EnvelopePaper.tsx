@@ -70,7 +70,7 @@ function FloralLiner({ id }: { id: string }) {
   )
 }
 
-export function BackPanel({ liner = 'marble' }: { liner?: 'marble' | 'floral' }) {
+export function BackPanel({ liner = 'marble' }: { liner?: 'marble' | 'floral' | 'plain' }) {
   return (
     <svg viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs>
@@ -79,7 +79,9 @@ export function BackPanel({ liner = 'marble' }: { liner?: 'marble' | 'floral' })
         <Grain id="grainBack" />
       </defs>
       <rect width="1000" height="720" fill="var(--env-liner-b)" />
-      {liner === 'floral' ? (
+      {liner === 'plain' ? (
+        <rect width="1000" height="720" fill="var(--env-shadow)" />
+      ) : liner === 'floral' ? (
         <rect width="1000" height="720" fill="url(#floralBack)" />
       ) : (
         <g filter="url(#marbleBack)">
@@ -215,7 +217,7 @@ export function FlapFace() {
   )
 }
 
-export function FlapBack({ liner = 'marble' }: { liner?: 'marble' | 'floral' }) {
+export function FlapBack({ liner = 'marble' }: { liner?: 'marble' | 'floral' | 'plain' }) {
   return (
     <svg className="flap-back" viewBox="0 0 1000 430" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs>
@@ -226,7 +228,9 @@ export function FlapBack({ liner = 'marble' }: { liner?: 'marble' | 'floral' }) 
       </defs>
       <polygon points="0,430 1000,430 500,0" fill="var(--env-liner-b)" />
       <g clipPath="url(#fbClip)">
-        {liner === 'floral' ? (
+        {liner === 'plain' ? (
+          <rect width="1000" height="430" fill="var(--env)" />
+        ) : liner === 'floral' ? (
           <rect width="1000" height="430" fill="url(#floralFlap)" />
         ) : (
           <g filter="url(#marbleFlap)">

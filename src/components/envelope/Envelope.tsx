@@ -278,7 +278,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
                     }}
                   >
                     <div className="card-mini" ref={miniRef} aria-hidden="true" style={{ transform: `scale(${cardBox?.s ?? 1})` }}>
-                      <Hero content={content} theme={theme} opened />
+                      <Hero content={content} theme={theme} opened instant />
                     </div>
                   </motion.div>
                 </div>

@@ -4,10 +4,10 @@ import type { Theme } from '../../theme/types'
 import { CuspedArch, Divider } from '../Ornaments'
 import { ReferenceFrame } from '../Illumination'
 
-export function Hero({ content, theme, opened }: { content: InviteContent; theme: Theme; opened: boolean }) {
+export function Hero({ content, theme, opened, instant = false }: { content: InviteContent; theme: Theme; opened: boolean; instant?: boolean }) {
   const c = content
   const item = (i: number) => ({
-    initial: { opacity: 0, y: 14 },
+    initial: instant ? false as const : { opacity: 0, y: 14 },
     animate: opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 },
     transition: { duration: 1.1, delay: 0.25 + i * 0.16, ease: [0.22, 0.61, 0.36, 1] as const },
   })
