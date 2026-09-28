@@ -1084,3 +1084,15 @@
   font-size: clamp(1.35rem, calc(6 * var(--vw)), 1.75rem);
   line-height: 1.35;
 }
+
+/* RSVP title in the same engraved capitals as SCHEDULE */
+[data-theme='shaadi'] .rsvp .section-title {
+  font-family: var(--font-date);
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: clamp(1.7rem, calc(7.6 * var(--vw)), 2.4rem);
+  line-height: 1.15;
+  text-shadow: none;
+}
