@@ -851,7 +851,7 @@
 [data-theme='shaadi'] .countdown {
   background-color: #faf1d2;
   background-image:
-    linear-gradient(rgba(250, 241, 210, 0.5), rgba(250, 241, 210, 0.5)),
+    linear-gradient(rgba(250, 241, 210, 0.72), rgba(250, 241, 210, 0.72)),
     url('../assets/countdown-pattern.jpg');
   background-size: 100% 100%, 480px auto;
   background-repeat: no-repeat, repeat;
@@ -865,3 +865,15 @@
 [data-theme='shaadi'] .countdown-cell { min-width: 0; flex: 1; }
 [data-theme='shaadi'] .countdown-label { letter-spacing: 0.16em; font-size: 0.62rem; }
 [data-theme='shaadi'] .countdown-num { font-size: clamp(2rem, calc(9 * var(--vw)), 2.8rem); }
+
+/* the pattern fills exactly the inside of the maroon line: a 14px ivory border
+   holds the margin, the background is clipped to inside it, and the outline sits
+   on that inner edge */
+[data-theme='shaadi'] .countdown {
+  border: 14px solid #faf1d2;
+  background-clip: padding-box;
+  background-origin: padding-box;
+  background-blend-mode: normal;
+  outline-offset: -14px;
+  padding: 44px 14px 50px;
+}
