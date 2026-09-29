@@ -1224,3 +1224,7 @@ html.lenis, html.lenis body { height: auto; }
   background-repeat: no-repeat, no-repeat;
   background-position: center, center calc(50% + var(--py, 0px));
 }
+
+/* Walima: the same air above حمزہ as below ایمان (measured ink to ink) */
+[data-theme='walima'] .hero-folio .hero-names-title { margin-top: 0.3rem; }
+[data-theme='walima'] .hero-folio .hero-after { margin-top: 2.5rem; }

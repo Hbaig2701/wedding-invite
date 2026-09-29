@@ -21,7 +21,7 @@ export const walima: InviteContent = {
   couple: {
     first: 'Hamza',
     second: 'Iman',
-    joiner: '&',
+    joiner: 'and',
     sealInitials: 'HI',
     firstArabic: 'حمزہ',
     secondArabic: 'ایمان',
@@ -54,9 +54,12 @@ export const walima: InviteContent = {
   city: 'Karachi, Pakistan',
 
   venue: {
-    name: '«Venue name»',                    // «VENUE TO CONFIRM»
-    address: '«Venue address»\nKarachi, Pakistan',
-    mapsQuery: 'Karachi, Pakistan',          // «replace with the venue's Google Maps link»
+    name: 'Sind Club',
+    address: 'Abdullah Haroon Road\nKarachi, Pakistan',
+    mapsQuery: 'Sind Club, Karachi',
+    mapsLink: 'https://maps.app.goo.gl/wx3MreRHoPXWsdaZ8',
+    lat: 24.8492816,
+    lng: 67.031972,
   },
 
   timeline: [
@@ -64,6 +67,7 @@ export const walima: InviteContent = {
     { time: '6:30 PM', title: 'Arrival of Guests', note: 'welcome & refreshments' },
     { time: '7:30 PM', title: 'Arrival of the Couple', note: '' },
     { time: '8:30 PM', title: 'Dinner', note: 'a feast with family & friends' },
+    { time: '9:30 PM', title: 'Speeches', note: '' },
   ],
 
   dressCode: {
@@ -95,8 +99,9 @@ export const walima: InviteContent = {
   },
 
   contacts: [
-    { name: 'Shahid Mahmood', role: '', whatsapp: '966500466597' },
-    { name: 'Sania Shahid', role: '', whatsapp: '966532702343' },
+    // «WHATSAPP NUMBERS TO CONFIRM» — the message box shows once a number is added
+    { name: 'Rabia Baig', role: '', whatsapp: '' },
+    { name: 'Mirza Ali Baig', role: '', whatsapp: '' },
   ],
 
   musicUrl: 'music/tu-jaane-na.m4a',   // Tu Jaane Na, orchestral version
