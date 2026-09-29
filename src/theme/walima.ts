@@ -39,11 +39,11 @@ export const walimaTheme: Theme = {
     '--gold-rose': '#e2c08f',
     '--gold-hot': '#fff6de',
 
-    // Wax — burgundy
-    '--wax-dark': '#3d0a16',
-    '--wax': '#7a1c2e',
-    '--wax-light': '#a8404f',
-    '--wax-hot': '#dc9aa3',
+    // Wax — gold
+    '--wax-dark': '#6e4d18',
+    '--wax': '#cfa650',
+    '--wax-light': '#e6c77e',
+    '--wax-hot': '#fff4d2',
 
     // Paper
     '--paper-shadow': '#dccbaa',
