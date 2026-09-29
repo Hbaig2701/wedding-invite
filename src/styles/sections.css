@@ -1216,8 +1216,11 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='walima'] .footer.footer-folio.cover,
 [data-theme='walima'] .footer.footer-folio.cover[data-parallax] {
   background-color: #faf1d4;
-  background-image: url('../assets/walima/verse-flowers.jpg');
-  background-size: auto calc(100% + 90px);
-  background-repeat: no-repeat;
-  background-position: center calc(50% + var(--py, 0px));
+  /* a light ivory veil softens the flowers a touch */
+  background-image:
+    linear-gradient(rgba(250, 241, 212, 0.2), rgba(250, 241, 212, 0.2)),
+    url('../assets/walima/verse-flowers.jpg');
+  background-size: 100% 100%, auto calc(100% + 90px);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center calc(50% + var(--py, 0px));
 }
