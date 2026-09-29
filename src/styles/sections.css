@@ -1178,7 +1178,7 @@ html.lenis, html.lenis body { height: auto; }
   --s: calc(var(--vw) * 100 / 1016);
   min-height: calc(var(--s) * 1466);
   align-items: flex-start;
-  padding: calc(var(--s) * 178) calc(var(--s) * 124) calc(var(--s) * 466);
+  padding: calc(var(--s) * 178) calc(var(--s) * 124) calc(var(--s) * 398);
 }
 .arch-frame { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .arch-frame > * { position: absolute; display: block; }
@@ -1208,6 +1208,8 @@ html.lenis, html.lenis body { height: auto; }
   background-position: top right, bottom right;
 }
 .hero-arch .hero-inner { padding-left: 0; padding-right: 0; }
+/* the words sit midway between the Bismillah and the arch's lower corners */
+.hero-arch .hero-centre { padding-top: calc(2.2rem + var(--s) * 68); }
 .hero-arch .hero-calligraphy { width: calc(var(--s) * 290); }
 
 /* Walima: the verse (cover page and envelope card) sits on falling watercolour
@@ -1262,19 +1264,3 @@ html.lenis, html.lenis body { height: auto; }
 
 /* a contact whose number is still to come: the same box, not a link */
 .contact-link-pending { cursor: default; }
-
-/* Valima: In sha Allah in the arch's lower dome, answering the Bismillah at
-   the top (as on the Save the Date) */
-.arch-inshallah {
-  left: 50%;
-  bottom: calc(var(--s) * 154);
-  width: calc(var(--s) * 290);
-  aspect-ratio: 350 / 106;
-  transform: translateX(-50%);
-  background-image: linear-gradient(105deg, var(--gold-deep) 0%, var(--gold-dark) 22%, var(--gold) 42%, var(--gold-light) 52%, var(--gold) 62%, var(--gold-dark) 80%, var(--gold-deep) 100%);
-  -webkit-mask-image: url('../assets/masks/inshallah-mask.png');
-  mask-image: url('../assets/masks/inshallah-mask.png');
-  -webkit-mask-size: contain; mask-size: contain;
-  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-  -webkit-mask-position: center; mask-position: center;
-}

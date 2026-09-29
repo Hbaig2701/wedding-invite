@@ -85,7 +85,6 @@ function ArchFrame() {
       <svg className="arch-line arch-line-bottom" viewBox="0 1080 1016 386" preserveAspectRatio="none"><path d={ARCH_BOTTOM} /></svg>
       <i className="arch-flora arch-flora-l" />
       <i className="arch-flora arch-flora-r" />
-      <i className="arch-inshallah" role="img" aria-label="إن شاء الله" />
     </div>
   )
 }
