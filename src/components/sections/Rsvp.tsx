@@ -156,7 +156,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
             </motion.form>
           )}
         </AnimatePresence>
-        <Locket className="rsvp-locket" left={c.couple.second[0]} right={c.couple.first[0]} />
+        <Locket className="rsvp-locket" left={c.locket?.[0] ?? c.couple.second[0]} right={c.locket?.[1] ?? c.couple.first[0]} />
       </div>
     </section>
   )

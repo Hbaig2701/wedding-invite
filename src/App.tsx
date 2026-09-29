@@ -44,7 +44,7 @@ export function App({ content, theme }: { content: InviteContent; theme: Theme }
         <Hero content={content} theme={theme} opened={opened || theme.hero === 'folio'} instant={theme.hero === 'folio'} />
         {theme.hero !== 'folio' && <Countdown content={content} theme={theme} />}
         {theme.hero !== 'folio' && <Invitation content={content} theme={theme} />}
-        {content.event === 'walima' && <Photo content={content} />}
+        {content.photoUrl && <Photo content={content} />}
         <Details content={content} theme={theme} />
         <Timeline content={content} theme={theme} />
         {theme.hero === 'folio' && <Countdown content={content} theme={theme} />}

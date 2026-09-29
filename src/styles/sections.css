@@ -98,7 +98,7 @@
 .hero-ornament { margin-top: 2rem; display: flex; justify-content: center; }
 
 /* Walima hero band: plum on ivory ground */
-[data-theme='walima'] .hero-band {
+[data-style='band'] .hero-band {
   background-color: var(--env);
   background-image:
     radial-gradient(120% 90% at 30% 10%, var(--env-lit) 0%, var(--env) 45%, var(--env-shadow) 100%),
@@ -580,7 +580,7 @@
 .invitation-garland { position: absolute; inset: 0; pointer-events: none; }
 
 /* On the light Shaadi ground, the countdown/footer bands are champagne */
-[data-theme='shaadi'] .countdown, [data-theme='shaadi'] .footer {
+[data-style='folio'] .countdown, [data-style='folio'] .footer {
   background-color: var(--ground);
   background-image:
     radial-gradient(120% 90% at 30% 10%, var(--ground-warm) 0%, var(--ground-lit) 40%, var(--ground) 80%, var(--ground-shadow) 100%),
@@ -589,32 +589,32 @@
   background-blend-mode: normal, soft-light;
   color: var(--ink);
 }
-[data-theme='shaadi'] .countdown::before, [data-theme='shaadi'] .footer::before { background: radial-gradient(90% 70% at 50% 40%, rgba(0,0,0,0) 55%, rgba(80,50,20,0.18) 100%); }
-[data-theme='shaadi'] .countdown { border-top: 1px solid rgba(107,23,39,0.12); }
-[data-theme='shaadi'] .countdown-sep { color: var(--gold-dark); }
-[data-theme='shaadi'] .footer-verse { color: var(--ink-soft); }
-[data-theme='shaadi'] .btn-wa { box-shadow: 0 1px 0 rgba(255,255,255,0.35) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 8px 18px -8px rgba(0,0,0,0.35); }
+[data-style='folio'] .countdown::before, [data-style='folio'] .footer::before { background: radial-gradient(90% 70% at 50% 40%, rgba(0,0,0,0) 55%, rgba(80,50,20,0.18) 100%); }
+[data-style='folio'] .countdown { border-top: 1px solid rgba(107,23,39,0.12); }
+[data-style='folio'] .countdown-sep { color: var(--gold-dark); }
+[data-style='folio'] .footer-verse { color: var(--ink-soft); }
+[data-style='folio'] .btn-wa { box-shadow: 0 1px 0 rgba(255,255,255,0.35) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 8px 18px -8px rgba(0,0,0,0.35); }
 
 
 
 /* ═══════════════ Solid folio page (Shaadi): no gradients, no mottling ═══════ */
-[data-theme='shaadi'] .paper,
-[data-theme='shaadi'] .countdown,
-[data-theme='shaadi'] .footer {
+[data-style='folio'] .paper,
+[data-style='folio'] .countdown,
+[data-style='folio'] .footer {
   background: #faf1d2;
   background-image: none;
   color: var(--ink);
 }
-[data-theme='shaadi'] .paper::before, [data-theme='shaadi'] .paper::after,
-[data-theme='shaadi'] .countdown::before, [data-theme='shaadi'] .countdown::after,
-[data-theme='shaadi'] .footer::before, [data-theme='shaadi'] .footer::after { display: none; }
-[data-theme='shaadi'] .paper-edge-top, [data-theme='shaadi'] .paper-edge-bottom { box-shadow: none; }
-[data-theme='shaadi'] .countdown { border-top: 0; padding-top: 30px; }
-[data-theme='shaadi'] .letterpress, [data-theme='shaadi'] .letterpress-deep { text-shadow: none; }
-[data-theme='shaadi'] .swatch-chip { box-shadow: 0 0 0 1px rgba(0,0,0,0.12), 0 0 0 4px #faf1d2, 0 0 0 5px rgba(107,23,39,0.25); }
-[data-theme='shaadi'] .btn-ink { background: transparent; box-shadow: none; }
-[data-theme='shaadi'] .choice, [data-theme='shaadi'] .counter-btn { background: transparent; box-shadow: none; }
-[data-theme='shaadi'] .field-input { box-shadow: none; }
+[data-style='folio'] .paper::before, [data-style='folio'] .paper::after,
+[data-style='folio'] .countdown::before, [data-style='folio'] .countdown::after,
+[data-style='folio'] .footer::before, [data-style='folio'] .footer::after { display: none; }
+[data-style='folio'] .paper-edge-top, [data-style='folio'] .paper-edge-bottom { box-shadow: none; }
+[data-style='folio'] .countdown { border-top: 0; padding-top: 30px; }
+[data-style='folio'] .letterpress, [data-style='folio'] .letterpress-deep { text-shadow: none; }
+[data-style='folio'] .swatch-chip { box-shadow: 0 0 0 1px rgba(0,0,0,0.12), 0 0 0 4px #faf1d2, 0 0 0 5px rgba(107,23,39,0.25); }
+[data-style='folio'] .btn-ink { background: transparent; box-shadow: none; }
+[data-style='folio'] .choice, [data-style='folio'] .counter-btn { background: transparent; box-shadow: none; }
+[data-style='folio'] .field-input { box-shadow: none; }
 
 /* the artwork */
 /* Swags show the central two-thirds of the artwork at a size where the
@@ -628,22 +628,22 @@
 .footer-swag { margin-left: -24px; margin-right: -24px; }
 .footer-swag img { width: 118%; }
 .footer-swag { margin-top: 2.4rem; }
-[data-theme='shaadi'] .footer { padding-bottom: 0; }
-[data-theme='shaadi'] .footer-swag img { width: 100%; }
-[data-theme='shaadi'] .invitation-card { padding: 0 8px; }
-[data-theme='shaadi'] .invitation { padding-top: 40px; }
+[data-style='folio'] .footer { padding-bottom: 0; }
+[data-style='folio'] .footer-swag img { width: 100%; }
+[data-style='folio'] .invitation-card { padding: 0 8px; }
+[data-style='folio'] .invitation { padding-top: 40px; }
 
 /* timeline, as in the example: left-aligned, time above title, gold diamonds on a hairline */
 .section-head-left { text-align: left; }
-[data-theme='shaadi'] .timeline-item { grid-template-columns: 28px 1fr; padding-bottom: 2.4rem; }
-[data-theme='shaadi'] .timeline-axis { justify-content: flex-start; }
-[data-theme='shaadi'] .timeline-axis::before { left: 5px; top: 18px; bottom: -2.4rem; background: var(--gold); opacity: 0.55; }
-[data-theme='shaadi'] .timeline-dot { margin-top: 6px; width: 12px; height: 12px; background: var(--gold); background-image: none; box-shadow: none; }
-[data-theme='shaadi'] .timeline-body { padding-left: 14px; }
-[data-theme='shaadi'] .timeline-time { text-align: left; padding: 0; font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-dark); }
-[data-theme='shaadi'] .timeline-title { padding-left: 0; font-size: 1.6rem; margin-top: 0.3rem; }
-[data-theme='shaadi'] .timeline-note { padding-left: 0; }
-[data-theme='shaadi'] .timeline .section-title { font-size: clamp(2.2rem, calc(9 * var(--vw)), 3rem); }
+[data-style='folio'] .timeline-item { grid-template-columns: 28px 1fr; padding-bottom: 2.4rem; }
+[data-style='folio'] .timeline-axis { justify-content: flex-start; }
+[data-style='folio'] .timeline-axis::before { left: 5px; top: 18px; bottom: -2.4rem; background: var(--gold); opacity: 0.55; }
+[data-style='folio'] .timeline-dot { margin-top: 6px; width: 12px; height: 12px; background: var(--gold); background-image: none; box-shadow: none; }
+[data-style='folio'] .timeline-body { padding-left: 14px; }
+[data-style='folio'] .timeline-time { text-align: left; padding: 0; font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-dark); }
+[data-style='folio'] .timeline-title { padding-left: 0; font-size: 1.6rem; margin-top: 0.3rem; }
+[data-style='folio'] .timeline-note { padding-left: 0; }
+[data-style='folio'] .timeline .section-title { font-size: clamp(2.2rem, calc(9 * var(--vw)), 3rem); }
 
 
 /* ═══════════════ First page: opener small, names the centre ═══════════════ */
@@ -734,7 +734,7 @@
 .schedule-title { font-family: var(--font-display); font-size: clamp(2.6rem, calc(11 * var(--vw)), 3.4rem); line-height: 1.1; color: var(--ink); }
 .schedule-date { margin-top: 1.4rem; font-family: var(--font-body); font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); }
 .schedule-rule { height: 1px; background: var(--ink); opacity: 0.6; margin: 1.6rem 0 0; }
-[data-theme='shaadi'] .timeline { padding-top: 56px; }
+[data-style='folio'] .timeline { padding-top: 56px; }
 
 
 /* ═══════════════ First page: centred with open space ═══════════════ */
@@ -784,11 +784,11 @@
 .details-time-small { margin-top: 0.9rem; font-family: var(--font-body); font-weight: 500; font-size: 1rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); }
 
 /* schedule in the date face */
-[data-theme='shaadi'] .schedule-title { font-family: var(--font-date); text-transform: uppercase; letter-spacing: 0.06em; font-size: clamp(2.2rem, calc(9.5 * var(--vw)), 3rem); }
-[data-theme='shaadi'] .schedule-date { font-family: var(--font-date); letter-spacing: 0.12em; font-size: 1.05rem; }
-[data-theme='shaadi'] .timeline-title { font-family: var(--font-date); font-size: 1.45rem; letter-spacing: 0.02em; }
-[data-theme='shaadi'] .timeline-time { font-family: var(--font-date); font-size: 0.82rem; letter-spacing: 0.22em; }
-[data-theme='shaadi'] .timeline-item { padding-bottom: 1.9rem; }
+[data-style='folio'] .schedule-title { font-family: var(--font-date); text-transform: uppercase; letter-spacing: 0.06em; font-size: clamp(2.2rem, calc(9.5 * var(--vw)), 3rem); }
+[data-style='folio'] .schedule-date { font-family: var(--font-date); letter-spacing: 0.12em; font-size: 1.05rem; }
+[data-style='folio'] .timeline-title { font-family: var(--font-date); font-size: 1.45rem; letter-spacing: 0.02em; }
+[data-style='folio'] .timeline-time { font-family: var(--font-date); font-size: 0.82rem; letter-spacing: 0.22em; }
+[data-style='folio'] .timeline-item { padding-bottom: 1.9rem; }
 
 /* Urdu names on the first page */
 .hero-name-arabic { font-family: var(--font-arabic); font-size: 1.15em; line-height: 1.35; direction: rtl; }
@@ -806,7 +806,7 @@
 .wildflowers { display: block; width: min(100%, 380px); height: auto; margin: 0 auto; }
 .wildflowers-top { margin-bottom: 0.6rem; }
 .wildflowers-bottom { margin-top: 2.4rem; padding-bottom: 8px; }
-[data-theme='shaadi'] .footer { padding-bottom: 28px; }
+[data-style='folio'] .footer { padding-bottom: 28px; }
 
 /* guest list */
 .guests-count { display: inline-block; min-width: 1.6em; margin-left: 8px; padding: 1px 7px; border-radius: 999px; background: rgba(107,23,39,0.1); color: var(--ink); font-size: 0.72rem; letter-spacing: 0.06em; text-align: center; }
@@ -836,19 +836,19 @@
 .hero-name-nastaliq + .hero-joiner { margin: 0.45em 0 0.2em; }
 
 /* ═══════════════ Thin maroon border on every section after the first page ═══════ */
-[data-theme='shaadi'] .details,
-[data-theme='shaadi'] .timeline,
-[data-theme='shaadi'] .countdown,
-[data-theme='shaadi'] .rsvp,
-[data-theme='shaadi'] .contact,
-[data-theme='shaadi'] .footer {
+[data-style='folio'] .details,
+[data-style='folio'] .timeline,
+[data-style='folio'] .countdown,
+[data-style='folio'] .rsvp,
+[data-style='folio'] .contact,
+[data-style='folio'] .footer {
   outline: 1px solid rgba(107, 23, 39, 0.55);
   outline-offset: -14px;
 }
-[data-theme='shaadi'] .schedule-date sup { font-size: 0.6em; vertical-align: super; line-height: 0; margin-left: 0.03em; }
+[data-style='folio'] .schedule-date sup { font-size: 0.6em; vertical-align: super; line-height: 0; margin-left: 0.03em; }
 
 /* the countdown, over the floral pattern — faint enough to read through */
-[data-theme='shaadi'] .countdown {
+[data-style='folio'] .countdown {
   background-color: #faf1d2;
   background-image:
     linear-gradient(rgba(250, 241, 210, 0.72), rgba(250, 241, 210, 0.72)),
@@ -860,16 +860,16 @@
 }
 
 /* keep the countdown inside its border */
-[data-theme='shaadi'] .countdown { padding-left: 28px; padding-right: 28px; }
-[data-theme='shaadi'] .countdown-grid { gap: 6px; }
-[data-theme='shaadi'] .countdown-cell { min-width: 0; flex: 1; }
-[data-theme='shaadi'] .countdown-label { letter-spacing: 0.16em; font-size: 0.62rem; }
-[data-theme='shaadi'] .countdown-num { font-size: clamp(2rem, calc(9 * var(--vw)), 2.8rem); }
+[data-style='folio'] .countdown { padding-left: 28px; padding-right: 28px; }
+[data-style='folio'] .countdown-grid { gap: 6px; }
+[data-style='folio'] .countdown-cell { min-width: 0; flex: 1; }
+[data-style='folio'] .countdown-label { letter-spacing: 0.16em; font-size: 0.62rem; }
+[data-style='folio'] .countdown-num { font-size: clamp(2rem, calc(9 * var(--vw)), 2.8rem); }
 
 /* the pattern fills exactly the inside of the maroon line: a 14px ivory border
    holds the margin, the background is clipped to inside it, and the outline sits
    on that inner edge */
-[data-theme='shaadi'] .countdown {
+[data-style='folio'] .countdown {
   border: 14px solid #faf1d2;
   background-clip: padding-box;
   background-origin: padding-box;
@@ -879,21 +879,21 @@
 }
 
 /* countdown text heavier, with a soft ivory halo so it reads over the pattern */
-[data-theme='shaadi'] .countdown .eyebrow,
-[data-theme='shaadi'] .countdown-num,
-[data-theme='shaadi'] .countdown-label,
-[data-theme='shaadi'] .countdown-sep {
+[data-style='folio'] .countdown .eyebrow,
+[data-style='folio'] .countdown-num,
+[data-style='folio'] .countdown-label,
+[data-style='folio'] .countdown-sep {
   color: var(--ink);
   text-shadow: 0 0 6px #faf1d2, 0 0 12px #faf1d2, 0 0 2px #faf1d2;
 }
-[data-theme='shaadi'] .countdown-num { font-weight: 700; }
-[data-theme='shaadi'] .countdown .eyebrow { font-weight: 500; font-size: 0.8rem; letter-spacing: 0.26em; }
-[data-theme='shaadi'] .countdown-label { font-weight: 500; font-size: 0.68rem; }
-[data-theme='shaadi'] .countdown-sep { font-weight: 700; }
-[data-theme='shaadi'] .countdown .eyebrow { color: var(--ink) !important; }
+[data-style='folio'] .countdown-num { font-weight: 700; }
+[data-style='folio'] .countdown .eyebrow { font-weight: 500; font-size: 0.8rem; letter-spacing: 0.26em; }
+[data-style='folio'] .countdown-label { font-weight: 500; font-size: 0.68rem; }
+[data-style='folio'] .countdown-sep { font-weight: 700; }
+[data-style='folio'] .countdown .eyebrow { color: var(--ink) !important; }
 
 /* ═══ Countdown: the flowers fill the section; the words sit in a lined ivory box ═══ */
-[data-theme='shaadi'] .countdown {
+[data-style='folio'] .countdown {
   outline: none;
   border: 0;
   background-clip: border-box;
@@ -903,7 +903,7 @@
     url('../assets/countdown-pattern.jpg');
   padding: 40px 26px;
 }
-[data-theme='shaadi'] .countdown-box {
+[data-style='folio'] .countdown-box {
   position: relative;
   background: #faf1d2;
   border: 1px solid rgba(107, 23, 39, 0.6);
@@ -912,15 +912,15 @@
   padding: 26px 12px 24px;
   box-shadow: 0 8px 22px -14px rgba(60, 30, 10, 0.45);
 }
-[data-theme='shaadi'] .countdown .eyebrow,
-[data-theme='shaadi'] .countdown-num,
-[data-theme='shaadi'] .countdown-label,
-[data-theme='shaadi'] .countdown-sep { text-shadow: none; }
-[data-theme='shaadi'] .countdown-grid { margin-top: 1rem; }
+[data-style='folio'] .countdown .eyebrow,
+[data-style='folio'] .countdown-num,
+[data-style='folio'] .countdown-label,
+[data-style='folio'] .countdown-sep { text-shadow: none; }
+[data-style='folio'] .countdown-grid { margin-top: 1rem; }
 
 /* ═══ Closing verse: pattern fills the section, the words sit in a lined box ═══
    Swap src/assets/footer-pattern.jpg for the licensed artwork. */
-[data-theme='shaadi'] .footer.footer-folio {
+[data-style='folio'] .footer.footer-folio {
   outline: none;
   background-color: #faf1d2;
   background-image:
@@ -932,7 +932,7 @@
   background-blend-mode: normal;
   padding: 40px 26px calc(40px + env(safe-area-inset-bottom, 0px));
 }
-[data-theme='shaadi'] .footer-box {
+[data-style='folio'] .footer-box {
   background: #faf1d2;
   border: 1px solid rgba(107, 23, 39, 0.6);
   outline: 1px solid rgba(107, 23, 39, 0.3);
@@ -940,11 +940,11 @@
   padding: 30px 20px 26px;
   box-shadow: 0 8px 22px -14px rgba(60, 30, 10, 0.45);
 }
-[data-theme='shaadi'] .footer-box .footer-verse { margin-top: 0; }
-[data-theme='shaadi'] .footer-box .footer-arabic { margin-top: 1.6rem; }
+[data-style='folio'] .footer-box .footer-verse { margin-top: 0; }
+[data-style='folio'] .footer-box .footer-arabic { margin-top: 1.6rem; }
 
 /* schedule entries: the invitation's italic book face, in capitals, smaller */
-[data-theme='shaadi'] .timeline-title {
+[data-style='folio'] .timeline-title {
   font-family: var(--font-body);
   font-style: italic;
   font-weight: 400;
@@ -955,13 +955,13 @@
 }
 
 /* countdown back to the regular weights, kept in full burgundy */
-[data-theme='shaadi'] .countdown-num { font-weight: 400; }
-[data-theme='shaadi'] .countdown .eyebrow { font-weight: 500; font-size: 0.72rem; letter-spacing: 0.3em; }
-[data-theme='shaadi'] .countdown-label { font-weight: 400; font-size: 0.64rem; }
-[data-theme='shaadi'] .countdown-sep { font-weight: 400; }
+[data-style='folio'] .countdown-num { font-weight: 400; }
+[data-style='folio'] .countdown .eyebrow { font-weight: 500; font-size: 0.72rem; letter-spacing: 0.3em; }
+[data-style='folio'] .countdown-label { font-weight: 400; font-size: 0.64rem; }
+[data-style='folio'] .countdown-sep { font-weight: 400; }
 
 /* the envelope gate sits on the same floral, lightly */
-[data-theme='shaadi'] .gate-inner.ground {
+[data-style='folio'] .gate-inner.ground {
   background-color: #efe3c8;
   background-image:
     linear-gradient(rgba(242, 232, 208, 0.8), rgba(242, 232, 208, 0.8)),
@@ -973,32 +973,32 @@
 }
 
 /* less air under the last schedule entry */
-[data-theme='shaadi'] .timeline { padding-bottom: 64px; }
-[data-theme='shaadi'] .timeline-item:last-child { padding-bottom: 0; }
+[data-style='folio'] .timeline { padding-bottom: 64px; }
+[data-style='folio'] .timeline-item:last-child { padding-bottom: 0; }
 
 /* Questions: one clear centred heading, the contact beneath it smaller */
-[data-theme='shaadi'] .contact .section-head { text-align: center; }
-[data-theme='shaadi'] .contact .section-title {
+[data-style='folio'] .contact .section-head { text-align: center; }
+[data-style='folio'] .contact .section-title {
   font-family: var(--font-date);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-size: clamp(2.2rem, calc(9.5 * var(--vw)), 3rem);
   text-shadow: none;
 }
-[data-theme='shaadi'] .contact-list { margin-top: 1.2rem; }
-[data-theme='shaadi'] .contact-name { font-family: var(--font-body); font-size: 1.12rem; letter-spacing: 0.02em; text-shadow: none; }
-[data-theme='shaadi'] .contact-role { font-size: 0.95rem; margin-top: -8px; }
+[data-style='folio'] .contact-list { margin-top: 1.2rem; }
+[data-style='folio'] .contact-name { font-family: var(--font-body); font-size: 1.12rem; letter-spacing: 0.02em; text-shadow: none; }
+[data-style='folio'] .contact-role { font-size: 0.95rem; margin-top: -8px; }
 
 /* Any Questions?: everything on one centre line */
-[data-theme='shaadi'] .contact .col { display: flex; flex-direction: column; align-items: center; text-align: center; }
-[data-theme='shaadi'] .contact-list, [data-theme='shaadi'] .contact-card { align-items: center; text-align: center; width: 100%; }
-[data-theme='shaadi'] .contact-link { align-self: center; }
+[data-style='folio'] .contact .col { display: flex; flex-direction: column; align-items: center; text-align: center; }
+[data-style='folio'] .contact-list, [data-style='folio'] .contact-card { align-items: center; text-align: center; width: 100%; }
+[data-style='folio'] .contact-link { align-self: center; }
 
 /* RSVP label a touch larger */
-[data-theme='shaadi'] .rsvp .section-head .eyebrow { font-size: 0.9rem; letter-spacing: 0.34em; }
+[data-style='folio'] .rsvp .section-head .eyebrow { font-size: 0.9rem; letter-spacing: 0.34em; }
 /* schedule: deep maroon diamonds, slightly heavier times */
-[data-theme='shaadi'] .timeline-dot { background: var(--burgundy); }
-[data-theme='shaadi'] .timeline-time { color: var(--ink); -webkit-text-stroke: 0.35px currentColor; }
+[data-style='folio'] .timeline-dot { background: var(--burgundy); }
+[data-style='folio'] .timeline-time { color: var(--ink); -webkit-text-stroke: 0.35px currentColor; }
 /* closing line and In sha Allah under the contact */
 .contact-closing { margin-top: 2rem; font-family: var(--font-body); font-style: italic; font-size: 1.1rem; color: var(--ink); }
 .contact-inshallah {
@@ -1012,13 +1012,13 @@
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-position: center; mask-position: center;
 }
-[data-theme='shaadi'] .footer-box { padding-bottom: 30px; }
+[data-style='folio'] .footer-box { padding-bottom: 30px; }
 
 /* the longer contact heading: smaller, balanced over three short lines */
-[data-theme='shaadi'] .contact .section-title { font-size: clamp(1.15rem, calc(5.2 * var(--vw)), 1.6rem); line-height: 1.35; letter-spacing: 0.04em; max-width: none; white-space: nowrap; margin-left: auto; margin-right: auto; }
+[data-style='folio'] .contact .section-title { font-size: clamp(1.15rem, calc(5.2 * var(--vw)), 1.6rem); line-height: 1.35; letter-spacing: 0.04em; max-width: none; white-space: nowrap; margin-left: auto; margin-right: auto; }
 
 /* ═══ Schedule: a botanical frame — two L-shaped lines, sprays in the open corners ═══ */
-[data-theme='shaadi'] .timeline { outline: none; position: relative; }
+[data-style='folio'] .timeline { outline: none; position: relative; }
 .timeline > .sched-deco { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .sched-line { position: absolute; border-color: rgba(107, 23, 39, 0.55); border-style: solid; border-width: 0; }
 .sched-line-tr { top: 18px; right: 18px; left: 58px; bottom: 196px; border-top-width: 1px; border-right-width: 1px; }
@@ -1026,29 +1026,29 @@
 .sched-spray { position: absolute; height: auto; display: block; }
 .sched-spray-tl { left: 0; top: 0; width: 64px; }
 .sched-spray-br { right: 0; bottom: 0; width: 42px; }
-[data-theme='shaadi'] .timeline .col { padding-left: 40px; padding-right: 34px; }
+[data-style='folio'] .timeline .col { padding-left: 40px; padding-right: 34px; }
 
 /* countdown numerals in the vintage date face (Pochaevsk), clear at size */
-[data-theme='shaadi'] .countdown-num {
+[data-style='folio'] .countdown-num {
   font-family: var(--font-date);
   font-weight: 400;
   font-size: clamp(2.1rem, calc(9.6 * var(--vw)), 2.9rem);
   letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums lining-nums;
 }
-[data-theme='shaadi'] .countdown-sep { font-family: var(--font-date); }
+[data-style='folio'] .countdown-sep { font-family: var(--font-date); }
 
 /* a fine vertical line from the heading down to the name */
 .contact-rule { display: block; width: 1px; height: 44px; margin: 0.4rem auto 0.2rem; background: linear-gradient(180deg, rgba(107, 23, 39, 0) 0%, rgba(107, 23, 39, 0.6) 30%, rgba(107, 23, 39, 0.6) 70%, rgba(107, 23, 39, 0) 100%); }
-[data-theme='shaadi'] .contact .contact-rule + .contact-list { margin-top: 0.6rem; }
+[data-style='folio'] .contact .contact-rule + .contact-list { margin-top: 0.6rem; }
 
 /* the second divider, above the closing line */
-[data-theme='shaadi'] .contact .contact-rule + div .contact-closing,
-[data-theme='shaadi'] .contact .contact-rule + .contact-closing { margin-top: 0.6rem; }
+[data-style='folio'] .contact .contact-rule + div .contact-closing,
+[data-style='folio'] .contact .contact-rule + .contact-closing { margin-top: 0.6rem; }
 .contact-list + .contact-rule { margin-top: 1.4rem; }
 
 /* Contact: the schedule's botanical frame, mirrored — sprays top-right and bottom-left */
-[data-theme='shaadi'] .contact { outline: none; position: relative; }
+[data-style='folio'] .contact { outline: none; position: relative; }
 .contact > .contact-deco { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .contact-line-tl { top: 18px; left: 18px; right: 58px; bottom: 196px; border-top-width: 1px; border-left-width: 1px; }
 .contact-line-br { right: 18px; bottom: 18px; top: 178px; left: 52px; border-right-width: 1px; border-bottom-width: 1px; }
@@ -1060,22 +1060,22 @@
 .locket-letter { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 30px; fill: currentColor; stroke: none; }
 
 /* a small plain gap between the questions and the closing verse */
-[data-theme='shaadi'] .footer.footer-folio {
+[data-style='folio'] .footer.footer-folio {
   border-top: 22px solid #faf1d2;
   background-clip: padding-box;
   background-origin: padding-box;
 }
 
 /* locket sits near the bottom edge of the RSVP section */
-[data-theme='shaadi'] .rsvp { padding-bottom: 34px; }
-[data-theme='shaadi'] .rsvp-locket { margin: 1.6rem auto 0; }
+[data-style='folio'] .rsvp { padding-bottom: 34px; }
+[data-style='folio'] .rsvp-locket { margin: 1.6rem auto 0; }
 
 /* locket closer to the bottom line */
-[data-theme='shaadi'] .rsvp { padding-bottom: 32px; }
-[data-theme='shaadi'] .rsvp-locket { margin: 2.2rem auto 0; }
+[data-style='folio'] .rsvp { padding-bottom: 32px; }
+[data-style='folio'] .rsvp-locket { margin: 2.2rem auto 0; }
 
 /* the questions heading: the gentle italic of "cordially invite you", not capitals */
-[data-theme='shaadi'] .contact .section-title {
+[data-style='folio'] .contact .section-title {
   font-family: var(--font-body);
   font-style: italic;
   font-weight: 400;
@@ -1086,7 +1086,7 @@
 }
 
 /* RSVP title in the same engraved capitals as SCHEDULE */
-[data-theme='shaadi'] .rsvp .section-title {
+[data-style='folio'] .rsvp .section-title {
   font-family: var(--font-date);
   font-style: normal;
   font-weight: 400;
@@ -1098,7 +1098,7 @@
 }
 
 /* RSVP title: upright, normal case, in the classic book serif — calm and formal */
-[data-theme='shaadi'] .rsvp .section-title {
+[data-style='folio'] .rsvp .section-title {
   font-family: var(--font-body);
   font-style: normal;
   font-weight: 400;
@@ -1113,7 +1113,7 @@
 .hero-names-title .hero-joiner + .hero-name-nastaliq { margin-top: -0.37em; }
 
 /* RSVP title in the venue's flowing script */
-[data-theme='shaadi'] .rsvp .section-title {
+[data-style='folio'] .rsvp .section-title {
   font-family: var(--font-script);
   font-weight: 700;
   font-style: normal;
@@ -1124,12 +1124,12 @@
 }
 
 /* the verse as the cover page */
-[data-theme='shaadi'] .footer.footer-folio.cover {
+[data-style='folio'] .footer.footer-folio.cover {
   border-top: 0;
   padding: 64px 26px 64px;
 }
-[data-theme='shaadi'] .cover .footer-box { padding: 38px 22px 34px; }
-[data-theme='shaadi'] .cover .footer-verse { font-size: 1.18rem; line-height: 1.8; color: var(--ink); }
+[data-style='folio'] .cover .footer-box { padding: 38px 22px 34px; }
+[data-style='folio'] .cover .footer-verse { font-size: 1.18rem; line-height: 1.8; color: var(--ink); }
 
 /* number of guests */
 .count-stepper { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 0.6rem; }
@@ -1142,24 +1142,30 @@
 .guests .field-label { text-align: center; }
 
 /* two contacts, name then their WhatsApp box */
-[data-theme='shaadi'] .contact-list { gap: 26px; }
-[data-theme='shaadi'] .contact-card { gap: 6px; }
+[data-style='folio'] .contact-list { gap: 26px; }
+[data-style='folio'] .contact-card { gap: 6px; }
 
 /* RSVP questions: darker and a touch larger so they read easily */
-[data-theme='shaadi'] .rsvp .field-label { color: var(--ink); font-weight: 500; font-size: 0.78rem; }
-[data-theme='shaadi'] .rsvp .field-input::placeholder { color: var(--ink-soft); opacity: 0.8; }
-[data-theme='shaadi'] .rsvp .count-hint { color: var(--ink); }
+[data-style='folio'] .rsvp .field-label { color: var(--ink); font-weight: 500; font-size: 0.78rem; }
+[data-style='folio'] .rsvp .field-input::placeholder { color: var(--ink-soft); opacity: 0.8; }
+[data-style='folio'] .rsvp .count-hint { color: var(--ink); }
 
 /* the hall within the club */
 .venue-hall { margin-top: 0.7rem; font-family: var(--font-body); font-style: italic; font-size: 1.05rem; color: var(--ink-soft); }
 .venue-hall span { font-style: normal; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.9rem; color: var(--ink); margin-left: 0.25em; }
 
 /* parallax: the pattern drifts against the scroll */
-[data-theme='shaadi'] .countdown[data-parallax],
-[data-theme='shaadi'] .footer.footer-folio.cover[data-parallax] {
+[data-style='folio'] .countdown[data-parallax],
+[data-style='folio'] .footer.footer-folio.cover[data-parallax] {
   background-position: center, center calc(50% + var(--py, 0px));
 }
 /* Lenis */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
+
+/* Walima: حمزہ sits above ایمان, so its ink needs slightly different spacing */
+[data-theme='walima'] .hero-names-title .hero-name-nastaliq + .hero-joiner { margin-top: calc(0.8em + 4px); }
+[data-theme='walima'] .hero-names-title .hero-joiner + .hero-name-nastaliq { margin-top: calc(-0.37em + 7px); }
+/* Walima: the longer parents' line, fitted inside the border */
+[data-theme='walima'] .hero-folio .hero-parents { font-size: 0.62rem; letter-spacing: 0.08em; }

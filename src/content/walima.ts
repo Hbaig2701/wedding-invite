@@ -1,8 +1,9 @@
 import type { InviteContent } from './types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  WALIMA · 27 December 2026 · Lahore
-//  Hosted by the groom's parents.
+//  WALIMA · 27 December 2026 · Karachi
+//  A duplicate of the Shaadi invitation with the Walima wording.
+//  Hosted by the groom's parents, Rabia and Mirza Ali Baig.
 //  Anything wrapped in «…» is a PLACEHOLDER still to be confirmed (spec §10).
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -20,7 +21,7 @@ export const walima: InviteContent = {
   couple: {
     first: 'Hamza',
     second: 'Iman',
-    joiner: 'with',
+    joiner: '&',
     sealInitials: 'HI',
     firstArabic: 'حمزہ',
     secondArabic: 'ایمان',
@@ -30,81 +31,81 @@ export const walima: InviteContent = {
 
   hero: {
     hosts: 'Rabia and Mirza Ali Baig',
-    line: 'request the pleasure of your company\nat the Walima of their beloved son',
+    line: 'cordially invite you to the Walima\nof their son',
     afterNames: 'Daughter of Sania and Shahid Mahmood',
   },
 
   invitationLine:
-    'Rabia and Mirza Ali Baig\nrequest the pleasure of your company\nat the Walima reception of their son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania and Shahid Mahmood',
-  invitationClosing: 'Dinner will follow',
+    'Rabia and Mirza Ali Baig\nrequest the honour of your presence\nat the Walima of their son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania and Shahid Mahmood',
+  invitationClosing: 'and afterwards at the reception',
 
   date: {
     long: 'Sunday, the twenty-seventh of December, two thousand and twenty-six',
     short: '27 December 2026',
     numeric: '27 · 12 · 2026',
     weekday: 'Sunday',
-    startISO: '2026-12-27T19:30:00+05:00',   // «EXACT START TIME?»
+    startISO: '2026-12-27T18:30:00+05:00',   // «TIME TO CONFIRM» — copied from the Shaadi
     endISO: '2026-12-27T23:30:00+05:00',
-    timeLabel: '7:30 pm',                    // «EXACT START TIME?»
-    timeNote: 'Dinner will be served at nine',
+    timeLabel: '6:30 PM',                    // «TIME TO CONFIRM»
+    timeNote: '',
     timezone: 'Asia/Karachi',
   },
 
-  city: 'Lahore, Pakistan',
+  city: 'Karachi, Pakistan',
 
   venue: {
-    name: '«VENUE NAME»',
-    address: '«Venue address line»\nLahore, Pakistan',
-    mapsQuery: '«VENUE NAME», Lahore, Pakistan',
+    name: '«Venue name»',                    // «VENUE TO CONFIRM»
+    address: '«Venue address»\nKarachi, Pakistan',
+    mapsQuery: 'Karachi, Pakistan',          // «replace with the venue's Google Maps link»
   },
 
   timeline: [
-    { time: '7:30 pm', title: 'Arrival of guests', note: 'Welcome & refreshments' },
-    { time: '8:15 pm', title: 'The couple arrives', note: '«placeholder»' },
-    { time: '9:00 pm', title: 'Dinner is served' },
-    { time: '10:30 pm', title: 'Farewell' },
+    // «TIMES TO CONFIRM»
+    { time: '6:30 PM', title: 'Arrival of Guests', note: 'welcome & refreshments' },
+    { time: '7:30 PM', title: 'Arrival of the Couple', note: '' },
+    { time: '8:30 PM', title: 'Dinner', note: 'a feast with family & friends' },
   ],
 
   dressCode: {
     title: 'Dress code',
-    line: 'Formal · evening wear',                  // «WORDING?»
-    note: 'Soft, pale tones are welcome. Kindly avoid red.',
+    line: 'Formal · traditional attire',            // «WORDING?»
+    note: 'Rich, warm tones are encouraged. Please avoid white and ivory.',
     swatches: [
-      { name: 'Ivory', hex: '#f1e9dc' },
-      { name: 'Champagne', hex: '#d8c19a' },
-      { name: 'Dusty rose', hex: '#c9a0a3' },
-      { name: 'Sage', hex: '#8fa08a' },
-      { name: 'Plum', hex: '#5b2233' },
+      { name: 'Burgundy', hex: '#6f1a2c' },
+      { name: 'Dusty rose', hex: '#d9a3ad' },
+      { name: 'Sage', hex: '#6f8a5a' },
+      { name: 'Antique gold', hex: '#b48a3e' },
+      { name: 'Ivory', hex: '#f3ead8' },
     ],
   },
 
   rsvp: {
-    deadlineLabel: 'Kindly respond by November 1st',
+    deadlineLabel: 'Kindly respond by November 30th',
     endpoint: '',   // «PASTE GOOGLE APPS SCRIPT WEB APP URL» — see reference/rsvp-google-sheet-setup.gs
     thankYouAccept: {
-      title: 'We look forward to hosting you',
-      body: 'Your response has been recorded. Thank you — we are so glad you will be with us.',
+      title: 'We can’t wait to see you',
+      body: 'Your response has been recorded. Thank you for celebrating with us — it means the world to both families.',
     },
     thankYouDecline: {
       title: 'You will be missed',
-      body: 'Thank you for letting us know. We hope to celebrate with you another time, insha’Allah.',
+      body: 'Thank you for letting us know. You will be in our thoughts and prayers on the day.',
     },
     failureCopy:
       'We couldn’t reach our guest book just now. Please send your response to us on WhatsApp instead — it takes a moment.',
   },
 
   contacts: [
-    { name: 'Mirza Ali Baig', role: 'Father of the groom', whatsapp: '923000000000' }, // «NUMBER»
+    { name: 'Shahid Mahmood', role: '', whatsapp: '966500466597' },
+    { name: 'Sania Shahid', role: '', whatsapp: '966532702343' },
   ],
 
-  musicUrl: '',
+  musicUrl: 'music/tu-jaane-na.m4a',   // Tu Jaane Na, orchestral version
+
+  locket: ['H', 'I'],
 
   footer: {
-    verse: 'And We created you in pairs.',
-    verseAttribution: 'An-Naba · 78:8',
+    verse: 'And among His signs is that He created for you spouses from among yourselves so that you may find tranquility in them, and He placed between you affection and mercy.',
+    verseAttribution: 'Ar-Rūm · 30:21',
     closing: 'With love, Hamza & Iman',
   },
-
-  photoUrl: '',            // «COUPLE PHOTO URL» e.g. '/photos/walima.jpg' (put the file in /public/photos)
-  photoCaption: 'Hamza & Iman',
 }

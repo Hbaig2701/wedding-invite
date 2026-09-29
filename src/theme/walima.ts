@@ -1,71 +1,74 @@
 import type { Theme } from './types'
 
 /**
- * WALIMA — the same manuscript, seen by day.
- * Ivory and champagne, plum ink, a rose-plum wax. Lighter register so the two
- * invitations feel like a pair when seen days apart.
+ * WALIMA — the same design as the Shaadi (a duplicate).
+ *
+ * SHAADI — an illuminated Mughal folio.
+ * Ivory paper, burgundy ink, a dense border of rosettes and palmettes in
+ * gold, dusty rose and sage; a floral garland wreathing the words.
+ * (Matches the Save the Date.)
  */
 export const walimaTheme: Theme = {
   name: 'walima',
   darkGround: false,
-  hero: 'band',
-  liner: 'marble',
+  hero: 'folio',
+  liner: 'plain',
   vars: {
-    // Ground — a champagne-ivory desk
-    '--ground-shadow': '#bfae94',
-    '--ground': '#e3d6c0',
-    '--ground-lit': '#f1e8d6',
-    '--ground-warm': '#f6efe0',
-    '--ground-glow': '#fbf6ea',
+    // Ground — the desk the envelope sits on: warm parchment
+    '--ground-shadow': '#c4ad8a',
+    '--ground': '#e4d4b8',
+    '--ground-lit': '#f0e4cf',
+    '--ground-warm': '#f6ecda',
+    '--ground-glow': '#fbf4e6',
 
-    // Envelope paper — deep plum, so the pale card glows when it slides out
-    '--env-shadow': '#2e0f19',
-    '--env': '#5b2233',
-    '--env-lit': '#7a3446',
-    '--env-edge': '#b57e8c',
-    '--env-liner-a': '#d9c19c',
-    '--env-liner-b': '#9c7f52',
+    // Envelope — champagne-ivory laid paper
+    '--env-shadow': '#c2ab82',
+    '--env': '#e7dabd',
+    '--env-lit': '#f9f1df',
+    '--env-edge': '#fff9ea',
+    '--env-liner-a': '#e7b9bf',
+    '--env-liner-b': '#7a1c2e',
 
-    // Gold — champagne, cooler than the Shaadi's rosy gold
-    '--gold-deep': '#5a4218',
-    '--gold-dark': '#957435',
-    '--gold': '#c2a25a',
-    '--gold-light': '#ead9a7',
-    '--gold-rose': '#e6cfa6',
-    '--gold-hot': '#fffaea',
+    // Gold — warm, slightly rosy
+    '--gold-deep': '#5a3a12',
+    '--gold-dark': '#9a7433',
+    '--gold': '#c29a4a',
+    '--gold-light': '#e9d29a',
+    '--gold-rose': '#e2c08f',
+    '--gold-hot': '#fff6de',
 
-    // Wax — rose plum
-    '--wax-dark': '#3b0f1c',
-    '--wax': '#7a2b40',
-    '--wax-light': '#a85a6c',
-    '--wax-hot': '#e2aab4',
+    // Wax — burgundy
+    '--wax-dark': '#3d0a16',
+    '--wax': '#7a1c2e',
+    '--wax-light': '#a8404f',
+    '--wax-hot': '#dc9aa3',
 
     // Paper
-    '--paper-shadow': '#d4c5aa',
-    '--paper': '#f4ede1',
-    '--paper-lit': '#fbf7ee',
-    '--paper-fibre': '#c5b697',
+    '--paper-shadow': '#dccbaa',
+    '--paper': '#faf1d2',
+    '--paper-lit': '#fdf7e3',
+    '--paper-fibre': '#cbb996',
 
-    // Ink — plum-brown
-    '--ink': '#3c1a26',
-    '--ink-soft': '#6a3d4b',
-    '--ink-faint': '#85606f',
+    // Ink — burgundy
+    '--ink': '#6b1727',
+    '--ink-soft': '#8a3a49',
+    '--ink-faint': '#a8697a',
 
-    // Text on "dark" (here the plum hero band)
-    '--on-dark': '#f4ede1',
-    '--on-dark-soft': 'rgba(244,237,225,0.84)',
-    '--on-dark-faint': 'rgba(244,237,225,0.62)',
+    // The illumination palette
+    '--burgundy': '#7a1c2e',
+    '--burgundy-deep': '#4a0d1a',
+    '--rose': '#e9b7bf',
+    '--rose-deep': '#d78f9c',
+    '--leaf': '#6f8a5a',
+    '--leaf-deep': '#3f5a34',
+    '--band': '#f1e6cf',
 
-    // Illumination palette (used by ornaments)
-    '--burgundy': '#5b2233',
-    '--burgundy-deep': '#3a1220',
-    '--rose': '#e6c3c8',
-    '--rose-deep': '#cf9aa6',
-    '--leaf': '#8fa08a',
-    '--leaf-deep': '#5c6f58',
-    '--band': '#f1e8d8',
+    // "On dark" tokens are reused on the champagne countdown/footer bands
+    '--on-dark': '#6b1727',
+    '--on-dark-soft': 'rgba(107,23,39,0.82)',
+    '--on-dark-faint': 'rgba(107,23,39,0.6)',
 
-    '--card': '#f7f1e6',
-    '--card-shadow': '#d9cbb0',
+    '--card': '#f8f1e2',
+    '--card-shadow': '#dccbaa',
   },
 }

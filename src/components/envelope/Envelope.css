@@ -298,9 +298,9 @@
 }
 
 /* on the ivory Walima ground, the cue text needs ink not paper */
-[data-theme='walima'] .gate-cue { color: var(--ink); }
-[data-theme='walima'] .gate-title { color: var(--ink-soft); }
-[data-theme='walima'] .env-ground-shadow { opacity: 0.55; }
+[data-style='band'] .gate-cue { color: var(--ink); }
+[data-style='band'] .gate-title { color: var(--ink-soft); }
+[data-style='band'] .env-ground-shadow { opacity: 0.55; }
 
 /* Wider screens: the gate is a plain backdrop and the envelope stage is the phone column */
 @media (min-width: 520px) {

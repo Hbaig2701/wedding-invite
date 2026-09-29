@@ -133,6 +133,9 @@ export interface InviteContent {
     closing: string
   }
 
+  /** The two initials in the RSVP locket, left then right. */
+  locket?: [string, string]
+
   /** Walima only. Empty string = no photo section. */
   photoUrl?: string
   photoCaption?: string

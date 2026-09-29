@@ -18,5 +18,6 @@ export interface Theme {
 export function applyTheme(theme: Theme) {
   const root = document.documentElement
   root.dataset.theme = theme.name
+  root.dataset.style = theme.hero   // 'folio' | 'band' — the design the CSS keys off
   for (const [k, v] of Object.entries(theme.vars)) root.style.setProperty(k, v)
 }
