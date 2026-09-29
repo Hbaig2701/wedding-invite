@@ -1168,7 +1168,7 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='walima'] .hero-names-title .hero-name-nastaliq + .hero-joiner { margin-top: calc(0.8em + 4px); }
 [data-theme='walima'] .hero-names-title .hero-joiner + .hero-name-nastaliq { margin-top: calc(-0.37em + 7px); }
 /* Walima: the longer parents' line, fitted inside the border */
-[data-theme='walima'] .hero-folio .hero-parents { font-size: 0.62rem; letter-spacing: 0.08em; }
+[data-theme='walima'] .hero-folio .hero-parents { font-size: calc(var(--vw) * 2.8); letter-spacing: 0.08em; line-height: 1.7; }
 
 /* ═══════════════ Walima: the floral arch from its Save the Date ═══════════════
    The outline is redrawn exactly symmetrical; the flowers are lifted off the
