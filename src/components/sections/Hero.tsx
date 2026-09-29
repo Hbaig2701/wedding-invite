@@ -31,9 +31,13 @@ export function Hero({ content, theme, opened, instant = false }: { content: Inv
             <motion.p {...item(3)} className="hero-intro">{c.hero.line.split('\n').map((l, i) => <span key={i}>{l}<br /></span>)}</motion.p>
 
             <motion.h1 {...item(4)} className="hero-names hero-names-title">
-              <span className="hero-name hero-name-nastaliq" lang="ur" dir="rtl">{c.couple.firstArabic || c.couple.first}</span>
+              {c.couple.firstArabic
+                ? <span className="hero-name hero-name-nastaliq" lang="ur" dir="rtl">{c.couple.firstArabic}</span>
+                : <span className="hero-name hero-name-script">{c.couple.first}</span>}
               <span className="hero-joiner"><i /><em>{c.couple.joiner === '&' ? 'with' : c.couple.joiner}</em><i /></span>
-              <span className="hero-name hero-name-nastaliq" lang="ur" dir="rtl">{c.couple.secondArabic || c.couple.second}</span>
+              {c.couple.secondArabic
+                ? <span className="hero-name hero-name-nastaliq" lang="ur" dir="rtl">{c.couple.secondArabic}</span>
+                : <span className="hero-name hero-name-script">{c.couple.second}</span>}
             </motion.h1>
             {c.hero.afterNames && <motion.p {...item(5)} className="hero-parents hero-after">{c.hero.afterNames}</motion.p>}
           </div>

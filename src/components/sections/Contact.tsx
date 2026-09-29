@@ -25,10 +25,15 @@ export function Contact({ content }: { content: InviteContent }) {
               <div className="contact-card">
                 <div className="contact-name letterpress">{p.name}</div>
                 {p.role && <div className="contact-role">{p.role}</div>}
-                {p.whatsapp && <a className="contact-link" href={whatsappUrl(p.whatsapp, `Assalamu alaikum ${p.name}, I have a question about the ${c.eventLabel} on ${c.date.short}.`)} target="_blank" rel="noopener noreferrer">
+                {p.whatsapp ? <a className="contact-link" href={whatsappUrl(p.whatsapp, `Assalamu alaikum ${p.name}, I have a question about the ${c.eventLabel} on ${c.date.short}.`)} target="_blank" rel="noopener noreferrer">
                   <span className="contact-link-main"><WaIcon /> Message on WhatsApp</span>
                   <span className="contact-number">+{p.whatsapp.replace(/^(\d{3})(\d+)$/, '$1 $2')}</span>
-                </a>}
+                </a> : (
+                  <span className="contact-link contact-link-pending">
+                    <span className="contact-link-main"><WaIcon /> WhatsApp</span>
+                    <span className="contact-number">Number to follow</span>
+                  </span>
+                )}
               </div>
             </Reveal>
           ))}

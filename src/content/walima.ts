@@ -1,4 +1,5 @@
 import type { InviteContent } from './types'
+import sindClubMap from '../assets/walima/map-sind-club.jpg'
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  WALIMA · 27 December 2026 · Karachi
@@ -23,8 +24,7 @@ export const walima: InviteContent = {
     second: 'Iman',
     joiner: 'and',
     sealInitials: 'HI',
-    firstArabic: 'حمزہ',
-    secondArabic: 'ایمان',
+    // no Urdu forms: the Walima sets the names in English script
     firstFull: 'Hamza Baig',
     secondFull: 'Iman Shahid',
   },
@@ -60,6 +60,9 @@ export const walima: InviteContent = {
     mapsLink: 'https://maps.app.goo.gl/wx3MreRHoPXWsdaZ8',
     lat: 24.8492816,
     lng: 67.031972,
+    // a still map (© OpenStreetMap contributors), toned to the invitation;
+    // the live Google embed misbehaved on phones
+    mapImage: sindClubMap,
   },
 
   timeline: [
@@ -99,7 +102,7 @@ export const walima: InviteContent = {
   },
 
   contacts: [
-    // «WHATSAPP NUMBERS TO CONFIRM» — the message box shows once a number is added
+    // «WHATSAPP NUMBERS TO CONFIRM» — the box reads "Number to follow" until then
     { name: 'Rabia Baig', role: '', whatsapp: '' },
     { name: 'Mirza Ali Baig', role: '', whatsapp: '' },
   ],

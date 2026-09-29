@@ -98,6 +98,8 @@ export interface InviteContent {
     mapLabel?: string
     /** Share link from Google Maps (what the buttons open). */
     mapsLink?: string
+    /** A still map image to show instead of the live Google embed. */
+    mapImage?: string
     /** Pin for the embedded map. */
     lat?: number
     lng?: number

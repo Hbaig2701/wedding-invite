@@ -8,6 +8,7 @@ import { Reveal } from '../Reveal'
 
 const PinIcon = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>)
 const CalIcon = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>)
+const MarkerIcon = () => (<svg viewBox="0 0 30 42" aria-hidden="true"><path d="M15 41C15 41 28 25.5 28 15A13 13 0 0 0 2 15C2 25.5 15 41 15 41Z" fill="currentColor" stroke="#fff" strokeWidth="2"/><circle cx="15" cy="15" r="5" fill="#fff"/></svg>)
 const HeartIcon = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z"/></svg>)
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
@@ -62,7 +63,15 @@ export function Details({ content, theme }: { content: InviteContent; theme: The
           </Reveal>
           <Reveal index={3}>
             <a className="map-card" href={link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${c.venue.name} in Google Maps`}>
-              <iframe className="map-frame" src={embed} title={`Map of ${c.venue.name}`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" tabIndex={-1} aria-hidden="true" />
+              {c.venue.mapImage ? (
+                <>
+                  <img className="map-frame map-image" src={c.venue.mapImage} alt="" loading="lazy" decoding="async" />
+                  <span className="map-marker" aria-hidden="true"><MarkerIcon /></span>
+                  <span className="map-credit">© OpenStreetMap</span>
+                </>
+              ) : (
+                <iframe className="map-frame" src={embed} title={`Map of ${c.venue.name}`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" tabIndex={-1} aria-hidden="true" />
+              )}
               <span className="map-pill"><HeartIcon /> {c.venue.mapLabel || c.venue.name}</span>
             </a>
           </Reveal>
