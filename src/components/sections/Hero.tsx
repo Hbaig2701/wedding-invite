@@ -39,7 +39,7 @@ export function Hero({ content, theme, opened, instant = false }: { content: Inv
                 ? <span className="hero-name hero-name-nastaliq" lang="ur" dir="rtl">{c.couple.secondArabic}</span>
                 : <span className="hero-name hero-name-script">{c.couple.second}</span>}
             </motion.h1>
-            {c.hero.afterNames && <motion.p {...item(5)} className="hero-parents hero-after">{c.hero.afterNames}</motion.p>}
+            {c.hero.afterNames && <motion.p {...item(5)} className="hero-parents hero-after">{c.hero.afterNames.split('\n').map((l, i) => <span key={i}>{i > 0 && <br />}{l}</span>)}</motion.p>}
           </div>
         </div>
       </section>
@@ -85,6 +85,7 @@ function ArchFrame() {
       <svg className="arch-line arch-line-bottom" viewBox="0 1080 1016 386" preserveAspectRatio="none"><path d={ARCH_BOTTOM} /></svg>
       <i className="arch-flora arch-flora-l" />
       <i className="arch-flora arch-flora-r" />
+      <i className="arch-inshallah" role="img" aria-label="إن شاء الله" />
     </div>
   )
 }

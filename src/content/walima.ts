@@ -10,9 +10,9 @@ import sindClubMap from '../assets/walima/map-sind-club.jpg'
 
 export const walima: InviteContent = {
   event: 'walima',
-  eventLabel: 'Walima',
+  eventLabel: 'Valima',
   eventLabelUrdu: 'ولیمہ',
-  siteTitle: 'Hamza & Iman · Walima',
+  siteTitle: 'Hamza & Iman · Valima',
 
   bismillah: {
     arabic: 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
@@ -31,12 +31,12 @@ export const walima: InviteContent = {
 
   hero: {
     hosts: 'Rabia and Mirza Ali Baig',
-    line: 'cordially invite you to the Walima\nof their son',
-    afterNames: 'Daughter of Sania and Shahid Mahmood',
+    line: 'cordially invite you to the Valima\nof their son',
+    afterNames: 'Daughter of\nSania and Shahid Mahmood',
   },
 
   invitationLine:
-    'Rabia and Mirza Ali Baig\nrequest the honour of your presence\nat the Walima of their son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania and Shahid Mahmood',
+    'Rabia and Mirza Ali Baig\nrequest the honour of your presence\nat the Valima of their son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania and Shahid Mahmood',
   invitationClosing: 'and afterwards at the reception',
 
   date: {
@@ -102,9 +102,8 @@ export const walima: InviteContent = {
   },
 
   contacts: [
-    // «WHATSAPP NUMBERS TO CONFIRM» — the box reads "Number to follow" until then
-    { name: 'Rabia Baig', role: '', whatsapp: '' },
-    { name: 'Mirza Ali Baig', role: '', whatsapp: '' },
+    { name: 'Rabia Baig', role: '', whatsapp: '923333900202', display: '+92 333 3900202' },
+    { name: 'Mirza Ali Baig', role: '', whatsapp: '971543733451', display: '+971 54 373 3451' },
   ],
 
   musicUrl: 'music/tu-jaane-na.m4a',   // Tu Jaane Na, orchestral version

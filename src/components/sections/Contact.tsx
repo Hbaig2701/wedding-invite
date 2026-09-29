@@ -27,7 +27,7 @@ export function Contact({ content }: { content: InviteContent }) {
                 {p.role && <div className="contact-role">{p.role}</div>}
                 {p.whatsapp ? <a className="contact-link" href={whatsappUrl(p.whatsapp, `Assalamu alaikum ${p.name}, I have a question about the ${c.eventLabel} on ${c.date.short}.`)} target="_blank" rel="noopener noreferrer">
                   <span className="contact-link-main"><WaIcon /> Message on WhatsApp</span>
-                  <span className="contact-number">+{p.whatsapp.replace(/^(\d{3})(\d+)$/, '$1 $2')}</span>
+                  <span className="contact-number">{p.display || `+${p.whatsapp.replace(/^(\d{3})(\d+)$/, '$1 $2')}`}</span>
                 </a> : (
                   <span className="contact-link contact-link-pending">
                     <span className="contact-link-main"><WaIcon /> WhatsApp</span>

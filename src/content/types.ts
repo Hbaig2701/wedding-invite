@@ -25,6 +25,8 @@ export interface Contact {
   role: string        // "Father of the bride"
   /** International format, digits only, no plus. e.g. 923001234567 */
   whatsapp: string
+  /** How the number is shown, if the automatic grouping isn't right. */
+  display?: string
 }
 
 export interface InviteContent {
