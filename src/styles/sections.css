@@ -1266,3 +1266,6 @@ html.lenis, html.lenis body { height: auto; }
 
 /* a contact whose number is still to come: the same box, not a link */
 .contact-link-pending { cursor: default; }
+
+/* Shaadi: the longer invitation line keeps to two lines on narrow phones */
+[data-theme='shaadi'] .hero-folio .hero-intro { font-size: min(1.08rem, calc(var(--vw) * 4.3)); }

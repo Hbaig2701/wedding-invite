@@ -30,7 +30,7 @@ export const shaadi: InviteContent = {
 
   hero: {
     hosts: 'Sania and Shahid Mahmood',
-    line: 'cordially invite you to the Shaadi\nof their daughter',
+    line: 'request the honor of your presence\nat the Shaadi of their beloved daughter',
     afterNames: 'Son of Rabia and Mirza Ali Baig',
   },
 
