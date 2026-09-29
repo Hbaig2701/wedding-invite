@@ -21,8 +21,12 @@ export function startScrollFeel(): () => void {
       const r = el.getBoundingClientRect()
       if (r.bottom < -200 || r.top > vh + 200) continue
       const k = parseFloat(el.dataset.parallax || '0.25')
-      // the pattern drifts against the scroll, so it appears to move slower
-      const offset = -(r.top + r.height / 2 - vh / 2) * k
+      // the pattern drifts against the scroll, so it appears to move slower.
+      // "top" layers are at rest at the top of the page (no jump when the
+      // envelope hands over); the rest are at rest mid-screen.
+      const offset = el.dataset.parallaxFrom === 'top'
+        ? window.scrollY * k
+        : -(r.top + r.height / 2 - vh / 2) * k
       el.style.setProperty('--py', `${offset.toFixed(1)}px`)
     }
   }

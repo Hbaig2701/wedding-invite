@@ -43,7 +43,7 @@ export function Footer({ content, theme }: { content: InviteContent; theme: Them
 export function Cover({ content }: { content: InviteContent }) {
   const c = content
   return (
-    <section className="footer footer-folio cover section-dark" aria-label="Verse" data-parallax="0.18">
+    <section className="footer footer-folio cover section-dark" aria-label="Verse" data-parallax="0.18" data-parallax-from={content.event === 'walima' ? 'top' : undefined}>
       <div className="footer-box">
         <p className="footer-verse">“{c.footer.verse}”</p>
         {c.footer.verseAttribution && <p className="footer-attr">{c.footer.verseAttribution}</p>}
