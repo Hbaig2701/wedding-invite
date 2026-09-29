@@ -1210,11 +1210,14 @@ html.lenis, html.lenis body { height: auto; }
 .hero-arch .hero-inner { padding-left: 0; padding-right: 0; }
 .hero-arch .hero-calligraphy { width: calc(var(--s) * 290); }
 
-/* Walima: the envelope waits on falling watercolour flowers */
-[data-theme='walima'] .gate-inner.ground {
+/* Walima: the verse (cover page and envelope card) sits on falling watercolour
+   flowers instead of the folk pattern; the image is a little taller than the
+   section so the parallax drift never shows an edge. */
+[data-theme='walima'] .footer.footer-folio.cover,
+[data-theme='walima'] .footer.footer-folio.cover[data-parallax] {
   background-color: #faf1d4;
-  background-image: url('../assets/walima/gate-flowers.jpg');
-  background-size: cover;
+  background-image: url('../assets/walima/verse-flowers.jpg');
+  background-size: auto calc(100% + 90px);
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center calc(50% + var(--py, 0px));
 }
