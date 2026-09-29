@@ -138,6 +138,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
       // envelope's bottom edge stays hidden, as if still inside
       const s = (ew * 0.9) / heroW
       const w = heroW * s, h = heroH * s
+      if (![w, h, s, ew, eh].every(Number.isFinite) || w <= 0) return
       setCardBox({ w, h, left: (ew - w) / 2, top: eh * 0.05, s, heroW, ew, eh })
     }
     measure()

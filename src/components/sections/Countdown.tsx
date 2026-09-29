@@ -8,7 +8,7 @@ function two(n: number) { return String(n).padStart(2, '0') }
 export function Countdown({ content, theme }: { content: InviteContent; theme: Theme }) {
   const r = useCountdown(content.date.startISO)
   return (
-    <section className="countdown ground grain section-dark" aria-label="Countdown">
+    <section className="countdown ground grain section-dark" aria-label="Countdown" data-parallax="0.22">
       <div className="countdown-box">
         <Reveal>
           <p className="eyebrow" style={{ color: 'var(--on-dark-faint)' }}>{r.past ? 'The day has arrived' : 'Until the celebration'}</p>

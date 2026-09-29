@@ -1153,3 +1153,13 @@
 /* the hall within the club */
 .venue-hall { margin-top: 0.7rem; font-family: var(--font-body); font-style: italic; font-size: 1.05rem; color: var(--ink-soft); }
 .venue-hall span { font-style: normal; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.9rem; color: var(--ink); margin-left: 0.25em; }
+
+/* parallax: the pattern drifts against the scroll */
+[data-theme='shaadi'] .countdown[data-parallax],
+[data-theme='shaadi'] .footer.footer-folio.cover[data-parallax] {
+  background-position: center, center calc(50% + var(--py, 0px));
+}
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }

@@ -135,7 +135,6 @@ html, body { margin: 0; padding: 0; }
 html {
   -webkit-text-size-adjust: 100%;
   background: var(--ground-shadow);
-  scroll-behavior: smooth;
 }
 body {
   font-family: var(--font-body);

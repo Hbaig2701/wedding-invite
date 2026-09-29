@@ -18,6 +18,7 @@ import { Photo } from './components/sections/Photo'
 import { Cover, Footer } from './components/sections/Footer'
 import { SoundToggle } from './components/SoundToggle'
 import { initMusic } from './lib/music'
+import { startScrollFeel } from './lib/scrollFeel'
 
 export function App({ content, theme }: { content: InviteContent; theme: Theme }) {
   if (content.musicUrl) initMusic(content.musicUrl)
@@ -25,6 +26,9 @@ export function App({ content, theme }: { content: InviteContent; theme: Theme }
   const [gate, setGate] = useState(true)        // gate still mounted
 
   useEffect(() => { applyTheme(theme); document.title = content.siteTitle }, [theme, content.siteTitle])
+
+  // weighted scrolling starts once the envelope has gone
+  useEffect(() => { if (gate) return; return startScrollFeel() }, [gate])
 
   function onOpened() {
     setOpened(true)
