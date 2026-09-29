@@ -1208,8 +1208,10 @@ html.lenis, html.lenis body { height: auto; }
   background-position: top right, bottom right;
 }
 .hero-arch .hero-inner { padding-left: 0; padding-right: 0; }
-/* the words sit midway between the Bismillah and the arch's lower corners */
-.hero-arch .hero-centre { padding-top: calc(2.2rem + var(--s) * 68); }
+/* the Bismillah sits a touch lower in the dome; the words below move half as
+   much so they stay midway between it and the arch's lower corners */
+.hero-arch .hero-opener { position: relative; top: calc(var(--s) * 18); }
+.hero-arch .hero-centre { padding-top: calc(2.2rem + var(--s) * 68); position: relative; top: calc(var(--s) * 9); }
 .hero-arch .hero-calligraphy { width: calc(var(--s) * 290); }
 
 /* Walima: the verse (cover page and envelope card) sits on falling watercolour
