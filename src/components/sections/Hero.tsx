@@ -18,7 +18,7 @@ export function Hero({ content, theme, opened, instant = false }: { content: Inv
     return (
       <section className={arch ? 'hero hero-folio hero-arch paper' : 'hero hero-folio paper'} aria-label="Invitation">
         {arch
-          ? <div className="arch-frame" aria-hidden="true"><i className="arch-l" /><i className="arch-r" /></div>
+          ? <ArchFrame />
           : <ReferenceFrame className="folio-frame" bandRatio={0.125} />}
         <div className="hero-inner col hero-inner-folio">
           <div className="hero-opener">
@@ -64,5 +64,23 @@ export function Hero({ content, theme, opened, instant = false }: { content: Inv
         <motion.p {...item(6)} className="hero-city">{c.city}</motion.p>
       </div>
     </section>
+  )
+}
+
+/* The Walima arch, drawn exactly symmetrical (artwork pixels, 1016 wide):
+   a top piece and a bottom piece, joined by straight sides that grow with the
+   page. The watercolour flowers from the Save the Date sit on top. */
+const ARCH_TOP = 'M 105 420 L 105 410 L 214 285 L 295 285 A 213 213 0 0 1 721 285 L 802 285 L 911 410 L 911 420'
+const ARCH_BOTTOM = 'M 105 1080 L 105 1090 L 228 1205 L 292 1205 C 292 1280 330 1330 386 1340 Q 402 1344 404 1368 C 410 1394 460 1410 508 1410 C 556 1410 606 1394 612 1368 Q 614 1344 630 1340 C 686 1330 724 1280 724 1205 L 788 1205 L 911 1090 L 911 1080'
+
+function ArchFrame() {
+  return (
+    <div className="arch-frame" aria-hidden="true">
+      <svg className="arch-line arch-line-top" viewBox="0 0 1016 420" preserveAspectRatio="none"><path d={ARCH_TOP} /></svg>
+      <i className="arch-sides" />
+      <svg className="arch-line arch-line-bottom" viewBox="0 1080 1016 386" preserveAspectRatio="none"><path d={ARCH_BOTTOM} /></svg>
+      <i className="arch-flora arch-flora-l" />
+      <i className="arch-flora arch-flora-r" />
+    </div>
   )
 }

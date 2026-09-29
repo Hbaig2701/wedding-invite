@@ -1171,41 +1171,41 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='walima'] .hero-folio .hero-parents { font-size: 0.62rem; letter-spacing: 0.08em; }
 
 /* ═══════════════ Walima: the floral arch from its Save the Date ═══════════════
-   The arch is cut in two halves. Each half is a three-slice border image whose
-   middle is a short run of bare vertical line, so the page can grow taller
-   than the artwork without stretching a single flower. Numbers are pixels of
-   the 1016 × 1466 artwork; --s turns them into CSS pixels. */
+   The outline is redrawn exactly symmetrical; the flowers are lifted off the
+   artwork. Numbers are pixels of the 1016 × 1466 artwork; --s turns them into
+   CSS pixels. */
 .hero-folio.hero-arch {
   --s: calc(var(--vw) * 100 / 1016);
   min-height: calc(var(--s) * 1466);
   align-items: flex-start;
   padding: calc(var(--s) * 178) calc(var(--s) * 124) calc(var(--s) * 571 + 12px);
 }
-.arch-frame {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  pointer-events: none;
-  z-index: 1;
+.arch-frame { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.arch-frame > * { position: absolute; display: block; }
+.arch-line { left: 0; width: 100%; overflow: visible; }
+.arch-line path { fill: none; stroke: #86605f; stroke-width: 6.5; stroke-linejoin: miter; stroke-linecap: butt; }
+.arch-line-top { top: 0; height: calc(var(--s) * 420); }
+.arch-line-bottom { bottom: 0; height: calc(var(--s) * 386); }
+.arch-sides {
+  top: calc(var(--s) * 420);
+  bottom: calc(var(--s) * 386);
+  left: calc(var(--s) * 101.75);
+  right: calc(var(--s) * 101.75);
+  border-left: calc(var(--s) * 6.5) solid #86605f;
+  border-right: calc(var(--s) * 6.5) solid #86605f;
 }
-.arch-frame i {
-  display: block;
-  flex: 0 0 50%;
-  height: 100%;
-  box-sizing: border-box;
-  border-style: solid;
-  border-color: transparent;
-  border-image-repeat: stretch;
+/* flowers: each side's top cluster hangs from the top, its lower cluster
+   rests on the bottom, and the page grows between them */
+.arch-flora { top: 0; bottom: 0; width: 50%; background-repeat: no-repeat; background-size: 100% auto; }
+.arch-flora-l {
+  left: 0;
+  background-image: url('../assets/walima/flora-l-top.webp'), url('../assets/walima/flora-l-bottom.webp');
+  background-position: top left, bottom left;
 }
-.arch-l {
-  border-width: calc(var(--s) * 860) 0 calc(var(--s) * 571);
-  border-image-source: url('../assets/walima/arch-l.webp');
-  border-image-slice: 860 0 571 fill;
-}
-.arch-r {
-  border-width: calc(var(--s) * 1092) 0 calc(var(--s) * 356);
-  border-image-source: url('../assets/walima/arch-r.webp');
-  border-image-slice: 1092 0 356 fill;
+.arch-flora-r {
+  right: 0;
+  background-image: url('../assets/walima/flora-r-top.webp'), url('../assets/walima/flora-r-bottom.webp');
+  background-position: top right, bottom right;
 }
 .hero-arch .hero-inner { padding-left: 0; padding-right: 0; }
 .hero-arch .hero-calligraphy { width: calc(var(--s) * 290); }
