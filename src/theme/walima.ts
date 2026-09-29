@@ -1,7 +1,8 @@
 import type { Theme } from './types'
 
 /**
- * WALIMA — the same design as the Shaadi (a duplicate).
+ * WALIMA — the same design as the Shaadi (a duplicate), with the floral arch
+ * from the Walima Save the Date round the invitation page.
  *
  * SHAADI — an illuminated Mughal folio.
  * Ivory paper, burgundy ink, a dense border of rosettes and palmettes in
@@ -10,6 +11,7 @@ import type { Theme } from './types'
  */
 export const walimaTheme: Theme = {
   name: 'walima',
+  frame: 'floral-arch',
   darkGround: false,
   hero: 'folio',
   liner: 'plain',

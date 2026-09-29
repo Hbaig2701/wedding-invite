@@ -1169,3 +1169,52 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='walima'] .hero-names-title .hero-joiner + .hero-name-nastaliq { margin-top: calc(-0.37em + 7px); }
 /* Walima: the longer parents' line, fitted inside the border */
 [data-theme='walima'] .hero-folio .hero-parents { font-size: 0.62rem; letter-spacing: 0.08em; }
+
+/* ═══════════════ Walima: the floral arch from its Save the Date ═══════════════
+   The arch is cut in two halves. Each half is a three-slice border image whose
+   middle is a short run of bare vertical line, so the page can grow taller
+   than the artwork without stretching a single flower. Numbers are pixels of
+   the 1016 × 1466 artwork; --s turns them into CSS pixels. */
+.hero-folio.hero-arch {
+  --s: calc(var(--vw) * 100 / 1016);
+  min-height: calc(var(--s) * 1466);
+  align-items: flex-start;
+  padding: calc(var(--s) * 178) calc(var(--s) * 124) calc(var(--s) * 571 + 12px);
+}
+.arch-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+  z-index: 1;
+}
+.arch-frame i {
+  display: block;
+  flex: 0 0 50%;
+  height: 100%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: transparent;
+  border-image-repeat: stretch;
+}
+.arch-l {
+  border-width: calc(var(--s) * 860) 0 calc(var(--s) * 571);
+  border-image-source: url('../assets/walima/arch-l.webp');
+  border-image-slice: 860 0 571 fill;
+}
+.arch-r {
+  border-width: calc(var(--s) * 1092) 0 calc(var(--s) * 356);
+  border-image-source: url('../assets/walima/arch-r.webp');
+  border-image-slice: 1092 0 356 fill;
+}
+.hero-arch .hero-inner { padding-left: 0; padding-right: 0; }
+.hero-arch .hero-calligraphy { width: calc(var(--s) * 290); }
+
+/* Walima: the envelope waits on falling watercolour flowers */
+[data-theme='walima'] .gate-inner.ground {
+  background-color: #faf1d4;
+  background-image: url('../assets/walima/gate-flowers.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+}

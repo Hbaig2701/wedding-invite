@@ -14,9 +14,12 @@ export function Hero({ content, theme, opened, instant = false }: { content: Inv
   const gold = theme.darkGround
 
   if (theme.hero === 'folio') {
+    const arch = theme.frame === 'floral-arch'
     return (
-      <section className="hero hero-folio paper" aria-label="Invitation">
-        <ReferenceFrame className="folio-frame" bandRatio={0.125} />
+      <section className={arch ? 'hero hero-folio hero-arch paper' : 'hero hero-folio paper'} aria-label="Invitation">
+        {arch
+          ? <div className="arch-frame" aria-hidden="true"><i className="arch-l" /><i className="arch-r" /></div>
+          : <ReferenceFrame className="folio-frame" bandRatio={0.125} />}
         <div className="hero-inner col hero-inner-folio">
           <div className="hero-opener">
             <motion.div {...item(0)} className="hero-calligraphy" role="img" aria-label={c.bismillah.arabic} />

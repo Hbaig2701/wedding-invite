@@ -12,6 +12,9 @@ export interface Theme {
   hero: 'band' | 'folio'
   /** Envelope liner: marbled endpaper or the illuminated floral tile. */
   liner: 'marble' | 'floral' | 'plain'
+  /** The border round the invitation page (folio only): the illuminated
+   *  Mughal border (default) or the watercolour floral arch. */
+  frame?: 'illuminated' | 'floral-arch'
   vars: Record<`--${string}`, string>
 }
 
