@@ -99,8 +99,10 @@ export const walima: InviteContent = {
     },
     failureCopy:
       'We couldn’t reach our guest book just now. Please send your response to us on WhatsApp instead — it takes a moment.',
+    guestNames: true,
   },
 
+  contactCta: 'Tap to message on WhatsApp',
   contacts: [
     { name: 'Rabia Baig', role: '', whatsapp: '923333900202', display: '+92 333 3900202' },
     { name: 'Ali Baig', role: '', whatsapp: '971543733451', display: '+971 54 373 3451' },
