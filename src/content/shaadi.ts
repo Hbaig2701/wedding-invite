@@ -31,11 +31,11 @@ export const shaadi: InviteContent = {
   hero: {
     hosts: 'Sania and Shahid Mahmood',
     line: 'request the honor of your presence\nat the Shaadi of their beloved daughter',
-    afterNames: 'Son of Rabia and Mirza Ali Baig',
+    afterNames: 'Son of Rabia and Ali Baig',
   },
 
   invitationLine:
-    'Sania and Shahid Mahmood\nrequest the honour of your presence\nat the Shaadi of their daughter\n**Iman**\nwith\n**Hamza**\nson of Rabia and Mirza Ali Baig',
+    'Sania and Shahid Mahmood\nrequest the honour of your presence\nat the Shaadi of their daughter\n**Iman**\nwith\n**Hamza**\nson of Rabia and Ali Baig',
   invitationClosing: 'and afterwards at the reception',
 
   date: {
@@ -96,8 +96,10 @@ export const shaadi: InviteContent = {
     },
     failureCopy:
       'We couldn’t reach our guest book just now. Please send your response to us on WhatsApp instead — it takes a moment.',
+    guestNames: true,
   },
 
+  contactCta: 'Tap to message on WhatsApp',
   contacts: [
     { name: 'Shahid Mahmood', role: '', whatsapp: '966500466597' },
     { name: 'Sania Shahid', role: '', whatsapp: '966532702343' },

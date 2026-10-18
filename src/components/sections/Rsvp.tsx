@@ -16,9 +16,15 @@ export function Rsvp({ content }: { content: InviteContent }) {
   const [phone, setPhone] = useState('')
   const [attending, setAttending] = useState<'yes' | 'no' | ''>('')
   const [count, setCount] = useState(1)   // number of guests, including the respondent
+  const [guestNames, setGuestNames] = useState<string[]>([])   // one per guest beyond the respondent
+  const askNames = !!c.rsvp.guestNames
+  const extra = Math.max(0, count - 1)
+  const names = Array.from({ length: extra }, (_, i) => guestNames[i] ?? '')
+  const setGuestName = (i: number, v: string) => setGuestNames((g) => { const n = [...g]; n[i] = v; return n })
+  const removeGuest = (i: number) => { setGuestNames((g) => g.filter((_, j) => j !== i)); setCount((n) => Math.max(1, n - 1)) }
   const [message] = useState('')
   const [status, setStatus] = useState<Status>('idle')
-  const [errors, setErrors] = useState<{ name?: string; phone?: string; attending?: string }>({})
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; attending?: string; guests?: string }>({})
   const [last, setLast] = useState<RsvpPayload | null>(null)
 
   function validate() {
@@ -27,6 +33,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
     const p = normalisePhone(phone)
     if (p.length < 9) e.phone = 'Please enter a WhatsApp number we can reach you on.'
     if (!attending) e.attending = 'Please let us know whether you can join us.'
+    if (askNames && attending === 'yes' && names.some((n) => n.trim().length < 2)) e.guests = 'Please add a name for each guest.'
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -42,7 +49,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
       attending: attending as 'yes' | 'no',
       adults: attending === 'yes' ? count : 0,
       children: 0,
-      guests: [],
+      guests: askNames && attending === 'yes' ? names.map((n) => n.trim()) : [],
       message: message.trim(),
       submittedAt: new Date().toISOString(),
     }
@@ -54,7 +61,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
 
   const host = c.contacts[0]
   const waText = last
-    ? `Assalamu alaikum, this is ${last.name}. For the ${c.eventLabel} on ${c.date.short}: ${last.attending === 'yes' ? `we joyfully accept — ${last.adults} guest(s).` : 'we regretfully cannot attend.'}${last.message ? ` ${last.message}` : ''}`
+    ? `Assalamu alaikum, this is ${last.name}. For the ${c.eventLabel} on ${c.date.short}: ${last.attending === 'yes' ? `we joyfully accept — ${last.adults} guest(s)${last.guests.length ? ` (with ${last.guests.join(', ')})` : ''}.` : 'we regretfully cannot attend.'}${last.message ? ` ${last.message}` : ''}`
     : `Assalamu alaikum, I would like to RSVP for the ${c.eventLabel} on ${c.date.short}.`
 
   return (
@@ -72,7 +79,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
               <h3 className="rsvp-done-title letterpress">{last.attending === 'yes' ? c.rsvp.thankYouAccept.title : c.rsvp.thankYouDecline.title}</h3>
               <p className="rsvp-done-body">{last.attending === 'yes' ? c.rsvp.thankYouAccept.body : c.rsvp.thankYouDecline.body}</p>
               <p className="rsvp-done-summary">
-                {last.attending === 'yes' ? `${last.name} · ${last.adults} guest${last.adults === 1 ? '' : 's'}` : `${last.name} · Regretfully declined`}
+                {last.attending === 'yes' ? `${last.name} · ${last.adults} guest${last.adults === 1 ? '' : 's'}${last.guests.length ? ` · with ${last.guests.join(', ')}` : ''}` : `${last.name} · Regretfully declined`}
               </p>
               <button type="button" className="rsvp-done-again" onClick={() => setStatus('idle')}>Need to change your response? Submit again.</button>
             </motion.div>
@@ -134,6 +141,21 @@ export function Rsvp({ content }: { content: InviteContent }) {
                       </div>
                       <p className="count-hint">Including yourself</p>
                     </div>
+                    {askNames && (
+                      <div className="field guest-names">
+                        {extra > 0 && <span className="field-label">{extra === 1 ? 'Name of your guest' : 'Names of your guests'}</span>}
+                        <AnimatePresence initial={false}>
+                          {names.map((n, i) => (
+                            <motion.div key={i} className="guest-row" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
+                              <input className="field-input" value={n} onChange={(e) => setGuestName(i, e.target.value)} placeholder={`Guest ${i + 2} · full name`} aria-label={`Guest ${i + 2} full name`} autoComplete="off" />
+                              <button type="button" className="guest-remove" onClick={() => removeGuest(i)} aria-label={`Remove guest ${i + 2}`}>×</button>
+                            </motion.div>
+                          ))}
+                        </AnimatePresence>
+                        {count < 30 && <button type="button" className="guest-add" onClick={() => setCount((x) => Math.min(30, x + 1))}>+ Add {extra === 0 ? 'a guest' : 'another guest'}</button>}
+                        {errors.guests && <p className="field-error">{errors.guests}</p>}
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

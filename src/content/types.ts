@@ -124,9 +124,13 @@ export interface InviteContent {
     thankYouDecline: { title: string; body: string }
     /** Shown when the network fails. WhatsApp fallback uses contacts[0]. */
     failureCopy: string
+    /** Ask for the name of each extra guest (one box per guest beyond the respondent). */
+    guestNames?: boolean
   }
 
   contacts: Contact[]
+  /** Label on each contact's WhatsApp button. Default "Message on WhatsApp". */
+  contactCta?: string
 
   /** Optional instrumental. Empty string hides the sound toggle. */
   musicUrl: string
