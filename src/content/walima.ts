@@ -4,15 +4,15 @@ import sindClubMap from '../assets/walima/map-sind-club.jpg'
 // ─────────────────────────────────────────────────────────────────────────────
 //  WALIMA · 27 December 2026 · Karachi
 //  A duplicate of the Shaadi invitation with the Walima wording.
-//  Hosted by the groom's parents, Rabia and Mirza Ali Baig.
+//  Hosted by the groom's parents, Rabia and Ali Baig.
 //  Anything wrapped in «…» is a PLACEHOLDER still to be confirmed (spec §10).
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const walima: InviteContent = {
   event: 'walima',
-  eventLabel: 'Valima',
+  eventLabel: 'Reception',
   eventLabelUrdu: 'ولیمہ',
-  siteTitle: 'Hamza & Iman · Valima',
+  siteTitle: 'Hamza & Iman · Reception',
 
   bismillah: {
     arabic: 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
@@ -30,13 +30,13 @@ export const walima: InviteContent = {
   },
 
   hero: {
-    hosts: 'Rabia and Mirza Ali Baig',
-    line: 'cordially invite you to the Valima\nof their son',
+    hosts: 'Rabia and Ali Baig',
+    line: 'cordially invite you to the Reception\nof their beloved son',
     afterNames: 'Daughter of\nSania and Shahid Mahmood',
   },
 
   invitationLine:
-    'Rabia and Mirza Ali Baig\nrequest the honour of your presence\nat the Valima of their son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania and Shahid Mahmood',
+    'Rabia and Ali Baig\nrequest the honour of your presence\nat the Reception of their beloved son\n**Hamza**\nwith\n**Iman**\ndaughter of Sania and Shahid Mahmood',
   invitationClosing: 'and afterwards at the reception',
 
   date: {
@@ -103,7 +103,7 @@ export const walima: InviteContent = {
 
   contacts: [
     { name: 'Rabia Baig', role: '', whatsapp: '923333900202', display: '+92 333 3900202' },
-    { name: 'Mirza Ali Baig', role: '', whatsapp: '971543733451', display: '+971 54 373 3451' },
+    { name: 'Ali Baig', role: '', whatsapp: '971543733451', display: '+971 54 373 3451' },
   ],
 
   musicUrl: 'music/tu-jaane-na.m4a',   // Tu Jaane Na, orchestral version
