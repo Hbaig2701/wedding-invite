@@ -22,6 +22,10 @@ export function Contact({ content }: { content: InviteContent }) {
             <img className="sched-spray contact-sprig contact-sprig-right" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
             <img className="sched-spray contact-sprig contact-sprig-bottom" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
             <img className="sched-spray contact-sprig contact-sprig-left" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-right2" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-right3" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-left2" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-left3" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
           </>
         )}
       </div>
