@@ -18,16 +18,16 @@ export function Contact({ content }: { content: InviteContent }) {
         {c.contactFlora === 'warm' && (
           <>
             {/* a few more small sprigs where the flowers already are */}
-            <img className="sched-spray contact-sprig contact-sprig-top" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-right" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-bottom" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-left" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-right2" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-right3" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-left2" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-left3" src={`${B}flora/spray-tl-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-right4" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
-            <img className="sched-spray contact-sprig contact-sprig-left4" src={`${B}flora/spray-br-warm.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-top" src={`${B}flora/spray-br-leaf.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-right" src={`${B}flora/spray-tl-vine.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-bottom" src={`${B}flora/spray-br-leaf.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-left" src={`${B}flora/spray-tl-vine.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-right2" src={`${B}flora/spray-br-leaf.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-right3" src={`${B}flora/spray-tl-vine.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-left2" src={`${B}flora/spray-br-leaf.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-left3" src={`${B}flora/spray-tl-vine.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-right4" src={`${B}flora/spray-br-leaf.png`} alt="" loading="lazy" decoding="async" />
+            <img className="sched-spray contact-sprig contact-sprig-left4" src={`${B}flora/spray-br-leaf.png`} alt="" loading="lazy" decoding="async" />
           </>
         )}
       </div>
