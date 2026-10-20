@@ -1307,3 +1307,19 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='shaadi'] .hero-folio .hero-names-title { margin-top: 1.65rem; }
 [data-theme='shaadi'] .hero-folio .hero-after { margin-top: 1.15rem; }
 [data-theme='shaadi'] .hero-names-title .hero-name-nastaliq + .hero-joiner { position: relative; top: 6px; }
+
+/* Shaadi: the venue box framed in maroon, a row of fine dots between two rules */
+[data-theme='shaadi'] .venue-box {
+  position: relative;
+  border: 1px solid var(--burgundy);
+  outline: 0;
+}
+[data-theme='shaadi'] .venue-box::before,
+[data-theme='shaadi'] .venue-box::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: 3px;
+}
+[data-theme='shaadi'] .venue-box::before { inset: -9px; border: 1px solid var(--burgundy); }
+[data-theme='shaadi'] .venue-box::after { inset: -5px; border: 1.6px dotted var(--burgundy); opacity: 0.85; }
