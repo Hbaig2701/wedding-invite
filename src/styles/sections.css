@@ -1334,7 +1334,5 @@ html.lenis, html.lenis body { height: auto; }
    runs unbroken: down the right, up the left */
 .contact-sprig-right2 { right: 0; top: 226px; width: 26px; transform: scaleX(-1) rotate(4deg); }
 .contact-sprig-right3 { right: -3px; top: 330px; width: 30px; transform: scaleX(-1) scaleY(-1) rotate(-5deg); opacity: 0.9; }
-.contact-sprig-right4 { right: 1px; top: 396px; width: 24px; transform: scaleX(-1) rotate(-3deg); opacity: 0.9; }
 .contact-sprig-left2 { left: 0; bottom: 244px; width: 26px; transform: scaleY(-1) rotate(4deg); }
 .contact-sprig-left3 { left: -3px; bottom: 348px; width: 30px; transform: rotate(-5deg); opacity: 0.9; }
-.contact-sprig-left4 { left: 1px; bottom: 414px; width: 24px; transform: scaleY(-1) rotate(-3deg); opacity: 0.9; }
