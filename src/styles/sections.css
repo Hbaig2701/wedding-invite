@@ -1327,12 +1327,13 @@ html.lenis, html.lenis body { height: auto; }
 /* Shaadi questions: extra sprigs trailing from the two corner sprays */
 .contact-sprig { opacity: 0.95; }
 .contact-sprig-top { right: 78px; top: -22px; width: 20px; transform: rotate(-96deg); transform-origin: 50% 50%; }
-.contact-sprig-right { right: -2px; top: 150px; width: 34px; transform: scaleX(-1) rotate(-4deg); }
+.contact-sprig-right { right: -7px; top: 148px; width: 30px; transform: scaleX(-1) rotate(-4deg); opacity: 0.9; }
 .contact-sprig-bottom { left: 74px; bottom: -22px; width: 20px; transform: rotate(84deg); }
-.contact-sprig-left { left: -2px; bottom: 168px; width: 34px; transform: scaleY(-1) rotate(-4deg); }
-/* …and further along the sides, each piece overlapping the next so the vine
-   runs unbroken: down the right, up the left */
-.contact-sprig-right2 { right: 0; top: 226px; width: 26px; transform: scaleX(-1) rotate(4deg); }
-.contact-sprig-right3 { right: -3px; top: 330px; width: 30px; transform: scaleX(-1) scaleY(-1) rotate(-5deg); opacity: 0.9; }
-.contact-sprig-left2 { left: 0; bottom: 244px; width: 26px; transform: scaleY(-1) rotate(4deg); }
-.contact-sprig-left3 { left: -3px; bottom: 348px; width: 30px; transform: rotate(-5deg); opacity: 0.9; }
+.contact-sprig-left { left: -7px; bottom: 166px; width: 30px; transform: scaleY(-1) rotate(-4deg); opacity: 0.9; }
+/* …and further along the sides, out at the edge, each piece smaller and
+   fainter than the last so the vine tapers away: down the right, up the left */
+.contact-sprig-right2 { right: -8px; top: 222px; width: 20px; transform: scaleX(-1) rotate(4deg); opacity: 0.72; }
+.contact-sprig-right3 { right: -8px; top: 304px; width: 15px; transform: scaleX(-1) scaleY(-1) rotate(-5deg); opacity: 0.5; }
+.contact-sprig-left2 { left: -8px; bottom: 240px; width: 20px; transform: scaleY(-1) rotate(4deg); opacity: 0.72; }
+.contact-sprig-left3 { left: -8px; bottom: 322px; width: 15px; transform: rotate(-5deg); opacity: 0.5; }
+[data-theme='shaadi'] .contact { overflow-x: clip; }
