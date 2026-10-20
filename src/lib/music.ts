@@ -55,4 +55,31 @@ export function playMusic() {
   else fadeTo(TARGET, 2500)
 }
 
-export function pauseMusic() { resumeOnReturn = false; el?.pause() }
+export function pauseMusic() { resumeOnReturn = false; disarm(); el?.pause() }
+
+/**
+ * For when the envelope opens by itself: phones refuse sound that doesn't
+ * start from a tap, so try now and, if refused, start on the guest's first
+ * tap anywhere on the page.
+ */
+const EVENTS = ['pointerdown', 'touchend', 'click', 'keydown'] as const
+let armed = false
+function onFirstTouch() { disarm(); if (el && el.paused) playMusic() }
+function disarm() {
+  if (!armed) return
+  armed = false
+  EVENTS.forEach((e) => document.removeEventListener(e, onFirstTouch, true))
+}
+export function playMusicSoon() {
+  if (!el) return
+  el.volume = 0
+  const p = el.play()
+  const arm = () => {
+    if (armed) return
+    armed = true
+    EVENTS.forEach((e) => document.addEventListener(e, onFirstTouch, true))
+  }
+  if (p && typeof p.then === 'function') p.then(() => fadeTo(TARGET, 2500)).catch(arm)
+  else if (el.paused) arm()
+  else fadeTo(TARGET, 2500)
+}

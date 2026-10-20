@@ -1298,3 +1298,12 @@ html.lenis, html.lenis body { height: auto; }
   background-repeat: no-repeat;
   background-position: center calc(50% + var(--py, 0px));
 }
+
+/* Shaadi: the Urdu names in Nafees Web Naskh */
+[data-theme='shaadi'] .hero-name-nastaliq { font-family: 'Nafees Names', var(--font-arabic); font-size: 1.45em; line-height: 1.35; }
+[data-theme='shaadi'] .hero-names-title .hero-name-nastaliq + .hero-joiner { margin: 0.2em 0 0.2em; }
+[data-theme='shaadi'] .hero-names-title .hero-joiner + .hero-name-nastaliq { margin-top: 0; }
+/* the same air above ایمان as below حمزہ, and "with" centred (measured ink to ink) */
+[data-theme='shaadi'] .hero-folio .hero-names-title { margin-top: 1.65rem; }
+[data-theme='shaadi'] .hero-folio .hero-after { margin-top: 1.15rem; }
+[data-theme='shaadi'] .hero-names-title .hero-name-nastaliq + .hero-joiner { position: relative; top: 6px; }

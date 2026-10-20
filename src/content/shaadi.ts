@@ -43,9 +43,9 @@ export const shaadi: InviteContent = {
     short: '21 December 2026',
     numeric: '21 · 12 · 2026',
     weekday: 'Monday',
-    startISO: '2026-12-21T18:30:00+05:00',
-    endISO: '2026-12-21T23:30:00+05:00',
-    timeLabel: '6:30 PM',
+    startISO: '2026-12-21T19:00:00+05:00',
+    endISO: '2026-12-21T22:00:00+05:00',
+    timeLabel: '7:00 – 10:00 PM',
     timeNote: '',
     timezone: 'Asia/Karachi',
   },
@@ -63,12 +63,8 @@ export const shaadi: InviteContent = {
     lng: 74.4691344,
   },
 
-  timeline: [
-    { time: '6:30 PM', title: 'Arrival of Guests', note: 'welcome & refreshments' },
-    { time: '7:00 PM', title: 'Arrival of Baraat', note: 'the groom\u2019s procession is welcomed' },
-    { time: '8:00 PM', title: 'Dinner', note: 'a feast with family & friends' },
-    { time: '9:45 PM', title: 'Rukhsati', note: 'the farewell & send-off' },
-  ],
+  // no schedule section: the evening is self-explanatory (an empty list hides it)
+  timeline: [],
 
   dressCode: {
     title: 'Dress code',

@@ -66,6 +66,15 @@
   font-display: swap;
   src: url('../assets/fonts/pinyon-script-latin-400-normal.woff2') format('woff2');
 }
+/* Nafees Web Naskh (CRULP, Bitstream Vera licence), subset to the letters of
+   the couple's names: the Shaadi's Urdu names */
+@font-face {
+  font-family: 'Nafees Names';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('../assets/fonts/nafees-web-naskh-names.woff2') format('woff2');
+}
 /* Noto Nastaliq Urdu, subset to the letters of the couple's names only */
 @font-face {
   font-family: 'Nastaliq Names';

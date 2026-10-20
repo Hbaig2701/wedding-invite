@@ -7,7 +7,7 @@ import { BackPanel, FlapBack, FlapFace, Pocket } from './EnvelopePaper'
 import { useTilt } from '../../lib/useTilt'
 import { prefersReducedMotion } from '../../lib/motionPrefs'
 import { Cover } from '../sections/Footer'
-import { playMusic } from '../../lib/music'
+import { playMusic, playMusicSoon } from '../../lib/music'
 import './Envelope.css'
 
 type Phase = 'closed' | 'opening' | 'leaving'
@@ -173,14 +173,29 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     const tx = heroLeft - sr.left - s * (cr.left - sr.left)
     const ty = 0 - sr.top - s * (cr.top - sr.top)
     const ease = [0.65, 0, 0.25, 1] as const
-    animate(sceneX, tx, { duration: 0.95, ease })
-    animate(sceneY, ty, { duration: 0.95, ease })
-    return animate(sceneS, s, { duration: 0.95, ease }).then(() => undefined)
+    const d = theme.gate?.quick ? 0.8 : 0.95
+    animate(sceneX, tx, { duration: d, ease })
+    animate(sceneY, ty, { duration: d, ease })
+    return animate(sceneS, s, { duration: d, ease }).then(() => undefined)
   }
 
-  function open() {
+  const quick = !!theme.gate?.quick
+  const T = quick
+    ? { crack: 80, flap: 190, card: 700, hold: 2450, zoom: 0.8 }
+    : { crack: 95, flap: 240, card: 1050, hold: folio ? 4050 : 3400, zoom: 0.95 }
+
+  // open by itself if nobody taps (the music then waits for their first tap)
+  useEffect(() => {
+    const ms = theme.gate?.autoOpenMs
+    if (!ms) return
+    const t = setTimeout(() => openRef.current(true), ms)
+    return () => clearTimeout(t)
+  }, [])
+
+  function open(auto = false) {
     if (phase !== 'closed') return
-    playMusic()   // inside the tap, so phones allow it
+    if (auto) playMusicSoon()
+    else playMusic()   // inside the tap, so phones allow it
     setPhase('opening')
 
     if (reduced.current) {
@@ -199,27 +214,31 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
         const c = CHIPS[i]
         animate(el, { x: [0, c.dx * 0.4, c.dx], y: [0, c.dy * 0.35, c.dy], rotate: [0, c.r], opacity: [1, 1, 0], scale: [c.s, c.s, c.s * 0.8] }, { duration: 0.75, ease: [0.3, 0, 0.9, 0.6], delay: i * 0.02 })
       })
-    }, 95)
+    }, T.crack)
 
     // 2–4. the flap lifts as the seal releases; it has mass
     setTimeout(() => {
-      animate(flap, 1, { type: 'spring', stiffness: 30, damping: 11.5, mass: 1.8, restDelta: 0.001 })
-    }, 240)
+      animate(flap, 1, quick
+        ? { type: 'spring', stiffness: 46, damping: 13, mass: 1.5, restDelta: 0.001 }
+        : { type: 'spring', stiffness: 30, damping: 11.5, mass: 1.8, restDelta: 0.001 })
+    }, T.flap)
 
     // 5. the card slides up behind the front panel
     setTimeout(() => {
       if (folio) planSlide()
       animate(card, 1, folio
-        ? { type: 'spring', stiffness: 42, damping: 13, mass: 1.2, restDelta: 0.001 }
+        ? (quick ? { type: 'spring', stiffness: 62, damping: 15, mass: 1.1, restDelta: 0.001 } : { type: 'spring', stiffness: 42, damping: 13, mass: 1.2, restDelta: 0.001 })
         : { type: 'spring', stiffness: 58, damping: 13.5, mass: 1.1, restDelta: 0.001 })
-    }, 1050)
+    }, T.card)
 
     // 6. the card is held for a moment, then (folio) grows into the page
     setTimeout(async () => {
       if (folio) await zoomToPage()
       setPhase('leaving'); onOpened()
-    }, folio ? 4050 : 3400)
+    }, T.hold)
   }
+  const openRef = useRef(open)
+  openRef.current = open
 
   const names = `${content.couple.first} ${content.couple.joiner} ${content.couple.second}`
 
@@ -248,7 +267,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
           <button
             type="button"
             className="env-button"
-            onClick={open}
+            onClick={() => open()}
             aria-label={`Open the invitation from ${names}`}
             disabled={phase !== 'closed'}
           >

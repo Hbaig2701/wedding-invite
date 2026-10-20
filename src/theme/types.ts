@@ -15,6 +15,9 @@ export interface Theme {
   /** The border round the invitation page (folio only): the illuminated
    *  Mughal border (default) or the watercolour floral arch. */
   frame?: 'illuminated' | 'floral-arch'
+  /** Envelope behaviour: open by itself after this many ms if nobody taps,
+   *  and run the opening at a brisker pace. */
+  gate?: { autoOpenMs?: number; quick?: boolean }
   vars: Record<`--${string}`, string>
 }
 
