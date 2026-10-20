@@ -1308,7 +1308,7 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='shaadi'] .hero-folio .hero-after { margin-top: 1.15rem; }
 [data-theme='shaadi'] .hero-names-title .hero-name-nastaliq + .hero-joiner { position: relative; top: 6px; }
 
-/* Shaadi: the venue box framed in maroon, a row of fine dots between two rules */
+/* Shaadi: the venue box framed in maroon: a solid band between two fine rules */
 [data-theme='shaadi'] .venue-box {
   position: relative;
   border: 1px solid var(--burgundy);
@@ -1322,4 +1322,11 @@ html.lenis, html.lenis body { height: auto; }
   border-radius: 3px;
 }
 [data-theme='shaadi'] .venue-box::before { inset: -9px; border: 1px solid var(--burgundy); }
-[data-theme='shaadi'] .venue-box::after { inset: -5px; border: 1.6px dotted var(--burgundy); opacity: 0.85; }
+[data-theme='shaadi'] .venue-box::after { inset: -5.5px; border: 2.5px solid var(--burgundy); }
+
+/* Shaadi questions: extra sprigs trailing from the two corner sprays */
+.contact-sprig { opacity: 0.95; }
+.contact-sprig-top { right: 78px; top: -22px; width: 20px; transform: rotate(-96deg); transform-origin: 50% 50%; }
+.contact-sprig-right { right: -2px; top: 150px; width: 34px; transform: scaleX(-1) rotate(-4deg); }
+.contact-sprig-bottom { left: 74px; bottom: -22px; width: 20px; transform: rotate(84deg); }
+.contact-sprig-left { left: -2px; bottom: 168px; width: 34px; transform: scaleY(-1) rotate(-4deg); }
