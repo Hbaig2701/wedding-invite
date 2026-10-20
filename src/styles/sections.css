@@ -1286,3 +1286,15 @@ html.lenis, html.lenis body { height: auto; }
   font-family: var(--font-body); font-style: italic; font-size: 1rem; color: var(--ink); cursor: pointer;
 }
 .guest-add:active { background: rgba(107, 23, 39, 0.06); }
+
+/* Shaadi: the verse (cover page and envelope card) sits on the Mughal floral
+   from the user's mockup, at the mockup's scale (the drift starts from rest
+   at the page top, so the edge it opens is always above the screen). */
+[data-theme='shaadi'] .footer.footer-folio.cover,
+[data-theme='shaadi'] .footer.footer-folio.cover[data-parallax] {
+  background-color: #f6ead2;
+  background-image: url('../assets/shaadi-cover-pattern.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center calc(50% + var(--py, 0px));
+}
