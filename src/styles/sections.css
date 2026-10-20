@@ -1330,8 +1330,11 @@ html.lenis, html.lenis body { height: auto; }
 .contact-sprig-right { right: -2px; top: 150px; width: 34px; transform: scaleX(-1) rotate(-4deg); }
 .contact-sprig-bottom { left: 74px; bottom: -22px; width: 20px; transform: rotate(84deg); }
 .contact-sprig-left { left: -2px; bottom: 168px; width: 34px; transform: scaleY(-1) rotate(-4deg); }
-/* …and further along the sides: down the right, up the left */
-.contact-sprig-right2 { right: 1px; top: 285px; width: 26px; transform: scaleX(-1) rotate(5deg); }
-.contact-sprig-right3 { right: -3px; top: 395px; width: 28px; transform: scaleX(-1) scaleY(-1) rotate(-6deg); opacity: 0.9; }
-.contact-sprig-left2 { left: 1px; bottom: 300px; width: 26px; transform: scaleY(-1) rotate(5deg); }
-.contact-sprig-left3 { left: -3px; bottom: 410px; width: 28px; transform: rotate(-6deg); opacity: 0.9; }
+/* …and further along the sides, each piece overlapping the next so the vine
+   runs unbroken: down the right, up the left */
+.contact-sprig-right2 { right: 0; top: 226px; width: 26px; transform: scaleX(-1) rotate(4deg); }
+.contact-sprig-right3 { right: -3px; top: 330px; width: 30px; transform: scaleX(-1) scaleY(-1) rotate(-5deg); opacity: 0.9; }
+.contact-sprig-right4 { right: 1px; top: 396px; width: 24px; transform: scaleX(-1) rotate(-3deg); opacity: 0.9; }
+.contact-sprig-left2 { left: 0; bottom: 244px; width: 26px; transform: scaleY(-1) rotate(4deg); }
+.contact-sprig-left3 { left: -3px; bottom: 348px; width: 30px; transform: rotate(-5deg); opacity: 0.9; }
+.contact-sprig-left4 { left: 1px; bottom: 414px; width: 24px; transform: scaleY(-1) rotate(-3deg); opacity: 0.9; }
