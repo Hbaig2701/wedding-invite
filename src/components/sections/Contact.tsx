@@ -13,8 +13,8 @@ export function Contact({ content }: { content: InviteContent }) {
       <div className="sched-deco contact-deco" aria-hidden="true">
         <span className="sched-line contact-line-tl" />
         <span className="sched-line contact-line-br" />
-        <img className="sched-spray contact-spray-tr" src={`${B}flora/spray-tl.png`} alt="" loading="lazy" decoding="async" />
-        <img className="sched-spray contact-spray-bl" src={`${B}flora/spray-br.png`} alt="" loading="lazy" decoding="async" />
+        <img className="sched-spray contact-spray-tr" src={`${B}flora/spray-tl${c.contactFlora === 'warm' ? '-warm' : ''}.png`} alt="" loading="lazy" decoding="async" />
+        <img className="sched-spray contact-spray-bl" src={`${B}flora/spray-br${c.contactFlora === 'warm' ? '-warm' : ''}.png`} alt="" loading="lazy" decoding="async" />
       </div>
       <div className="col">
         <Reveal><div className="section-head" style={{ marginBottom: '0.6rem' }}><h2 className="section-title letterpress">For any questions,<br />please reach out</h2></div></Reveal>

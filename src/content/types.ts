@@ -129,6 +129,8 @@ export interface InviteContent {
   }
 
   contacts: Contact[]
+  /** 'warm' = the questions page's flower sprays in the coral reds of the Shaadi's pattern. */
+  contactFlora?: 'warm'
   /** Label on each contact's WhatsApp button. Default "Message on WhatsApp". */
   contactCta?: string
 

@@ -95,6 +95,7 @@ export const shaadi: InviteContent = {
     guestNames: true,
   },
 
+  contactFlora: 'warm',
   contactCta: 'Tap to message on WhatsApp',
   contacts: [
     { name: 'Shahid Mahmood', role: '', whatsapp: '966500466597' },
