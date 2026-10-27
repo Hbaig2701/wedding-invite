@@ -77,7 +77,7 @@ export function Hero({ content, theme, opened, instant = false }: { content: Inv
 const ARCH_TOP = 'M 105 420 L 105 410 L 214 285 L 295 285 A 213 213 0 0 1 721 285 L 802 285 L 911 410 L 911 420'
 const ARCH_BOTTOM = 'M 105 1080 L 105 1090 L 228 1205 L 292 1205 C 292 1280 330 1330 386 1340 Q 402 1344 404 1368 C 410 1394 460 1410 508 1410 C 556 1410 606 1394 612 1368 Q 614 1344 630 1340 C 686 1330 724 1280 724 1205 L 788 1205 L 911 1090 L 911 1080'
 
-function ArchFrame() {
+export function ArchFrame() {
   return (
     <div className="arch-frame" aria-hidden="true">
       <svg className="arch-line arch-line-top" viewBox="0 0 1016 420" preserveAspectRatio="none"><path d={ARCH_TOP} /></svg>

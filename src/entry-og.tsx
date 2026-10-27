@@ -1,46 +1,68 @@
 import { createRoot } from 'react-dom/client'
 import './styles/global.css'
 import './styles/sections.css'
-import './components/envelope/Envelope.css'
 import { shaadi } from './content/shaadi'
 import { walima } from './content/walima'
 import { shaadiTheme } from './theme/shaadi'
 import { walimaTheme } from './theme/walima'
 import { applyTheme } from './theme/types'
-import { GoldDefs } from './components/Ornaments'
-import { BackPanel, FlapFace, Pocket } from './components/envelope/EnvelopePaper'
-import { WaxSeal } from './components/envelope/WaxSeal'
+import { ReferenceFrame } from './components/Illumination'
+import { ArchFrame } from './components/sections/Hero'
+import shaadiPattern from './assets/og/shaadi-pattern.jpg'   // the mockup's pattern, single copy (no join)
+import receptionPattern from './assets/walima/verse-wildflowers.jpg'
 
-// Rendered only to produce /public/og/{event}.jpg — not part of the guest build.
+// Rendered only to produce /public/og/{event}.jpg (the link-preview picture),
+// photographed at 1200 x 630. Not part of the guest build.
 const ev = new URLSearchParams(location.search).get('event') === 'walima' ? 'walima' : 'shaadi'
 const content = ev === 'walima' ? walima : shaadi
 const theme = ev === 'walima' ? walimaTheme : shaadiTheme
 applyTheme(theme)
-document.documentElement.style.setProperty('--vw', '4.3px')
 
-function Og() {
+const caps = { fontFamily: 'var(--font-body)', fontWeight: 500, textTransform: 'uppercase' as const, letterSpacing: '0.28em', color: 'var(--ink)' }
+
+function ShaadiCard() {
   return (
-    <div className="ground grain" style={{ width: 1200, height: 630, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 70, padding: '0 90px', boxSizing: 'border-box', position: 'relative' }}>
-      <GoldDefs />
-      <div className="scene" style={{ ['--ew' as string]: '440px', flex: 'none' }}>
-        <div className="env-ground-shadow" />
-        <div className="env" style={{ transform: 'rotateX(6deg) rotateY(-8deg)' }}>
-          <div className="env-back"><BackPanel liner={theme.liner} /></div>
-          <Pocket />
-          <div className="env-flap" style={{ transform: 'translateZ(6px)' }}><FlapFace /></div>
-          <div className="seal-shadow" />
-          <div className="seal-wrap seal-on-pocket"><WaxSeal initials={content.couple.sealInitials} /></div>
-        </div>
-      </div>
-      <div style={{ color: 'var(--on-dark)', position: 'relative', zIndex: 2, maxWidth: 520 }}>
-        <p className="eyebrow" style={{ color: 'var(--on-dark-faint)' }}>{content.eventLabel} · {content.date.short}</p>
-        <p className={`font-display ${theme.darkGround ? 'gold-text' : ''}`} style={{ fontSize: 96, lineHeight: 0.98, marginTop: 18, letterSpacing: '-0.02em' }}>{content.couple.first}<br /><span style={{ fontStyle: 'italic', fontSize: 40 }}>{content.couple.joiner}</span><br />{content.couple.second}</p>
-        <p className="font-body" style={{ fontStyle: 'italic', fontSize: 26, marginTop: 26, color: 'var(--on-dark-soft)' }}>You are invited · {content.city}</p>
+    <div style={{ position: 'relative', width: 640, height: 560, background: '#faf1d2', boxShadow: '0 18px 40px -16px rgba(60,20,10,0.55)' }}>
+      <ReferenceFrame className="folio-frame" bandRatio={0.1} />
+      <div style={{ position: 'absolute', inset: 0, zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 90px' }}>
+        <div className="hero-calligraphy" style={{ width: 118, margin: '0 auto' }} />
+        <p style={{ ...caps, fontSize: 13, marginTop: 12, color: 'var(--ink-soft)' }}>The Shaadi of</p>
+        {/* stacked as on the invitation: ایمان / with / حمزہ */}
+        <p style={{ fontFamily: "'Nafees Names'", fontSize: 58, lineHeight: 1.25, color: 'var(--ink)', marginTop: 6 }} lang="ur" dir="rtl">{content.couple.firstArabic}</p>
+        <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 24, color: 'var(--ink-soft)', margin: '-2px 0 0' }}>with</p>
+        <p style={{ fontFamily: "'Nafees Names'", fontSize: 58, lineHeight: 1.25, color: 'var(--ink)' }} lang="ur" dir="rtl">{content.couple.secondArabic}</p>
+        <span style={{ display: 'block', width: 110, height: 1, background: 'var(--gold)', margin: '10px auto 14px' }} />
+        <p style={{ ...caps, fontSize: 16 }}>Monday · 21 December 2026</p>
+        <p style={{ ...caps, fontSize: 12, marginTop: 8, color: 'var(--ink-soft)' }}>Lahore, Pakistan</p>
       </div>
     </div>
   )
 }
-const style = document.createElement('style')
-style.textContent = !theme.darkGround ? '.ground{color:var(--ink)} .eyebrow{color:var(--ink-faint)!important} p{color:var(--ink)!important} .gold-text{-webkit-text-fill-color:transparent}' : ''
-document.head.appendChild(style)
+
+function ReceptionCard() {
+  // the Reception's floral arch, sized to 600px tall
+  return (
+    <div className="hero-folio hero-arch" style={{ ['--vw' as string]: `${(600 * 1016 / 1466) / 100}px`, position: 'relative', width: 600 * 1016 / 1466, height: 600, minHeight: 0, padding: 0, display: 'block', boxShadow: '0 18px 40px -16px rgba(60,20,10,0.45)' }}>
+      <ArchFrame />
+      <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingTop: 72 }}>
+        <div className="hero-calligraphy" style={{ width: 112, margin: '0 auto' }} />
+        <p style={{ ...caps, fontSize: 11, letterSpacing: '0.24em', marginTop: 40, color: 'var(--ink-soft)' }}>The Reception of</p>
+        <p style={{ fontFamily: "'Pinyon Script'", fontSize: 60, lineHeight: 1.12, color: 'var(--ink)', marginTop: 6 }}>{content.couple.first}</p>
+        <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 22, color: 'var(--ink-soft)', margin: '0 0 2px' }}>and</p>
+        <p style={{ fontFamily: "'Pinyon Script'", fontSize: 60, lineHeight: 1.12, color: 'var(--ink)' }}>{content.couple.second}</p>
+        <p style={{ ...caps, fontSize: 12, letterSpacing: '0.16em', marginTop: 16 }}>Sunday · 27 December 2026</p>
+        <p style={{ ...caps, fontSize: 10, letterSpacing: '0.22em', marginTop: 6, color: 'var(--ink-soft)' }}>Karachi, Pakistan</p>
+      </div>
+    </div>
+  )
+}
+
+function Og() {
+  const pattern = ev === 'walima' ? receptionPattern : shaadiPattern
+  return (
+    <div style={{ width: 1200, height: 630, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f6ead2', backgroundImage: `url(${pattern})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {ev === 'walima' ? <ReceptionCard /> : <ShaadiCard />}
+    </div>
+  )
+}
 createRoot(document.getElementById('root')!).render(<Og />)
