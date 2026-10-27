@@ -121,7 +121,12 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   useEffect(() => {
     const g = gateRef.current
     if (!g) return
-    const block = (e: Event) => { if (e.cancelable) e.preventDefault() }
+    // A swipe means "let me in": open if still closed, otherwise skip ahead.
+    const block = (e: Event) => {
+      if (e.cancelable) e.preventDefault()
+      if (phaseRef.current === 'closed') openRef.current(true)
+      else skipRef.current()
+    }
     g.addEventListener('touchmove', block, { passive: false })
     g.addEventListener('wheel', block, { passive: false })
     window.scrollTo(0, 0)
@@ -188,7 +193,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
 
   const quick = !!theme.gate?.quick
   const T = quick
-    ? { crack: 80, flap: 190, card: 700, hold: 2450, zoom: 0.8 }
+    ? { crack: 80, flap: 190, card: 650, hold: 2050, zoom: 0.8 }
     : { crack: 95, flap: 240, card: 1050, hold: folio ? 4050 : 3400, zoom: 0.95 }
 
   // open by itself if nobody taps (the music then waits for their first tap)
@@ -205,12 +210,27 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     finished.current = true
     setPhase('leaving'); onOpened()
   }
+  const zooming = useRef(false)
+  async function zoomAndFinish() {
+    if (zooming.current || finished.current) return
+    zooming.current = true
+    if (folio) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.95) * 1000 + 250)])
+    finish()
+  }
+  // guests who swipe while it opens go straight in (only once the seal has cracked)
+  function skip() {
+    if (finished.current) return
+    if (zooming.current) { finish(); return }
+    if (Date.now() - openedAt.current > 500) zoomAndFinish()
+  }
+  const openedAt = useRef(0)
 
   function open(auto = false) {
     if (phase !== 'closed') return
     if (auto) playMusicSoon()
     else playMusic()   // inside the tap, so phones allow it
     setPhase('opening')
+    openedAt.current = Date.now()
 
     if (reduced.current) {
       // cross-fade only
@@ -250,14 +270,15 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     // doesn't arrive, which left the envelope half-open with scrolling locked.
     // Carry on when the zoom's time is up, and as a backstop hand over to the
     // page a little later no matter what.
-    setTimeout(async () => {
-      if (folio) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.95) * 1000 + 250)])
-      finish()
-    }, T.hold)
+    setTimeout(zoomAndFinish, T.hold)
     setTimeout(finish, T.hold + 3000)
   }
   const openRef = useRef(open)
   openRef.current = open
+  const skipRef = useRef(skip)
+  skipRef.current = skip
+  const phaseRef = useRef(phase)
+  phaseRef.current = phase
 
   const names = `${content.couple.first} ${content.couple.joiner} ${content.couple.second}`
 
@@ -268,7 +289,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
       style={{ pointerEvents: phase === 'leaving' ? 'none' : undefined, ['--lx' as string]: lxPct, ['--ly' as string]: lyPct, ['--gold-angle' as string]: goldAngleDeg, ['--gold-pos' as string]: goldPosPct }}
       initial={{ opacity: 1 }}
       animate={phase === 'leaving' ? { opacity: 0 } : { opacity: 1 }}
-      transition={{ duration: reduced.current ? 0.9 : 1.1, ease: [0.4, 0, 0.2, 1] }}
+      transition={{ duration: reduced.current ? 0.9 : theme.gate?.quick ? 0.45 : 1.1, ease: [0.4, 0, 0.2, 1] }}
       onAnimationComplete={() => { /* unmounted by parent */ }}
     >
       <div className="gate-title">{content.eventLabel} · {content.date.short}</div>

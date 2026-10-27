@@ -33,7 +33,7 @@ export function App({ content, theme }: { content: InviteContent; theme: Theme }
   function onOpened() {
     setOpened(true)
     window.scrollTo(0, 0)
-    setTimeout(() => setGate(false), 1200)
+    setTimeout(() => setGate(false), theme.gate?.quick ? 500 : 1200)
   }
 
   return (
