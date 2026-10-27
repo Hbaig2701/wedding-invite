@@ -152,7 +152,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
                             </motion.div>
                           ))}
                         </AnimatePresence>
-                        {count < 30 && <button type="button" className="guest-add" onClick={() => setCount((x) => Math.min(30, x + 1))}>+ Add {extra === 0 ? 'a guest' : 'another guest'}</button>}
+                        {count < 30 && c.rsvp.guestAddButton !== false && <button type="button" className="guest-add" onClick={() => setCount((x) => Math.min(30, x + 1))}>+ Add {extra === 0 ? 'a guest' : 'another guest'}</button>}
                         {errors.guests && <p className="field-error">{errors.guests}</p>}
                       </div>
                     )}
