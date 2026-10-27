@@ -58,13 +58,31 @@ export function playMusic() {
 export function pauseMusic() { resumeOnReturn = false; disarm(); el?.pause() }
 
 /**
+ * The sound button: decide from the audio element itself (never from saved
+ * state), and when turning back on, play straight away at full volume rather
+ * than fading up from silence; a fade that never ran left it silent.
+ */
+export function toggleMusic() {
+  if (!el) return
+  disarm()
+  if (!el.paused) { pauseMusic(); return }
+  el.volume = TARGET
+  const p = el.play()
+  if (p && typeof p.catch === 'function') p.catch(() => {})
+}
+
+/**
  * For when the envelope opens by itself: phones refuse sound that doesn't
  * start from a tap, so try now and, if refused, start on the guest's first
  * tap anywhere on the page.
  */
 const EVENTS = ['pointerdown', 'touchend', 'click', 'keydown'] as const
 let armed = false
-function onFirstTouch() { disarm(); if (el && el.paused) playMusic() }
+function onFirstTouch(e: Event) {
+  // the sound button handles its own taps
+  if ((e.target as Element | null)?.closest?.('.sound-toggle')) return
+  disarm(); if (el && el.paused) playMusic()
+}
 function disarm() {
   if (!armed) return
   armed = false

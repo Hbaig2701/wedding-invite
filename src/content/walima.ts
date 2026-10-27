@@ -105,7 +105,7 @@ export const walima: InviteContent = {
     guestPlaceholder: "Type guest {n}'s name",
   },
 
-  contactCta: 'Tap to message on WhatsApp',
+  contactCta: 'Tap to message',
   contacts: [
     { name: 'Rabia Baig', role: '', whatsapp: '923333900202', display: '+92 333 3900202' },
     { name: 'Ali Baig', role: '', whatsapp: '971543733451', display: '+971 54 373 3451' },
