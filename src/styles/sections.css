@@ -1220,11 +1220,11 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='walima'] .footer.footer-folio.cover,
 [data-theme='walima'] .footer.footer-folio.cover[data-parallax] {
   background-color: #fcf7e8;
-  /* scattered watercolour wildflowers, made from the Reception Save the
-     Date's own flowers (reference/wildflower-pattern); a seamless tile */
+  /* the user's watercolour wildflower pattern, warmed to cream (the drift
+     starts from rest at the page top, so its edge is always off screen) */
   background-image: url('../assets/walima/verse-wildflowers.jpg');
-  background-size: 420px auto;
-  background-repeat: repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center calc(50% + var(--py, 0px));
 }
 
