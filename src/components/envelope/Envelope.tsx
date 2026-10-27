@@ -192,6 +192,13 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     return () => clearTimeout(t)
   }, [])
 
+  const finished = useRef(false)
+  function finish() {
+    if (finished.current) return
+    finished.current = true
+    setPhase('leaving'); onOpened()
+  }
+
   function open(auto = false) {
     if (phase !== 'closed') return
     if (auto) playMusicSoon()
@@ -200,7 +207,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
 
     if (reduced.current) {
       // cross-fade only
-      setTimeout(() => { setPhase('leaving'); onOpened() }, 250)
+      setTimeout(finish, 250)
       return
     }
 
@@ -232,10 +239,15 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     }, T.card)
 
     // 6. the card is held for a moment, then (folio) grows into the page
+    // Never rely on the zoom's "finished" signal alone: on some phones it
+    // doesn't arrive, which left the envelope half-open with scrolling locked.
+    // Carry on when the zoom's time is up, and as a backstop hand over to the
+    // page a little later no matter what.
     setTimeout(async () => {
-      if (folio) await zoomToPage()
-      setPhase('leaving'); onOpened()
+      if (folio) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.95) * 1000 + 250)])
+      finish()
     }, T.hold)
+    setTimeout(finish, T.hold + 3000)
   }
   const openRef = useRef(open)
   openRef.current = open
@@ -360,3 +372,5 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     </motion.div>
   )
 }
+
+const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
