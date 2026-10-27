@@ -67,7 +67,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
   return (
     <section className="rsvp paper paper-edge-top section-paper" id="rsvp" aria-label="RSVP">
       <div className="col">
-        <Reveal><div className="section-head"><p className="eyebrow">RSVP</p><h2 className="section-title letterpress">Will you join us?</h2></div></Reveal>
+        <Reveal><div className="section-head"><p className="eyebrow">RSVP</p><h2 className="section-title letterpress">{c.rsvp.title || 'Will you join us?'}</h2></div></Reveal>
         <Reveal index={1}><p className="rsvp-deadline">{c.rsvp.deadlineLabel}</p></Reveal>
 
         <AnimatePresence mode="wait" initial={false}>

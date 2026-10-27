@@ -100,6 +100,7 @@ export const walima: InviteContent = {
     failureCopy:
       'We couldn’t reach our guest book just now. Please send your response to us on WhatsApp instead — it takes a moment.',
     guestNames: true,
+    title: 'We hope you can join us',
     namePlaceholder: 'Type your name here',
     guestPlaceholder: "Type guest {n}'s name",
   },

@@ -126,6 +126,8 @@ export interface InviteContent {
     failureCopy: string
     /** Ask for the name of each extra guest (one box per guest beyond the respondent). */
     guestNames?: boolean
+    /** Heading under "RSVP" (default "Will you join us?"). */
+    title?: string
     /** Hint inside the name box (default "Full name"); {n} in guestPlaceholder is the guest number. */
     namePlaceholder?: string
     guestPlaceholder?: string
