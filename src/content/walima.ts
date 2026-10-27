@@ -65,13 +65,8 @@ export const walima: InviteContent = {
     mapImage: sindClubMap,
   },
 
-  timeline: [
-    // «TIMES TO CONFIRM»
-    { time: '6:30 PM', title: 'Arrival of Guests', note: 'welcome & refreshments' },
-    { time: '7:30 PM', title: 'Arrival of the Couple', note: '' },
-    { time: '8:30 PM', title: 'Dinner', note: 'a feast with family & friends' },
-    { time: '9:30 PM', title: 'Speeches', note: '' },
-  ],
+  // no schedule section: the evening is self-explanatory (an empty list hides it)
+  timeline: [],
 
   dressCode: {
     title: 'Dress code',
