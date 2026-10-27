@@ -114,11 +114,18 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     return () => clearTimeout(t)
   }, [])
 
-  // lock scroll while the gate is up
+  // Keep the page still while the gate is up by swallowing swipes and wheel
+  // on the gate itself. (Toggling overflow:hidden on <html>/<body> instead
+  // could leave iPhone Safari unable to scroll after it was switched back.)
+  const gateRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    document.documentElement.classList.add('no-scroll')
-    document.body.classList.add('no-scroll')
-    return () => { document.documentElement.classList.remove('no-scroll'); document.body.classList.remove('no-scroll') }
+    const g = gateRef.current
+    if (!g) return
+    const block = (e: Event) => { if (e.cancelable) e.preventDefault() }
+    g.addEventListener('touchmove', block, { passive: false })
+    g.addEventListener('wheel', block, { passive: false })
+    window.scrollTo(0, 0)
+    return () => { g.removeEventListener('touchmove', block); g.removeEventListener('wheel', block) }
   }, [])
 
   const chipsRef = useRef<HTMLDivElement[]>([])
@@ -256,8 +263,9 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
 
   return (
     <motion.div
+      ref={gateRef}
       className="gate"
-      style={{ ['--lx' as string]: lxPct, ['--ly' as string]: lyPct, ['--gold-angle' as string]: goldAngleDeg, ['--gold-pos' as string]: goldPosPct }}
+      style={{ pointerEvents: phase === 'leaving' ? 'none' : undefined, ['--lx' as string]: lxPct, ['--ly' as string]: lyPct, ['--gold-angle' as string]: goldAngleDeg, ['--gold-pos' as string]: goldPosPct }}
       initial={{ opacity: 1 }}
       animate={phase === 'leaving' ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: reduced.current ? 0.9 : 1.1, ease: [0.4, 0, 0.2, 1] }}

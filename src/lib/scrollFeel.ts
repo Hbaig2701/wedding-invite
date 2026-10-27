@@ -12,7 +12,11 @@ export function startScrollFeel(): () => void {
   if (typeof window === 'undefined') return () => {}
   if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return () => {}
 
-  const lenis = new Lenis({ duration: 1.35, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true, wheelMultiplier: 0.9 })
+  // Inertial wheel scrolling only where there is a mouse or trackpad. On
+  // phones Lenis would only listen to every swipe (it never smooths touch),
+  // which can make native scrolling hesitate, so phones keep pure native scroll.
+  const fine = window.matchMedia?.('(pointer: fine)').matches
+  const lenis = fine ? new Lenis({ duration: 1.35, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true, wheelMultiplier: 0.9 }) : null
 
   const layers = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'))
   const update = () => {
@@ -32,12 +36,12 @@ export function startScrollFeel(): () => void {
   }
   let raf = 0
   const frame = (time: number) => {
-    lenis.raf(time)
+    lenis?.raf(time)
     update()
     raf = requestAnimationFrame(frame)
   }
   raf = requestAnimationFrame(frame)
   window.addEventListener('scroll', update, { passive: true })
   update()
-  return () => { cancelAnimationFrame(raf); window.removeEventListener('scroll', update); lenis.destroy() }
+  return () => { cancelAnimationFrame(raf); window.removeEventListener('scroll', update); lenis?.destroy() }
 }

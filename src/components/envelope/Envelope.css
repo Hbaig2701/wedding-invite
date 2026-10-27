@@ -9,7 +9,8 @@
   justify-content: center;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+  touch-action: none;            /* taps still open it; swipes don't move the page */
+  overscroll-behavior: contain;
 }
 .gate-inner {
   position: relative;
