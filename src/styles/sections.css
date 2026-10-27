@@ -1219,14 +1219,13 @@ html.lenis, html.lenis body { height: auto; }
    section so the parallax drift never shows an edge. */
 [data-theme='walima'] .footer.footer-folio.cover,
 [data-theme='walima'] .footer.footer-folio.cover[data-parallax] {
-  background-color: #faf1d4;
-  /* a light ivory veil softens the flowers a touch */
-  background-image:
-    linear-gradient(rgba(250, 241, 212, 0.2), rgba(250, 241, 212, 0.2)),
-    url('../assets/walima/verse-flowers.jpg');
-  background-size: 100% 100%, auto calc(100% + 90px);
-  background-repeat: no-repeat, no-repeat;
-  background-position: center, center calc(50% + var(--py, 0px));
+  background-color: #fcf7e8;
+  /* scattered watercolour wildflowers, made from the Reception Save the
+     Date's own flowers (reference/wildflower-pattern); a seamless tile */
+  background-image: url('../assets/walima/verse-wildflowers.jpg');
+  background-size: 420px auto;
+  background-repeat: repeat;
+  background-position: center calc(50% + var(--py, 0px));
 }
 
 /* Walima: the same air above Hamza as below Iman (measured ink to ink),
