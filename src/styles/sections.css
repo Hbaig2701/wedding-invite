@@ -1308,21 +1308,26 @@ html.lenis, html.lenis body { height: auto; }
 [data-theme='shaadi'] .hero-folio .hero-after { margin-top: 1.15rem; }
 [data-theme='shaadi'] .hero-names-title .hero-name-nastaliq + .hero-joiner { position: relative; top: 6px; }
 
-/* Shaadi: the venue box framed in maroon: a solid band between two fine rules */
-[data-theme='shaadi'] .venue-box {
+/* Shaadi and Reception: the venue box framed in maroon: a solid band between two fine rules */
+[data-theme='shaadi'] .venue-box,
+[data-theme='walima'] .venue-box {
   position: relative;
   border: 1px solid var(--burgundy);
   outline: 0;
 }
 [data-theme='shaadi'] .venue-box::before,
-[data-theme='shaadi'] .venue-box::after {
+[data-theme='shaadi'] .venue-box::after,
+[data-theme='walima'] .venue-box::before,
+[data-theme='walima'] .venue-box::after {
   content: '';
   position: absolute;
   pointer-events: none;
   border-radius: 3px;
 }
-[data-theme='shaadi'] .venue-box::before { inset: -9px; border: 1px solid var(--burgundy); }
-[data-theme='shaadi'] .venue-box::after { inset: -5.5px; border: 2.5px solid var(--burgundy); }
+[data-theme='shaadi'] .venue-box::before,
+[data-theme='walima'] .venue-box::before { inset: -9px; border: 1px solid var(--burgundy); }
+[data-theme='shaadi'] .venue-box::after,
+[data-theme='walima'] .venue-box::after { inset: -5.5px; border: 2.5px solid var(--burgundy); }
 
 /* Shaadi questions: extra sprigs trailing from the two corner sprays */
 .contact-sprig { opacity: 0.95; }
