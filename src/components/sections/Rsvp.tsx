@@ -88,7 +88,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
               <Reveal index={2}>
                 <label className="field">
                   <span className="field-label">Your name</span>
-                  <input className="field-input" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name" />
+                  <input className="field-input" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={c.rsvp.namePlaceholder || 'Full name'} />
                   {errors.name && <p className="field-error">{errors.name}</p>}
                 </label>
                 <label className="field">
@@ -147,7 +147,7 @@ export function Rsvp({ content }: { content: InviteContent }) {
                         <AnimatePresence initial={false}>
                           {names.map((n, i) => (
                             <motion.div key={i} className="guest-row" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
-                              <input className="field-input" value={n} onChange={(e) => setGuestName(i, e.target.value)} placeholder={`Guest ${i + 2} · full name`} aria-label={`Guest ${i + 2} full name`} autoComplete="off" />
+                              <input className="field-input" value={n} onChange={(e) => setGuestName(i, e.target.value)} placeholder={(c.rsvp.guestPlaceholder || 'Guest {n} · full name').replace('{n}', String(i + 2))} aria-label={`Guest ${i + 2} full name`} autoComplete="off" />
                               <button type="button" className="guest-remove" onClick={() => removeGuest(i)} aria-label={`Remove guest ${i + 2}`}>×</button>
                             </motion.div>
                           ))}
