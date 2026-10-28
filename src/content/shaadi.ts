@@ -92,8 +92,6 @@ export const shaadi: InviteContent = {
     },
     failureCopy:
       'We couldn’t reach our guest book just now. Please send your response to us on WhatsApp instead — it takes a moment.',
-    guestNames: true,
-    guestAddButton: false,   // the number of guests above already does this
   },
 
   contactFlora: 'warm',
