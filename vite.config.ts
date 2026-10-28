@@ -26,6 +26,7 @@ export default defineConfig({
         main: resolve(import.meta.dirname, 'index.html'),
         shaadi: resolve(import.meta.dirname, 'shaadi/index.html'),
         walima: resolve(import.meta.dirname, 'walima/index.html'),
+        reception: resolve(import.meta.dirname, 'reception/index.html'),
       },
     },
     assetsInlineLimit: 0,
