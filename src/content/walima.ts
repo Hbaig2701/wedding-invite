@@ -44,9 +44,9 @@ export const walima: InviteContent = {
     short: '27 December 2026',
     numeric: '27 · 12 · 2026',
     weekday: 'Sunday',
-    startISO: '2026-12-27T18:30:00+05:00',   // «TIME TO CONFIRM» — copied from the Shaadi
+    startISO: '2026-12-27T19:00:00+05:00',
     endISO: '2026-12-27T23:30:00+05:00',
-    timeLabel: '6:30 PM',                    // «TIME TO CONFIRM»
+    timeLabel: '7:00 PM',
     timeNote: '',
     timezone: 'Asia/Karachi',
     ordinal: false,   // "December 27, 2026"
