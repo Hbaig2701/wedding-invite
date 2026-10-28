@@ -85,7 +85,7 @@ export const walima: InviteContent = {
 
   rsvp: {
     deadlineLabel: 'Kindly respond by November 30th',
-    endpoint: '',   // «PASTE GOOGLE APPS SCRIPT WEB APP URL» — see reference/rsvp-google-sheet-setup.gs
+    endpoint: 'https://script.google.com/macros/s/AKfycbzc5FXflyJh1ZbF7DHo9j94KP8cFC49Vc2pnHqged_wnAp7pco6FrVTT70Lc76zXkHX/exec',   // "Reception RSVPs" sheet — see reference/rsvp-sheet-script.gs
     thankYouAccept: {
       title: 'We can’t wait to see you',
       body: 'Your response has been recorded. Thank you for celebrating with us — it means the world to both families.',

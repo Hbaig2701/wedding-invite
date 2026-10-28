@@ -85,7 +85,7 @@ export const shaadi: InviteContent = {
 
   rsvp: {
     deadlineLabel: 'Kindly respond by November 30th',
-    endpoint: '',   // «PASTE GOOGLE APPS SCRIPT WEB APP URL» — see reference/rsvp-google-sheet-setup.gs
+    endpoint: 'https://script.google.com/macros/s/AKfycbxK96aUOUxtJNGjHORmmfI7W2E5U0CRQpMOwE5n4yyttsdtk0iBh_lninpHIAHOynWmPw/exec',   // "Shaadi RSVPs" sheet — see reference/rsvp-sheet-script.gs
     thankYouAccept: {
       title: 'We can’t wait to see you',
       body: 'Your response has been recorded. Thank you for celebrating with us — it means the world to both families.',
