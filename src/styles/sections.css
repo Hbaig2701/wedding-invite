@@ -1002,8 +1002,8 @@
 /* closing line and In sha Allah under the contact */
 .contact-closing { margin-top: 2rem; font-family: var(--font-body); font-style: italic; font-size: 1.1rem; color: var(--ink); }
 .contact-inshallah {
-  width: 105px;
-  aspect-ratio: 350 / 106;
+  width: 100px;
+  aspect-ratio: 1110 / 500;
   margin: 1.1rem auto 0;
   background: var(--gold-dark);
   -webkit-mask-image: url('../assets/masks/inshallah-mask.png');
