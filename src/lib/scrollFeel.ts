@@ -12,11 +12,13 @@ export function startScrollFeel(): () => void {
   if (typeof window === 'undefined') return () => {}
   if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return () => {}
 
-  // Inertial wheel scrolling only where there is a mouse or trackpad. On
-  // phones Lenis would only listen to every swipe (it never smooths touch),
-  // which can make native scrolling hesitate, so phones keep pure native scroll.
+  // Only where there is a mouse or trackpad. On phones both the inertial
+  // wheel scrolling (Lenis never smooths touch anyway) and the parallax are
+  // skipped: re-measuring and repainting the patterned backgrounds on every
+  // frame competed with native scrolling and could stall it on iPhones.
   const fine = window.matchMedia?.('(pointer: fine)').matches
-  const lenis = fine ? new Lenis({ duration: 1.35, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true, wheelMultiplier: 0.9 }) : null
+  if (!fine) return () => {}
+  const lenis = new Lenis({ duration: 1.35, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true, wheelMultiplier: 0.9 })
 
   const layers = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'))
   const update = () => {
@@ -36,12 +38,12 @@ export function startScrollFeel(): () => void {
   }
   let raf = 0
   const frame = (time: number) => {
-    lenis?.raf(time)
+    lenis.raf(time)
     update()
     raf = requestAnimationFrame(frame)
   }
   raf = requestAnimationFrame(frame)
   window.addEventListener('scroll', update, { passive: true })
   update()
-  return () => { cancelAnimationFrame(raf); window.removeEventListener('scroll', update); lenis?.destroy() }
+  return () => { cancelAnimationFrame(raf); window.removeEventListener('scroll', update); lenis.destroy() }
 }
