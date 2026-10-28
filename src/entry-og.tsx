@@ -43,14 +43,14 @@ function ShaadiCard() {
       <ReferenceFrame className="folio-frame" bandRatio={0.115} />
       <div style={{ position: 'absolute', inset: 0, zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 70px' }}>
         <div className="hero-calligraphy" style={{ width: 150, margin: '0 auto' }} />
-        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 21, color: 'var(--ink-soft)', marginTop: 22 }}>You are invited to the wedding of</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 23, color: 'var(--ink-soft)', marginTop: 22 }}>The wedding of</p>
         {/* names in the Reception's script (preview only) */}
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 52, lineHeight: 1.1, color: 'var(--ink)', marginTop: 8 }}>Iman</p>
         <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 22, color: 'var(--ink-soft)', margin: '0 0 2px' }}>&amp;</p>
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 52, lineHeight: 1.1, color: 'var(--ink)' }}>Hamza</p>
-        <span style={{ display: 'block', width: 200, height: 1, background: 'var(--gold)', margin: '22px auto 0' }} />
-        <p style={{ ...caps, fontSize: 14, letterSpacing: '0.22em', margin: '11px 0' }}>21 December 2026</p>
-        <span style={{ display: 'block', width: 200, height: 1, background: 'var(--gold)', margin: '0 auto' }} />
+        <span style={{ display: 'block', width: 250, height: 1, background: 'var(--gold)', margin: '22px auto 0' }} />
+        <p style={{ ...caps, fontSize: 20, letterSpacing: '0.2em', margin: '12px 0' }}>21 December 2026</p>
+        <span style={{ display: 'block', width: 250, height: 1, background: 'var(--gold)', margin: '0 auto' }} />
         <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 22, color: 'var(--ink)', marginTop: 18 }}>Lahore</p>
       </div>
     </div>
@@ -64,13 +64,13 @@ function ReceptionCard() {
       <ArchFrame />
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingTop: 70 }}>
         <div className="hero-calligraphy" style={{ width: 112, margin: '0 auto' }} />
-        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 17, lineHeight: 1.3, color: 'var(--ink-soft)', marginTop: 36 }}>You are invited<br />to the reception of</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 19, lineHeight: 1.3, color: 'var(--ink-soft)', marginTop: 44 }}>The reception of</p>
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 48, lineHeight: 1.1, color: 'var(--ink)', marginTop: 6 }}>Hamza</p>
         <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 20, color: 'var(--ink-soft)', margin: '0 0 2px' }}>&amp;</p>
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 48, lineHeight: 1.1, color: 'var(--ink)' }}>Iman</p>
-        <span style={{ display: 'block', width: 170, height: 1, background: 'var(--gold)', margin: '14px auto 0' }} />
-        <p style={{ ...caps, fontSize: 11, letterSpacing: '0.13em', margin: '9px 0' }}>27 December 2026</p>
-        <span style={{ display: 'block', width: 170, height: 1, background: 'var(--gold)', margin: '0 auto' }} />
+        <span style={{ display: 'block', width: 200, height: 1, background: 'var(--gold)', margin: '14px auto 0' }} />
+        <p style={{ ...caps, fontSize: 15, letterSpacing: '0.14em', margin: '10px 0' }}>27 December 2026</p>
+        <span style={{ display: 'block', width: 200, height: 1, background: 'var(--gold)', margin: '0 auto' }} />
         <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 19, color: 'var(--ink)', marginTop: 12 }}>Karachi</p>
       </div>
     </div>
