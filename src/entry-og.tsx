@@ -25,7 +25,7 @@ function ShaadiCard() {
     <div style={{ position: 'relative', width: 640, height: 560, background: '#faf1d2', boxShadow: '0 18px 40px -16px rgba(60,20,10,0.55)' }}>
       <ReferenceFrame className="folio-frame" bandRatio={0.1} />
       <div style={{ position: 'absolute', inset: 0, zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 90px' }}>
-        <div className="hero-calligraphy" style={{ width: 118, margin: '0 auto' }} />
+        <div className="hero-calligraphy" style={{ width: 196, margin: '0 auto' }} />
         <p style={{ ...caps, fontSize: 13, marginTop: 12, color: 'var(--ink-soft)' }}>The Shaadi of</p>
         {/* stacked as on the invitation: ایمان / with / حمزہ */}
         <p style={{ fontFamily: "'Nafees Names'", fontSize: 58, lineHeight: 1.25, color: 'var(--ink)', marginTop: 6 }} lang="ur" dir="rtl">{content.couple.firstArabic}</p>
@@ -45,7 +45,7 @@ function ReceptionCard() {
     <div className="hero-folio hero-arch" style={{ ['--vw' as string]: `${(600 * 1016 / 1466) / 100}px`, position: 'relative', width: 600 * 1016 / 1466, height: 600, minHeight: 0, padding: 0, display: 'block', boxShadow: '0 18px 40px -16px rgba(60,20,10,0.45)' }}>
       <ArchFrame />
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingTop: 72 }}>
-        <div className="hero-calligraphy" style={{ width: 112, margin: '0 auto' }} />
+        <div className="hero-calligraphy" style={{ width: 150, margin: '0 auto' }} />
         <p style={{ ...caps, fontSize: 11, letterSpacing: '0.24em', marginTop: 40, color: 'var(--ink-soft)' }}>The Reception of</p>
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 60, lineHeight: 1.12, color: 'var(--ink)', marginTop: 6 }}>{content.couple.first}</p>
         <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 22, color: 'var(--ink-soft)', margin: '0 0 2px' }}>and</p>

@@ -449,7 +449,7 @@
 /* The Bismillah calligraphy: an alpha mask filled with our gold foil */
 .hero-calligraphy {
   width: min(78%, 300px);
-  aspect-ratio: 643 / 391;
+  aspect-ratio: 740 / 264;
   margin: 0 auto;
   background-image: linear-gradient(105deg, var(--gold-deep) 0%, var(--gold-dark) 22%, var(--gold) 42%, var(--gold-light) 52%, var(--gold) 62%, var(--gold-dark) 80%, var(--gold-deep) 100%);
   -webkit-mask-image: url('../assets/masks/bismillah-mask.png');
@@ -741,7 +741,7 @@
 .hero-inner-folio { display: flex; flex-direction: column; }
 .hero-opener { flex: none; }
 .hero-centre { margin: 0; padding: 2.2rem 0 0.6rem; }
-.hero-folio .hero-calligraphy { width: min(46%, 180px); }
+.hero-folio .hero-calligraphy { width: min(70%, 230px); }
 .hero-folio .hero-parents:not(.hero-after) { margin-top: 0; }
 .hero-folio .hero-names-big { margin-top: 2rem; }
 .hero-folio .hero-after { margin-top: 1.6rem; }
@@ -1210,9 +1210,9 @@ html.lenis, html.lenis body { height: auto; }
 .hero-arch .hero-inner { padding-left: 0; padding-right: 0; }
 /* the Bismillah sits a touch lower in the dome; the words below move half as
    much so they stay midway between it and the arch's lower corners */
-.hero-arch .hero-opener { position: relative; top: calc(var(--s) * 18); }
-.hero-arch .hero-centre { padding-top: calc(2.2rem + var(--s) * 68); position: relative; top: calc(var(--s) * 9); }
-.hero-arch .hero-calligraphy { width: calc(var(--s) * 290); }
+.hero-arch .hero-opener { position: relative; top: calc(var(--s) * -14); }
+.hero-arch .hero-centre { padding-top: calc(2.2rem + var(--s) * 68); position: relative; top: calc(var(--s) * -8); }
+.hero-arch .hero-calligraphy { width: calc(var(--s) * 330); }
 
 /* Walima: the verse (cover page and envelope card) sits on falling watercolour
    flowers instead of the folk pattern; the image is a little taller than the
