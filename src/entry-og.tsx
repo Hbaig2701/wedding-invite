@@ -43,7 +43,7 @@ function ShaadiCard() {
       <ReferenceFrame className="folio-frame" bandRatio={0.115} />
       <div style={{ position: 'absolute', inset: 0, zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 70px' }}>
         <div className="hero-calligraphy" style={{ width: 150, margin: '0 auto' }} />
-        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 22, color: 'var(--ink-soft)', marginTop: 22 }}>You are invited</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 21, color: 'var(--ink-soft)', marginTop: 22 }}>You are invited to the wedding of</p>
         {/* names in the Reception's script (preview only) */}
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 52, lineHeight: 1.1, color: 'var(--ink)', marginTop: 8 }}>Iman</p>
         <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 22, color: 'var(--ink-soft)', margin: '0 0 2px' }}>&amp;</p>
@@ -64,7 +64,7 @@ function ReceptionCard() {
       <ArchFrame />
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingTop: 70 }}>
         <div className="hero-calligraphy" style={{ width: 112, margin: '0 auto' }} />
-        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 18, color: 'var(--ink-soft)', marginTop: 40 }}>You are invited</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 17, lineHeight: 1.3, color: 'var(--ink-soft)', marginTop: 36 }}>You are invited<br />to the reception of</p>
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 48, lineHeight: 1.1, color: 'var(--ink)', marginTop: 6 }}>Hamza</p>
         <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 20, color: 'var(--ink-soft)', margin: '0 0 2px' }}>&amp;</p>
         <p style={{ fontFamily: "'Pinyon Script'", fontSize: 48, lineHeight: 1.1, color: 'var(--ink)' }}>Iman</p>
