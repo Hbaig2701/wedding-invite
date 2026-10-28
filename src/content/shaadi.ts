@@ -1,4 +1,5 @@
 import type { InviteContent } from './types'
+import defenceRayaMap from '../assets/shaadi/map-defence-raya.jpg'
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  SHAADI · 21 December 2026 · Lahore
@@ -61,6 +62,9 @@ export const shaadi: InviteContent = {
     mapsLink: 'https://maps.app.goo.gl/t9fGKXWUd9qE2Xk47',
     lat: 31.4703929,
     lng: 74.4691344,
+    // a still map (© OpenStreetMap contributors): the live Google embed loaded
+    // heavy scripts that froze scrolling on iPhones just after the envelope
+    mapImage: defenceRayaMap,
   },
 
   // no schedule section: the evening is self-explanatory (an empty list hides it)
