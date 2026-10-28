@@ -85,6 +85,8 @@ export interface InviteContent {
     timeLabel: string       // "7:00 pm"
     timeNote?: string       // "Guests are requested to be seated by 7:30 pm"
     timezone: string        // "Asia/Karachi"
+    /** false = "December 27, 2026" without the "th" (default shows it) */
+    ordinal?: boolean
   }
 
   city: string

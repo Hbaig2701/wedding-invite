@@ -49,12 +49,14 @@ export const walima: InviteContent = {
     timeLabel: '6:30 PM',                    // «TIME TO CONFIRM»
     timeNote: '',
     timezone: 'Asia/Karachi',
+    ordinal: false,   // "December 27, 2026"
   },
 
   city: 'Karachi, Pakistan',
 
   venue: {
     name: 'Sind Club',
+    hall: 'Married Block Lawn',
     address: 'Abdullah Haroon Road\nKarachi, Pakistan',
     mapsQuery: 'Sind Club, Karachi',
     mapsLink: 'https://maps.app.goo.gl/wx3MreRHoPXWsdaZ8',

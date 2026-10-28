@@ -28,7 +28,7 @@ export function longDate(c: InviteContent) {
 /** "Monday, December 21st, 2026" with the ordinal set as a superscript. */
 export function LongDate({ c }: { c: InviteContent }) {
   const d = new Date(c.date.startISO)
-  return <>{c.date.weekday}, {MONTHS_LONG[d.getMonth()]} {d.getDate()}<sup>{ordinalSuffix(d.getDate())}</sup>, {d.getFullYear()}</>
+  return <>{c.date.weekday}, {MONTHS_LONG[d.getMonth()]} {d.getDate()}{c.date.ordinal !== false && <sup>{ordinalSuffix(d.getDate())}</sup>}, {d.getFullYear()}</>
 }
 
 export function Details({ content, theme }: { content: InviteContent; theme: Theme }) {
@@ -50,7 +50,7 @@ export function Details({ content, theme }: { content: InviteContent; theme: The
           </Reveal>
           <Reveal index={1}>
             <p className="details-weekday">{c.date.weekday}</p>
-            <p className="details-date-big">{MONTHS_LONG[start.getMonth()]} {start.getDate()}<sup>{ordinalSuffix(start.getDate())}</sup>, {start.getFullYear()}</p>
+            <p className="details-date-big">{MONTHS_LONG[start.getMonth()]} {start.getDate()}{c.date.ordinal !== false && <sup>{ordinalSuffix(start.getDate())}</sup>}, {start.getFullYear()}</p>
             <p className="details-time-small">{c.date.timeLabel}</p>
             <p className="details-city">{c.city}</p>
           </Reveal>
