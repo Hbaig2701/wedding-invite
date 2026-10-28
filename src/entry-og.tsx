@@ -16,7 +16,7 @@ const ev = new URLSearchParams(location.search).get('event') === 'walima' ? 'wal
 applyTheme(ev === 'walima' ? walimaTheme : shaadiTheme)
 
 const look = ev === 'walima'
-  ? { bg: '#efe9de', env: '#e9cdc6', envEdge: '#dbb7af', liner: receptionPattern, linerSize: '520px auto' }
+  ? { bg: '#efe9de', env: '#c9a6ad', envEdge: '#b58f97', liner: receptionPattern, linerSize: '520px auto' }
   : { bg: '#efe8dc', env: '#5b1422', envEdge: '#7a2133', liner: shaadiPattern, linerSize: '420px auto' }
 
 const caps = { fontFamily: 'var(--font-body)', fontWeight: 500, textTransform: 'uppercase' as const, color: 'var(--ink)' }
