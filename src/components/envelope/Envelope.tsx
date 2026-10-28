@@ -185,7 +185,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     const tx = heroLeft - sr.left - s * (cr.left - sr.left)
     const ty = 0 - sr.top - s * (cr.top - sr.top)
     const ease = [0.65, 0, 0.25, 1] as const
-    const d = theme.gate?.quick ? 0.8 : 0.95
+    const d = theme.gate?.quick ? 0.8 : 0.85
     animate(sceneX, tx, { duration: d, ease })
     animate(sceneY, ty, { duration: d, ease })
     return animate(sceneS, s, { duration: d, ease }).then(() => undefined)
@@ -194,7 +194,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   const quick = !!theme.gate?.quick
   const T = quick
     ? { crack: 80, flap: 190, card: 650, hold: 2050, zoom: 0.8 }
-    : { crack: 95, flap: 240, card: 1050, hold: folio ? 4050 : 3400, zoom: 0.95 }
+    : { crack: 95, flap: 220, card: 900, hold: folio ? 3450 : 3000, zoom: 0.85 }
 
   // open by itself if nobody taps (the music then waits for their first tap)
   useEffect(() => {
@@ -214,7 +214,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   async function zoomAndFinish() {
     if (zooming.current || finished.current) return
     zooming.current = true
-    if (folio) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.95) * 1000 + 250)])
+    if (folio) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.85) * 1000 + 250)])
     finish()
   }
   // guests who swipe while it opens go straight in (only once the seal has cracked)
