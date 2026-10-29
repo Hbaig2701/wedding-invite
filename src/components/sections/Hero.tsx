@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import type { InviteContent } from '../../content/types'
 import type { Theme } from '../../theme/types'
 import { CuspedArch, Divider } from '../Ornaments'
-import { ReferenceFrame } from '../Illumination'
+import { ReferenceFrameCanvas } from '../Illumination'
 
 export function Hero({ content, theme, opened, instant = false }: { content: InviteContent; theme: Theme; opened: boolean; instant?: boolean }) {
   const c = content
@@ -19,7 +19,7 @@ export function Hero({ content, theme, opened, instant = false }: { content: Inv
       <section className={arch ? 'hero hero-folio hero-arch paper' : 'hero hero-folio paper'} aria-label="Invitation">
         {arch
           ? <ArchFrame />
-          : <ReferenceFrame className="folio-frame" bandRatio={0.125} />}
+          : <ReferenceFrameCanvas className="folio-frame" bandRatio={0.125} />}
         <div className="hero-inner col hero-inner-folio">
           <div className="hero-opener">
             <motion.div {...item(0)} className="hero-calligraphy" role="img" aria-label={c.bismillah.arabic} />

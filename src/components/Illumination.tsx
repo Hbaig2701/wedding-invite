@@ -315,3 +315,58 @@ export function ReferenceFrame({ className, bandRatio = 0.155 }: { className?: s
     </svg>
   )
 }
+
+/**
+ * The same border painted once into a canvas. Phones redraw the SVG version's
+ * image patterns while scrolling, which made the Shaadi page stall after the
+ * envelope; a canvas is a plain bitmap, as cheap as the Reception's images.
+ * Tiles are placed on whole device pixels so no seams show between them.
+ */
+const TILES = ['e-top', 'e-bottom', 'e-left', 'e-right', 'c-tl', 'c-tr', 'c-bl', 'c-br'] as const
+export function ReferenceFrameCanvas({ className, bandRatio = 0.155 }: { className?: string; bandRatio?: number }) {
+  const ref = useRef<HTMLCanvasElement>(null)
+  useEffect(() => {
+    const cv = ref.current; if (!cv) return
+    let imgs: Record<string, HTMLImageElement> | null = null
+    let last = ''
+    let dead = false
+    const draw = () => {
+      if (!imgs) return
+      const r = cv.getBoundingClientRect()
+      const W = Math.round(r.width), H = Math.round(r.height)
+      if (!W || !H) return
+      const d = Math.min(window.devicePixelRatio || 1, 3)
+      const key = `${W}x${H}@${d}`; if (key === last) return; last = key
+      cv.width = Math.round(W * d); cv.height = Math.round(H * d)
+      const ctx = cv.getContext('2d'); if (!ctx) return
+      ctx.imageSmoothingQuality = 'high'
+      const bh = Math.round(W * bandRatio), s = bh / REF.BH, bw = Math.round(REF.BW * s)
+      const tw = REF.PH * s, th = REF.PV * s
+      const px = (v: number) => Math.round(v * d)
+      // one image stretched into a CSS-pixel box, snapped to device pixels
+      const put = (img: HTMLImageElement, x: number, y: number, w: number, h: number) =>
+        ctx.drawImage(img, px(x), px(y), px(x + w) - px(x), px(y + h) - px(y))
+      const band = (img: HTMLImageElement, x: number, y: number, w: number, h: number, horizontal: boolean) => {
+        ctx.save(); ctx.beginPath(); ctx.rect(px(x), px(y), px(x + w) - px(x), px(y + h) - px(y)); ctx.clip()
+        if (horizontal) for (let t = x; t < x + w; t += tw) put(img, t, y, tw, h)
+        else for (let t = y; t < y + h; t += th) put(img, x, t, w, th)
+        ctx.restore()
+      }
+      band(imgs['e-top'], bw, 0, W - bw * 2, bh, true)
+      band(imgs['e-bottom'], bw, H - bh, W - bw * 2, bh, true)
+      band(imgs['e-left'], 0, bh, bw, H - bh * 2, false)
+      band(imgs['e-right'], W - bw, bh, bw, H - bh * 2, false)
+      put(imgs['c-tl'], 0, 0, bw, bh)
+      put(imgs['c-tr'], W - bw, 0, bw, bh)
+      put(imgs['c-bl'], 0, H - bh, bw, bh)
+      put(imgs['c-br'], W - bw, H - bh, bw, bh)
+    }
+    Promise.all(TILES.map((n) => new Promise<[string, HTMLImageElement]>((ok, fail) => {
+      const im = new Image(); im.onload = () => ok([n, im]); im.onerror = fail; im.src = `${B}border/${n}.jpg`
+    }))).then((list) => { if (dead) return; imgs = Object.fromEntries(list); draw() }).catch(() => {})
+    let ro: ResizeObserver | null = null
+    if (typeof ResizeObserver !== 'undefined') { ro = new ResizeObserver(draw); ro.observe(cv) } else window.addEventListener('resize', draw)
+    return () => { dead = true; ro?.disconnect(); window.removeEventListener('resize', draw) }
+  }, [bandRatio])
+  return <canvas ref={ref} className={className} aria-hidden="true" />
+}
