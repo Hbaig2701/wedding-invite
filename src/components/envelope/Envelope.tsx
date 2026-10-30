@@ -214,7 +214,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   async function zoomAndFinish() {
     if (zooming.current || finished.current) return
     zooming.current = true
-    if (folio) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.85) * 1000 + 250)])
+    if (folio && !reduced.current) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.85) * 1000 + 250)])
     finish()
   }
   // guests who swipe while it opens go straight in (only once the seal has cracked)
@@ -232,11 +232,8 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     setPhase('opening')
     openedAt.current = Date.now()
 
-    if (reduced.current) {
-      // cross-fade only
-      setTimeout(finish, 250)
-      return
-    }
+    // Reduced motion still sees the envelope open (it's the invitation itself,
+    // and small); only the big zoom into the page becomes a fade (below).
 
     // 1. the seal reacts first: micro-compress, then a sharp crack
     setPressed(true)
@@ -289,7 +286,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
       style={{ pointerEvents: phase === 'leaving' ? 'none' : undefined, ['--lx' as string]: lxPct, ['--ly' as string]: lyPct, ['--gold-angle' as string]: goldAngleDeg, ['--gold-pos' as string]: goldPosPct }}
       initial={{ opacity: 1 }}
       animate={phase === 'leaving' ? { opacity: 0 } : { opacity: 1 }}
-      transition={{ duration: reduced.current ? 0.9 : theme.gate?.quick ? 0.45 : 1.1, ease: [0.4, 0, 0.2, 1] }}
+      transition={{ duration: theme.gate?.quick ? 0.45 : 1.1, ease: [0.4, 0, 0.2, 1] }}
       onAnimationComplete={() => { /* unmounted by parent */ }}
     >
       <div className="gate-title">{content.eventLabel} · {content.date.short}</div>
