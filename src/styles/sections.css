@@ -1,5 +1,11 @@
 /* ───────────────────────────── Page layout ───────────────────────────── */
-.page { position: relative; width: 100%; overflow-x: hidden; }
+/* Clip anything that pokes out (decorative sprigs), but never become a scroll
+   area of its own: with overflow-x: hidden the page computed overflow-y: auto,
+   and a sprig hanging 32px below the Shaadi's last box made the page an inner
+   scroller that ate the first swipe after the envelope. Both axes hidden (old
+   Safari) isn't user-scrollable either; clip isn't a scroll container at all. */
+.page { position: relative; width: 100%; overflow: hidden; }
+@supports (overflow: clip) { .page { overflow: clip; } }
 .col { width: 100%; max-width: var(--col); margin: 0 auto; padding-left: 24px; padding-right: 24px; }
 .col-wide { max-width: var(--col); }
 
