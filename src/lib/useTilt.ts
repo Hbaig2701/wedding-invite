@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useMotionValue, useSpring, type MotionValue } from 'motion/react'
-import { prefersReducedMotion } from './motionPrefs'
 
 /**
  * A normalised "where is the light / where is the viewer" pair in [-1, 1].
@@ -15,7 +14,7 @@ export function useTilt(enabled = true): { x: MotionValue<number>; y: MotionValu
   const y = useSpring(rawY, { stiffness: 60, damping: 18, mass: 0.6 })
 
   useEffect(() => {
-    if (!enabled || prefersReducedMotion()) return
+    if (!enabled) return
     const onPointer = (e: PointerEvent | MouseEvent) => {
       const w = window.innerWidth, h = window.innerHeight
       rawX.set(((e.clientX / w) - 0.5) * 2)

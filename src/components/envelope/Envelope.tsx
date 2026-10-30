@@ -5,7 +5,6 @@ import type { Theme } from '../../theme/types'
 import { WaxSeal } from './WaxSeal'
 import { BackPanel, FlapBack, FlapFace, Pocket } from './EnvelopePaper'
 import { useTilt } from '../../lib/useTilt'
-import { prefersReducedMotion } from '../../lib/motionPrefs'
 import { Cover } from '../sections/Footer'
 import { playMusic, playMusicSoon } from '../../lib/music'
 import './Envelope.css'
@@ -25,7 +24,6 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   const [cracked, setCracked] = useState(false)
   const [pressed, setPressed] = useState(false)
   const [cue, setCue] = useState(false)
-  const reduced = useRef(prefersReducedMotion())
   // Folio: the card is a live miniature of the first page. Its size and the
   // lift/sink distances are measured in pixels once the envelope is laid out.
   const folio = theme.hero === 'folio'
@@ -47,7 +45,6 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   const breatheX = useMotionValue(0)
   const breatheY = useMotionValue(0)
   useEffect(() => {
-    if (reduced.current) return
     const a = animate(breatheX, [0, 0.9, 0, -0.7, 0], { duration: 14, repeat: Infinity, ease: 'easeInOut' })
     const b = animate(breatheY, [0, -0.6, 0.5, 0], { duration: 11, repeat: Infinity, ease: 'easeInOut' })
     return () => { a.stop(); b.stop() }
@@ -214,7 +211,7 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
   async function zoomAndFinish() {
     if (zooming.current || finished.current) return
     zooming.current = true
-    if (folio && !reduced.current) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.85) * 1000 + 250)])
+    if (folio) await Promise.race([zoomToPage(), wait((theme.gate?.quick ? 0.8 : 0.85) * 1000 + 250)])
     finish()
   }
   // guests who swipe while it opens go straight in (only once the seal has cracked)
@@ -231,9 +228,6 @@ export function EnvelopeGate({ content, theme, onOpened }: { content: InviteCont
     else playMusic()   // inside the tap, so phones allow it
     setPhase('opening')
     openedAt.current = Date.now()
-
-    // Reduced motion still sees the envelope open (it's the invitation itself,
-    // and small); only the big zoom into the page becomes a fade (below).
 
     // 1. the seal reacts first: micro-compress, then a sharp crack
     setPressed(true)

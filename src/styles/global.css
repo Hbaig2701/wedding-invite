@@ -349,11 +349,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 /* Focus ring that fits */
 :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
 
-/* Reduced motion: kill decorative loops */
-@media (prefers-reduced-motion: reduce) {
-  .foil-live, .foil-live-slow { animation: none; }
-  html { scroll-behavior: auto; }
-}
+/* The opening plays the same on every phone, whatever its motion setting
+   (the couple's choice: guests with Reduce Motion on saw a bare fade). */
 
 /* Hide scrollbar noise during the gate */
 
