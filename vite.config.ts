@@ -28,6 +28,8 @@ export default defineConfig({
         walima: resolve(import.meta.dirname, 'walima/index.html'),
         reception: resolve(import.meta.dirname, 'reception/index.html'),
         send: resolve(import.meta.dirname, 'send/index.html'),   // private helper for the families
+        sendShaadi: resolve(import.meta.dirname, 'send/shaadi/index.html'),
+        sendReception: resolve(import.meta.dirname, 'send/reception/index.html'),
       },
     },
     assetsInlineLimit: 0,
