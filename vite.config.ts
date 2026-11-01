@@ -27,6 +27,7 @@ export default defineConfig({
         shaadi: resolve(import.meta.dirname, 'shaadi/index.html'),
         walima: resolve(import.meta.dirname, 'walima/index.html'),
         reception: resolve(import.meta.dirname, 'reception/index.html'),
+        send: resolve(import.meta.dirname, 'send/index.html'),   // private helper for the families
       },
     },
     assetsInlineLimit: 0,
