@@ -33,10 +33,11 @@ document.getElementById('app')!.innerHTML = `
 
     <label for="name">Family name</label>
     <input id="name" autocomplete="off" autocapitalize="words" placeholder="e.g. Khan" />
-    <p class="hint">Makes “Mr. and Mrs. Khan,”</p>
+    <label class="check"><input type="checkbox" id="family" /> <span>Add “and family”</span></label>
+    <p class="hint" id="name-hint">Makes “Mr. and Mrs. Khan,”</p>
 
     <label for="greet">Or your own greeting (optional)</label>
-    <input id="greet" autocomplete="off" autocapitalize="sentences" placeholder="e.g. Mr. and Mrs. Khan and family" />
+    <input id="greet" autocomplete="off" autocapitalize="sentences" placeholder="e.g. Dear Aunty Nasreen and family" />
     <p class="hint">If filled in, this is used instead</p>
 
     <label for="custom">Or a custom message (optional)</label>
@@ -55,15 +56,18 @@ document.getElementById('app')!.innerHTML = `
 const name = document.getElementById('name') as HTMLInputElement
 const greet = document.getElementById('greet') as HTMLInputElement
 const custom = document.getElementById('custom') as HTMLTextAreaElement
+const family = document.getElementById('family') as HTMLInputElement
+const nameHint = document.getElementById('name-hint')!
 const msg = document.getElementById('msg')!
 const go = document.getElementById('go') as HTMLAnchorElement
 
 function greeting() {
   const g = greet.value.trim()
   if (g) return g.replace(/,\s*$/, '') + ','
-  return `Mr. and Mrs. ${name.value.trim() || '________'},`
+  return `Mr. and Mrs. ${name.value.trim() || '________'}${family.checked ? ' and family' : ''},`
 }
 function update() {
+  nameHint.textContent = `Makes “Mr. and Mrs. ${name.value.trim() || 'Khan'}${family.checked ? ' and family' : ''},”`
   const own = custom.value.trim()
   const body = own || `${greeting()}\n\n${ev.line}`
   const text = `${body}\n\nYour invitation: ${ev.url}`
@@ -73,4 +77,5 @@ function update() {
 name.addEventListener('input', update)
 greet.addEventListener('input', update)
 custom.addEventListener('input', update)
+family.addEventListener('change', update)
 update()

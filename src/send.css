@@ -16,3 +16,5 @@
       .reception .btn { background: #9b6f63; }
       .note { margin-top: 26px; font-size: 0.95rem; color: var(--soft); line-height: 1.5; }
 textarea { resize: vertical; line-height: 1.4; }
+.check { display: flex; align-items: center; gap: 12px; margin: 12px 0 0; padding: 10px 14px; background: #fff; border: 1px solid var(--line); border-radius: 10px; font-size: 1.1rem; letter-spacing: 0; text-transform: none; cursor: pointer; }
+.check input { width: 24px; height: 24px; margin: 0; padding: 0; accent-color: #6b1727; flex: none; }
