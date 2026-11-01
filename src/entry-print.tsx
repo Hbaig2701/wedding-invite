@@ -16,7 +16,21 @@ import { GoldDefs } from './components/Ornaments'
 // Everything comes from the invitation's own content and artwork.
 const ev = new URLSearchParams(location.search).get('event') === 'walima' ? 'walima' : 'shaadi'
 applyTheme(ev === 'walima' ? walimaTheme : shaadiTheme)
-const c = ev === 'walima' ? walima : shaadi
+const base = ev === 'walima' ? walima : shaadi
+// The Shaadi as sent by the groom's family (?from=groom): their names on
+// top, "their beloved son", Hamza first and Iman's parents under her name.
+const fromGroom = ev === 'shaadi' && new URLSearchParams(location.search).get('from') === 'groom'
+const c = fromGroom
+  ? {
+      ...base,
+      hero: {
+        hosts: 'Rabia and Ali Baig',
+        line: 'request the honor of your presence\nat the wedding of their beloved son',
+        afterNames: 'Daughter of\nSania and Shahid Mahmood',
+      },
+      couple: { ...base.couple, first: base.couple.second, second: base.couple.first, firstArabic: base.couple.secondArabic, secondArabic: base.couple.firstArabic },
+    }
+  : base
 
 const PAGE_W = 794, PAGE_H = 1123
 const italic: CSSProperties = { fontFamily: 'var(--font-body)', fontStyle: 'italic', color: 'var(--ink)', margin: 0 }
@@ -59,7 +73,8 @@ function Names({ size }: { size: number }) {
   return (
     <h1 className="hero-names hero-names-title" style={{ margin: 0 }}>
       {name(cp.first, cp.firstArabic)}
-      <span className="hero-joiner"><i /><em>{cp.joiner === '&' ? 'with' : cp.joiner}</em><i /></span>
+      {/* حمزہ's ink sits high in its line, so "with" rises to stay centred */}
+      <span className="hero-joiner" style={fromGroom ? { top: -8 } : undefined}><i /><em>{cp.joiner === '&' ? 'with' : cp.joiner}</em><i /></span>
       {name(cp.second, cp.secondArabic)}
     </h1>
   )
@@ -83,7 +98,7 @@ function Shaadi() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 120px' }}>
         <Opening k={1.1} />
         <div style={{ marginTop: 16 }}><Names size={68} /></div>
-        <p style={{ ...caps, fontSize: 17.5, letterSpacing: '0.16em', marginTop: 16 }}>{c.hero.afterNames}</p>
+        <p style={{ ...caps, fontSize: 17.5, letterSpacing: '0.16em', lineHeight: 1.6, marginTop: 16 }}>{lines(c.hero.afterNames || '')}</p>
         <div style={{ marginTop: 8 }}><Details k={1.1} gap={28} /></div>
       </div>
     </div>
