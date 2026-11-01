@@ -19,13 +19,6 @@ applyTheme(ev === 'walima' ? walimaTheme : shaadiTheme)
 const c = ev === 'walima' ? walima : shaadi
 
 const PAGE_W = 794, PAGE_H = 1123
-// phone numbers as people would dial them
-const PHONES: Record<string, string> = {
-  '966500466597': '+966 50 046 6597',
-  '966532702343': '+966 53 270 2343',
-}
-const phone = (k: { whatsapp: string; display?: string }) => k.display || PHONES[k.whatsapp] || `+${k.whatsapp}`
-
 const italic: CSSProperties = { fontFamily: 'var(--font-body)', fontStyle: 'italic', color: 'var(--ink)', margin: 0 }
 const caps: CSSProperties = { fontFamily: 'var(--font-body)', fontWeight: 500, textTransform: 'uppercase', color: 'var(--ink)', margin: 0 }
 function Rule({ k, gap }: { k: number; gap: number }) {
@@ -53,13 +46,7 @@ function Details({ k, gap }: { k: number; gap: number }) {
       <p style={{ ...italic, fontSize: 18 * k, color: 'var(--ink-soft)', marginTop: 2 * k, lineHeight: 1.35 }}>{v.address.replace('\n', ', ').replace(', Pakistan', '')}</p>
 
       <Rule k={k} gap={gap} />
-      <p style={{ ...italic, fontSize: 20 * k }}>{c.rsvp.deadlineLabel}</p>
-      <p style={{ ...italic, fontSize: 17 * k, color: 'var(--ink-soft)', marginTop: 2 * k }}>by call or WhatsApp to</p>
-      {c.contacts.map((p) => (
-        <p key={p.whatsapp} style={{ ...caps, fontSize: 15.5 * k, letterSpacing: '0.12em', marginTop: 8 * k }}>
-          {p.name}<span style={{ fontFamily: 'var(--font-body)', fontWeight: 400, letterSpacing: '0.04em', textTransform: 'none', fontSize: 19 * k, marginLeft: 12 * k }}>{phone(p)}</span>
-        </p>
-      ))}
+      <p style={{ ...italic, fontSize: 22 * k }}>Kindly RSVP by November 30th</p>
     </>
   )
 }
@@ -94,10 +81,10 @@ function Shaadi() {
     <div className="hero-folio" style={{ position: 'relative', width: PAGE_W, height: PAGE_H, padding: 0, display: 'block', minHeight: 0 }}>
       <ReferenceFrame className="folio-frame" bandRatio={0.105} />
       <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 120px' }}>
-        <Opening k={1.03} />
-        <div style={{ marginTop: 12 }}><Names size={62} /></div>
-        <p style={{ ...caps, fontSize: 16.5, letterSpacing: '0.16em', marginTop: 14 }}>{c.hero.afterNames}</p>
-        <div style={{ marginTop: 4 }}><Details k={1.03} gap={21} /></div>
+        <Opening k={1.1} />
+        <div style={{ marginTop: 16 }}><Names size={68} /></div>
+        <p style={{ ...caps, fontSize: 17.5, letterSpacing: '0.16em', marginTop: 16 }}>{c.hero.afterNames}</p>
+        <div style={{ marginTop: 8 }}><Details k={1.1} gap={28} /></div>
       </div>
     </div>
   )
@@ -106,16 +93,16 @@ function Shaadi() {
 function Reception() {
   // the arch artwork is 1016 x 1466; the page is a touch squarer, so the
   // frame is set a little narrower and its straight sides grow to fill A4
-  const W = 762, k = 0.92
+  const W = 762, k = 0.97
   return (
     <div style={{ position: 'relative', width: PAGE_W, height: PAGE_H, background: 'var(--paper)' }}>
       <div className="hero-folio hero-arch paper" style={{ ['--vw' as string]: `${W / 100}px`, position: 'absolute', left: (PAGE_W - W) / 2, top: 0, width: W, height: PAGE_H, minHeight: 0, padding: 0, display: 'block' }}>
         <ArchFrame />
-        <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '120px 110px 0' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '138px 110px 0' }}>
           <Opening k={k} enWidth={250} />
-          <div style={{ marginTop: 2 }}><Names size={50} /></div>
-          <p style={{ ...caps, fontSize: 15 * k, letterSpacing: '0.16em', lineHeight: 1.6, marginTop: 6 }}>{lines(c.hero.afterNames || '')}</p>
-          <div><Details k={k} gap={13} /></div>
+          <div style={{ marginTop: 6 }}><Names size={54} /></div>
+          <p style={{ ...caps, fontSize: 15 * k, letterSpacing: '0.16em', lineHeight: 1.6, marginTop: 8 }}>{lines(c.hero.afterNames || '')}</p>
+          <div><Details k={k} gap={20} /></div>
         </div>
       </div>
     </div>
