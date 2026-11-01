@@ -39,6 +39,10 @@ document.getElementById('app')!.innerHTML = `
     <input id="greet" autocomplete="off" autocapitalize="sentences" placeholder="e.g. Mr. and Mrs. Khan and family" />
     <p class="hint">If filled in, this is used instead</p>
 
+    <label for="custom">Or a custom message (optional)</label>
+    <textarea id="custom" rows="4" autocapitalize="sentences" placeholder="e.g. Hi Sara! We would love for you to celebrate with us 💛"></textarea>
+    <p class="hint">For friends and others: replaces the whole message. The invitation link is added at the end.</p>
+
     <section class="card ${key}">
       <h2>Message</h2>
       <div class="msg" id="msg"></div>
@@ -50,6 +54,7 @@ document.getElementById('app')!.innerHTML = `
 
 const name = document.getElementById('name') as HTMLInputElement
 const greet = document.getElementById('greet') as HTMLInputElement
+const custom = document.getElementById('custom') as HTMLTextAreaElement
 const msg = document.getElementById('msg')!
 const go = document.getElementById('go') as HTMLAnchorElement
 
@@ -59,10 +64,13 @@ function greeting() {
   return `Mr. and Mrs. ${name.value.trim() || '________'},`
 }
 function update() {
-  const text = `${greeting()}\n\n${ev.line}\n\nYour invitation: ${ev.url}`
+  const own = custom.value.trim()
+  const body = own || `${greeting()}\n\n${ev.line}`
+  const text = `${body}\n\nYour invitation: ${ev.url}`
   msg.textContent = text
   go.href = `https://wa.me/?text=${encodeURIComponent(text)}`
 }
 name.addEventListener('input', update)
 greet.addEventListener('input', update)
+custom.addEventListener('input', update)
 update()

@@ -5,8 +5,8 @@
       h1 { font-weight: 500; font-size: 1.6rem; text-align: center; margin: 0 0 4px; letter-spacing: 0.02em; }
       .sub { text-align: center; color: var(--soft); font-style: italic; margin: 0 0 26px; }
       label { display: block; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; margin: 18px 0 6px; }
-      input { width: 100%; font: inherit; font-size: 1.15rem; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; outline: none; }
-      input:focus { border-color: var(--gold); }
+      input, textarea { width: 100%; font: inherit; font-size: 1.15rem; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; outline: none; }
+      input:focus, textarea:focus { border-color: var(--gold); }
       .hint { font-size: 0.92rem; color: var(--soft); font-style: italic; margin: 6px 2px 0; }
       .card { margin-top: 22px; border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; }
       .card h2 { margin: 0; padding: 12px 14px; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid var(--line); }
@@ -15,3 +15,4 @@
       .shaadi .btn { background: #6b1727; }
       .reception .btn { background: #9b6f63; }
       .note { margin-top: 26px; font-size: 0.95rem; color: var(--soft); line-height: 1.5; }
+textarea { resize: vertical; line-height: 1.4; }
