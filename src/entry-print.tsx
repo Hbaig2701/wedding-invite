@@ -129,7 +129,7 @@ function Reception() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '116px 110px 0' }}>
           <Opening k={k} enWidth={250} />
           <div style={{ marginTop: 2 }}><Names size={50} /></div>
-          <p style={{ ...caps, fontSize: 15 * k, letterSpacing: '0.16em', lineHeight: 1.6, marginTop: 6 }}>{lines(c.hero.afterNames || '')}</p>
+          <p style={{ ...italic, fontSize: 20 * k, lineHeight: 1.4, marginTop: 6 }}>{lines(c.hero.afterNames || '')}</p>
           <div><Details k={k} gap={14} boxed /></div>
         </div>
       </div>

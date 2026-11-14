@@ -1241,6 +1241,12 @@ html.lenis, html.lenis body { height: auto; }
    and "and" centred between the two names */
 [data-theme='walima'] .hero-folio .hero-names-title { margin-top: 1.84rem; }
 [data-theme='walima'] .hero-folio .hero-after { margin-top: 0.96rem; }
+/* Reception: "(with her parents …)" in the italic of the invitation line, not capitals */
+[data-theme='walima'] .hero-folio .hero-parents.hero-after {
+  font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0;
+  font-size: 1.08rem; line-height: 1.45; white-space: normal; text-wrap: balance;
+  margin-left: 0; margin-right: 0;
+}
 [data-theme='walima'] .hero-name-script + .hero-joiner { position: relative; top: 5px; }
 
 /* Walima: names in English script */

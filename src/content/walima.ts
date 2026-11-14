@@ -32,7 +32,7 @@ export const walima: InviteContent = {
   hero: {
     hosts: 'Rabia and Ali Baig',
     line: 'cordially invite you to the Reception\nof their beloved son',
-    afterNames: 'Daughter of\nSania and Shahid Mahmood',
+    afterNames: '(with her parents\nSania & Shahid Mahmood)',
   },
 
   invitationLine:
