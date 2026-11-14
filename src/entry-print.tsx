@@ -62,10 +62,8 @@ function Details({ k, gap, boxed = false }: { k: number; gap: number; boxed?: bo
   return (
     <>
       {boxed ? (
-        // the venue box from the invitation: a maroon band between two fine rules
-        <div style={{ position: 'relative', margin: `${gap + 9}px auto ${gap + 9}px`, padding: `${17 * k}px ${30 * k}px ${15 * k}px`, border: '1px solid var(--burgundy)', borderRadius: 2 }}>
-          <i style={{ position: 'absolute', inset: -9, border: '1px solid var(--burgundy)', borderRadius: 3 }} />
-          <i style={{ position: 'absolute', inset: -5.5, border: '2.5px solid var(--burgundy)', borderRadius: 3 }} />
+        // a single fine line, in the arch's colour
+        <div style={{ margin: `${gap + 4}px auto ${gap + 4}px`, padding: `${17 * k}px ${30 * k}px ${15 * k}px`, border: '1px solid #86605f', borderRadius: 2 }}>
           {info}
         </div>
       ) : (
