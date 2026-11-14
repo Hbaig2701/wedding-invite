@@ -45,25 +45,36 @@ function Rule({ k, gap }: { k: number; gap: number }) {
 }
 const lines = (s: string) => s.split('\n').map((l, i) => <span key={i}>{i > 0 && <br />}{l}</span>)
 
-function Details({ k, gap }: { k: number; gap: number }) {
+function Details({ k, gap, boxed = false }: { k: number; gap: number; boxed?: boolean }) {
   // k scales the type for each frame's inner width
   const v = c.venue
   const when = `${c.date.weekday}, ${c.date.short}`
-  return (
+  const info = (
     <>
-      <Rule k={k} gap={gap} />
       <p style={{ ...caps, fontSize: 19 * k, letterSpacing: '0.16em' }}>{when}</p>
       <p style={{ ...italic, fontSize: 21 * k, marginTop: 4 * k }}>{c.date.timeLabel}</p>
-
-      <p style={{ ...caps, fontSize: 17 * k, letterSpacing: '0.16em', marginTop: 20 * k }}>{v.hall}</p>
+      {boxed ? <Rule k={k * 0.6} gap={14 * k} /> : <div style={{ height: 20 * k }} />}
+      <p style={{ ...caps, fontSize: 17 * k, letterSpacing: '0.16em' }}>{v.hall}</p>
       <p style={{ ...italic, fontSize: 21 * k, marginTop: 4 * k }}>{v.name}</p>
       <p style={{ ...italic, fontSize: 18 * k, color: 'var(--ink-soft)', marginTop: 2 * k, lineHeight: 1.35 }}>{v.address.replace('\n', ', ').replace(', Pakistan', '')}</p>
-
-      <Rule k={k} gap={gap} />
+    </>
+  )
+  return (
+    <>
+      {boxed ? (
+        // the venue box from the invitation: a maroon band between two fine rules
+        <div style={{ position: 'relative', margin: `${gap + 9}px auto ${gap + 9}px`, padding: `${17 * k}px ${30 * k}px ${15 * k}px`, border: '1px solid var(--burgundy)', borderRadius: 2 }}>
+          <i style={{ position: 'absolute', inset: -9, border: '1px solid var(--burgundy)', borderRadius: 3 }} />
+          <i style={{ position: 'absolute', inset: -5.5, border: '2.5px solid var(--burgundy)', borderRadius: 3 }} />
+          {info}
+        </div>
+      ) : (
+        <><Rule k={k} gap={gap} />{info}<Rule k={k} gap={gap} /></>
+      )}
       <p style={{ ...italic, fontSize: 22 * k }}>Kindly RSVP by November 30th</p>
       {/* venue rules, at the very end (Reception only) */}
       {v.notes?.map((n, i) => (
-        <p key={n} style={{ ...caps, fontSize: 13 * k, letterSpacing: '0.2em', lineHeight: 1.7, marginTop: i === 0 ? 16 * k : 0 }}>{n}</p>
+        <p key={n} style={{ ...caps, fontSize: 13 * k, letterSpacing: '0.2em', lineHeight: 1.7, marginTop: i === 0 ? 12 * k : 0 }}>{n}</p>
       ))}
     </>
   )
@@ -117,11 +128,11 @@ function Reception() {
     <div style={{ position: 'relative', width: PAGE_W, height: PAGE_H, background: 'var(--paper)' }}>
       <div className="hero-folio hero-arch paper" style={{ ['--vw' as string]: `${W / 100}px`, position: 'absolute', left: (PAGE_W - W) / 2, top: 0, width: W, height: PAGE_H, minHeight: 0, padding: 0, display: 'block' }}>
         <ArchFrame />
-        <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '124px 110px 0' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '116px 110px 0' }}>
           <Opening k={k} enWidth={250} />
           <div style={{ marginTop: 2 }}><Names size={50} /></div>
           <p style={{ ...caps, fontSize: 15 * k, letterSpacing: '0.16em', lineHeight: 1.6, marginTop: 6 }}>{lines(c.hero.afterNames || '')}</p>
-          <div><Details k={k} gap={15} /></div>
+          <div><Details k={k} gap={14} boxed /></div>
         </div>
       </div>
     </div>
