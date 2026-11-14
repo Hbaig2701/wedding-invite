@@ -1244,8 +1244,11 @@ html.lenis, html.lenis body { height: auto; }
 /* Reception: "(with her parents …)" in the italic of the invitation line, not capitals */
 [data-theme='walima'] .hero-folio .hero-parents.hero-after {
   font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0;
-  font-size: 1.08rem; line-height: 1.45; white-space: normal; text-wrap: balance;
-  margin-left: 0; margin-right: 0;
+  /* one line, sized to the screen so it always fits inside the arch */
+  font-size: max(12.5px, calc(var(--vw) * 3.65)); line-height: 1.45; white-space: nowrap;
+  margin-left: -20px; margin-right: -20px;
+  /* room below it, so the lower flowers settle under the line, not across it */
+  margin-bottom: calc(var(--vw) * 22);
 }
 [data-theme='walima'] .hero-name-script + .hero-joiner { position: relative; top: 5px; }
 
