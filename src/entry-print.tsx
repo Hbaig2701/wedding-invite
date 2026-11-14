@@ -62,8 +62,13 @@ function Details({ k, gap, boxed = false }: { k: number; gap: number; boxed?: bo
   return (
     <>
       {boxed ? (
-        // a single fine line, in the arch's colour
-        <div style={{ margin: `${gap + 4}px auto ${gap + 4}px`, padding: `${17 * k}px ${30 * k}px ${15 * k}px`, border: '1px solid #86605f', borderRadius: 2 }}>
+        // a fine line with watercolour sprays on two corners, as on the
+        // invitation's message box
+        <div style={{ position: 'relative', margin: `${gap + 4}px auto ${gap + 4}px`, padding: `${20 * k}px ${60 * k}px ${18 * k}px`, border: '1px solid #86605f', borderRadius: 2 }}>
+          {/* a spray on each corner, mirrored so the frame is symmetrical */}
+          {([['tl', 'left', 'top', 1], ['tl', 'right', 'top', -1], ['br', 'left', 'bottom', -1], ['br', 'right', 'bottom', 1]] as const).map(([art, x, y, flip]) => (
+            <img key={x + y} src={`${import.meta.env.BASE_URL}flora/spray-${art}.png`} alt="" style={{ position: 'absolute', [x]: -14, [y]: -16, width: (art === 'tl' ? 64 : 42) * k, transform: `scaleX(${flip})` }} />
+          ))}
           {info}
         </div>
       ) : (
