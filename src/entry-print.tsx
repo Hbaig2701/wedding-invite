@@ -58,13 +58,13 @@ function Details({ k, gap }: { k: number; gap: number }) {
       <p style={{ ...caps, fontSize: 17 * k, letterSpacing: '0.16em', marginTop: 20 * k }}>{v.hall}</p>
       <p style={{ ...italic, fontSize: 21 * k, marginTop: 4 * k }}>{v.name}</p>
       <p style={{ ...italic, fontSize: 18 * k, color: 'var(--ink-soft)', marginTop: 2 * k, lineHeight: 1.35 }}>{v.address.replace('\n', ', ').replace(', Pakistan', '')}</p>
-      {/* venue rules, as under the map on the invitation (Reception only) */}
-      {v.notes?.map((n, i) => (
-        <p key={n} style={{ ...caps, fontSize: 13 * k, letterSpacing: '0.2em', lineHeight: 1.7, marginTop: i === 0 ? 14 * k : 0 }}>{n}</p>
-      ))}
 
       <Rule k={k} gap={gap} />
       <p style={{ ...italic, fontSize: 22 * k }}>Kindly RSVP by November 30th</p>
+      {/* venue rules, at the very end (Reception only) */}
+      {v.notes?.map((n, i) => (
+        <p key={n} style={{ ...caps, fontSize: 13 * k, letterSpacing: '0.2em', lineHeight: 1.7, marginTop: i === 0 ? 16 * k : 0 }}>{n}</p>
+      ))}
     </>
   )
 }
