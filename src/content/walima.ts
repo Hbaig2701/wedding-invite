@@ -65,6 +65,7 @@ export const walima: InviteContent = {
     // a still map (© OpenStreetMap contributors), toned to the invitation;
     // the live Google embed misbehaved on phones
     mapImage: sindClubMap,
+    notes: ['Club rules apply', 'No photography permitted'],
   },
 
   // no schedule section: the evening is self-explanatory (an empty list hides it)

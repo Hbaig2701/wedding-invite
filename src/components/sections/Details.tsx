@@ -86,6 +86,9 @@ export function Details({ content, theme }: { content: InviteContent; theme: The
                 <button type="button" className="btn btn-ink" onClick={() => downloadIcs(c)}>Apple / Outlook (.ics)</button>
               </div>
             )}
+            {c.venue.notes && c.venue.notes.length > 0 && (
+              <div className="venue-notes">{c.venue.notes.map((n) => <p key={n}>{n}</p>)}</div>
+            )}
           </Reveal>
         </div>
       </section>

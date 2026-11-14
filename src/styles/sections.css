@@ -1159,6 +1159,9 @@
 /* the hall within the club */
 .venue-hall { margin-top: 0.7rem; font-family: var(--font-body); font-style: italic; font-size: 1.05rem; color: var(--ink-soft); }
 .venue-hall span { font-style: normal; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.9rem; color: var(--ink); margin-left: 0.25em; }
+/* small notes under the map buttons (Reception: the club's rules) */
+.venue-notes { margin-top: 1.6rem; text-align: center; }
+.venue-notes p { margin: 0; font-family: var(--font-body); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; line-height: 1.9; color: var(--ink); }
 
 /* parallax: the pattern drifts against the scroll */
 [data-style='folio'] .countdown[data-parallax],

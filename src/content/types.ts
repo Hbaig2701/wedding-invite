@@ -104,6 +104,8 @@ export interface InviteContent {
     mapsLink?: string
     /** A still map image to show instead of the live Google embed. */
     mapImage?: string
+    /** Small notes under the map buttons, one per line (e.g. venue rules). */
+    notes?: string[]
     /** Pin for the embedded map. */
     lat?: number
     lng?: number
