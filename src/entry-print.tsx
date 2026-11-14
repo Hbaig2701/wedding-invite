@@ -58,6 +58,10 @@ function Details({ k, gap }: { k: number; gap: number }) {
       <p style={{ ...caps, fontSize: 17 * k, letterSpacing: '0.16em', marginTop: 20 * k }}>{v.hall}</p>
       <p style={{ ...italic, fontSize: 21 * k, marginTop: 4 * k }}>{v.name}</p>
       <p style={{ ...italic, fontSize: 18 * k, color: 'var(--ink-soft)', marginTop: 2 * k, lineHeight: 1.35 }}>{v.address.replace('\n', ', ').replace(', Pakistan', '')}</p>
+      {/* venue rules, as under the map on the invitation (Reception only) */}
+      {v.notes?.map((n, i) => (
+        <p key={n} style={{ ...caps, fontSize: 13 * k, letterSpacing: '0.2em', lineHeight: 1.7, marginTop: i === 0 ? 14 * k : 0 }}>{n}</p>
+      ))}
 
       <Rule k={k} gap={gap} />
       <p style={{ ...italic, fontSize: 22 * k }}>Kindly RSVP by November 30th</p>
@@ -113,11 +117,11 @@ function Reception() {
     <div style={{ position: 'relative', width: PAGE_W, height: PAGE_H, background: 'var(--paper)' }}>
       <div className="hero-folio hero-arch paper" style={{ ['--vw' as string]: `${W / 100}px`, position: 'absolute', left: (PAGE_W - W) / 2, top: 0, width: W, height: PAGE_H, minHeight: 0, padding: 0, display: 'block' }}>
         <ArchFrame />
-        <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '138px 110px 0' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '124px 110px 0' }}>
           <Opening k={k} enWidth={250} />
-          <div style={{ marginTop: 6 }}><Names size={54} /></div>
-          <p style={{ ...caps, fontSize: 15 * k, letterSpacing: '0.16em', lineHeight: 1.6, marginTop: 8 }}>{lines(c.hero.afterNames || '')}</p>
-          <div><Details k={k} gap={20} /></div>
+          <div style={{ marginTop: 2 }}><Names size={50} /></div>
+          <p style={{ ...caps, fontSize: 15 * k, letterSpacing: '0.16em', lineHeight: 1.6, marginTop: 6 }}>{lines(c.hero.afterNames || '')}</p>
+          <div><Details k={k} gap={15} /></div>
         </div>
       </div>
     </div>
